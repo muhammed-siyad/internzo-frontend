@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Internships - INTERNZO</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <style>
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .search-box {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 25px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px #f3e8ff;
+        }
+
+        .internship-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .internship-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 23px;
+            box-shadow: 0 5px 15px rgba(17, 24, 39, 0.04);
+            transition: 0.25s ease;
+        }
+
+        .internship-card:hover {
+            transform: translateY(-4px);
+            border-color: #c4b5fd;
+            box-shadow: 0 15px 30px rgba(124, 58, 237, 0.10);
+        }
+
+        .internship-card h2 {
+            color: #111827;
+            font-size: 18px;
+            margin-bottom: 7px;
+        }
+
+        .company {
+            color: #7c3aed;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 17px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            margin-bottom: 17px;
+        }
+
+        .detail {
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .detail small {
+            display: block;
+            color: #94a3b8;
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+
+        .detail strong {
+            color: #334155;
+            font-size: 12px;
+        }
+
+        .description {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .skill {
+            background: #f3e8ff;
+            color: #7c3aed;
+            padding: 5px 8px;
+            border-radius: 5px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .deadline {
+            color: #64748b;
+            font-size: 11px;
+            margin-bottom: 15px;
+        }
+
+        .apply-btn {
+            width: 100%;
+            padding: 11px;
+            background: #7c3aed;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .apply-btn:hover {
+            background: #6d28d9;
+        }
+
+        .apply-btn.applied {
+            background: #16a34a;
+            cursor: default;
+        }
+
+        .loading,
+        .empty-state,
+        .error-state {
+            grid-column: 1 / -1;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 55px 25px;
+            text-align: center;
+            color: #64748b;
+        }
+
+        .empty-state h2,
+        .error-state h2 {
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p,
+        .error-state p {
+            font-size: 14px;
+        }
+
+        @media (max-width: 1000px) {
+
+            .internship-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .internship-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            INTERNZO
+        </div>
+
+        <div class="nav-links">
+
+            <a href="student-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="internships.html" class="active">
+                Internships
+            </a>
+
+            <a href="my-applications.html">
+                My Applications
+            </a>
+
+            <a href="student-profile.html">
+                My Profile
+            </a>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    <main class="dashboard-container">
+
+
+        <div class="page-header">
+
+            <h1>
+                Find Internships
+            </h1>
+
+            <p>
+                Explore internship opportunities posted by companies.
+            </p>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by internship, company, location or skill..."
+            >
+
+        </div>
+
+
+        <!-- INTERNSHIPS -->
+
+        <div
+            class="internship-grid"
+            id="internshipContainer"
+        >
+
+            <div class="loading">
+                Loading internships...
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <script>
+
+        // ==========================================
+        // CHECK LOGIN
+        // ==========================================
+
+        const token =
+            localStorage.getItem("token");
+
+        const userData =
+            localStorage.getItem("user");
+
+
+        if (!token || !userData) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        let user;
+
+        try {
+
+            user =
+                JSON.parse(userData);
+
+        } catch (error) {
+
+            localStorage.clear();
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // Only students
+        if (user && user.role !== "student") {
+
+            alert(
+                "Only students can view internships."
+            );
+
+            window.location.href =
+                "company-dashboard.html";
+
+        }
+
+
+        // ==========================================
+        // LOAD INTERNSHIPS FROM DATABASE
+        // ==========================================
+
+        let allInternships = [];
+
+
+        async function loadInternships() {
+
+            const container =
+                document.getElementById(
+                    "internshipContainer"
+                );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/internships"
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    container.innerHTML = `
+
+                        <div class="error-state">
+
+                            <h2>
+                                Unable to load internships
+                            </h2>
+
+                            <p>
+                                ${data.message || "Something went wrong."}
+                            </p>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                allInternships = data;
+
+
+                displayInternships(
+                    allInternships
+                );
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                container.innerHTML = `
+
+                    <div class="error-state">
+
+                        <h2>
+                            Server Connection Error
+                        </h2>
+
+                        <p>
+                            Please make sure the backend server is running.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        // ==========================================
+        // DISPLAY INTERNSHIPS
+        // ==========================================
+
+        function displayInternships(
+            internships
+        ) {
+
+            const container =
+                document.getElementById(
+                    "internshipContainer"
+                );
+
+
+            if (
+                !internships ||
+                internships.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="empty-state">
+
+                        <h2>
+                            No Internships Available
+                        </h2>
+
+                        <p>
+                            There are currently no approved internships.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                internships.map(
+                    internship => {
+
+
+                        const deadline =
+                            new Date(
+                                internship.deadline
+                            ).toLocaleDateString(
+                                "en-IN",
+                                {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric"
+                                }
+                            );
+
+
+                        const skills =
+                            internship.skills || [];
+
+
+                        return `
+
+                            <div
+                                class="internship-card"
+                                data-search="${(
+                                    internship.title +
+                                    " " +
+                                    internship.companyName +
+                                    " " +
+                                    internship.location +
+                                    " " +
+                                    skills.join(" ")
+                                ).toLowerCase()}"
+                            >
+
+                                <h2>
+                                    ${internship.title}
+                                </h2>
+
+
+                                <div class="company">
+                                    ${internship.companyName}
+                                </div>
+
+
+                                <div class="details">
+
+                                    <div class="detail">
+
+                                        <small>
+                                            Location
+                                        </small>
+
+                                        <strong>
+                                            📍 ${internship.location}
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="detail">
+
+                                        <small>
+                                            Type
+                                        </small>
+
+                                        <strong>
+                                            💼 ${internship.type}
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="detail">
+
+                                        <small>
+                                            Duration
+                                        </small>
+
+                                        <strong>
+                                            ⏱ ${internship.duration}
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="detail">
+
+                                        <small>
+                                            Stipend
+                                        </small>
+
+                                        <strong>
+                                            ₹ ${internship.stipend || "Unpaid"}
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="description">
+
+                                    ${internship.description}
+
+                                </div>
+
+
+                                <div class="skills">
+
+                                    ${
+                                        skills.length > 0
+
+                                            ? skills.map(
+                                                skill =>
+                                                    `<span class="skill">${skill}</span>`
+                                            ).join("")
+
+                                            : `<span class="skill">No skills specified</span>`
+                                    }
+
+                                </div>
+
+
+                                <div class="deadline">
+
+                                    Application Deadline:
+                                    <strong>
+                                        ${deadline}
+                                    </strong>
+
+                                </div>
+
+
+                                <button
+                                    class="apply-btn"
+                                    onclick="applyInternship('${internship._id}')"
+                                >
+                                    Apply Now
+                                </button>
+
+                            </div>
+
+                        `;
+
+                    }
+                ).join("");
+
+        }
+
+
+        // ==========================================
+        // APPLY FOR INTERNSHIP
+        // ==========================================
+
+        async function applyInternship(
+            internshipId
+        ) {
+
+            if (!token) {
+
+                alert(
+                    "Please login first."
+                );
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/applications/apply",
+                        {
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                token:
+                                    token,
+
+                                internship:
+                                    internshipId
+
+                            })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (response.ok) {
+
+                    alert(
+                        "Application submitted successfully!"
+                    );
+
+                } else {
+
+                    alert(
+                        data.message ||
+                        "Unable to apply."
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to connect to the server."
+                );
+
+            }
+
+        }
+
+
+        // ==========================================
+        // SEARCH
+        // ==========================================
+
+        document
+            .getElementById("searchInput")
+            .addEventListener(
+                "input",
+                function () {
+
+                    const search =
+                        this.value
+                            .toLowerCase()
+                            .trim();
+
+
+                    const filtered =
+                        allInternships.filter(
+                            internship => {
+
+                                const text =
+                                    (
+                                        internship.title +
+                                        " " +
+                                        internship.companyName +
+                                        " " +
+                                        internship.location +
+                                        " " +
+                                        (internship.skills || []).join(" ")
+                                    )
+                                    .toLowerCase();
+
+
+                                return text.includes(
+                                    search
+                                );
+
+                            }
+                        );
+
+
+                    displayInternships(
+                        filtered
+                    );
+
+                }
+            );
+
+
+        // ==========================================
+        // LOGOUT
+        // ==========================================
+
+        function logout() {
+
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "user"
+            );
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // ==========================================
+        // START
+        // ==========================================
+
+        loadInternships();
+
+    </script>
+
+</body>
+
+</html>

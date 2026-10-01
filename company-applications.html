@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Applications - INTERNZO</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <style>
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .applications-container {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(17, 24, 39, 0.04);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            background: #f8fafc;
+            color: #475569;
+            font-size: 13px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        td {
+            padding: 16px 15px;
+            color: #334155;
+            font-size: 14px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .student-name {
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .student-email {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-applied {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-shortlisted {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .status-selected {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-rejected {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .action-buttons button {
+            width: auto;
+            padding: 8px 12px;
+            border-radius: 7px;
+            font-size: 12px;
+        }
+
+        .shortlist-btn {
+            background: #2563eb;
+        }
+
+        .shortlist-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .select-btn {
+            background: #16a34a;
+        }
+
+        .select-btn:hover {
+            background: #15803d;
+        }
+
+        .reject-btn {
+            background: #dc2626;
+        }
+
+        .reject-btn:hover {
+            background: #b91c1c;
+        }
+
+        .empty-box {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-box .icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .empty-box h3 {
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .empty-box p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .message {
+            text-align: center;
+            margin-bottom: 18px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .applications-container {
+                padding: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =============================== -->
+    <!-- NAVBAR -->
+    <!-- =============================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            INTERNZO
+        </div>
+
+        <div class="nav-links">
+
+            <a href="company-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="post-internship.html">
+                Post Internship
+            </a>
+
+            <a href="manage-internships.html">
+                My Internships
+            </a>
+
+            <a href="company-applications.html"
+               class="active">
+                Applications
+            </a>
+
+            <a href="company-profile.html">
+                Profile
+            </a>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =============================== -->
+    <!-- MAIN CONTENT -->
+    <!-- =============================== -->
+
+    <main class="dashboard-container">
+
+        <div class="page-header">
+
+            <h1>
+                Applications
+            </h1>
+
+            <p>
+                Review students who have applied for your internships.
+            </p>
+
+        </div>
+
+
+        <div id="message"
+             class="message">
+        </div>
+
+
+        <div class="applications-container">
+
+            <div id="applicationsContent">
+
+                <p style="text-align:center; color:#64748b;">
+                    Loading applications...
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        // ===============================
+        // LOGIN CHECK
+        // ===============================
+
+        const token =
+            localStorage.getItem("token");
+
+        const user =
+            JSON.parse(
+                localStorage.getItem("user")
+            );
+
+
+        if (!token || !user) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        if (user.role !== "company") {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // ===============================
+        // LOAD APPLICATIONS
+        // ===============================
+
+        async function loadApplications() {
+
+            const content =
+                document.getElementById(
+                    "applicationsContent"
+                );
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/applications/company-applications",
+                        {
+                            method: "GET",
+
+                            headers: {
+                                "Authorization":
+                                    "Bearer " + token
+                            }
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    content.innerHTML = `
+                        <div class="empty-box">
+                            <div class="icon">⚠️</div>
+                            <h3>Unable to load applications</h3>
+                            <p>${data.message}</p>
+                        </div>
+                    `;
+
+                    return;
+
+                }
+
+
+                if (data.length === 0) {
+
+                    content.innerHTML = `
+                        <div class="empty-box">
+
+                            <div class="icon">
+                                📄
+                            </div>
+
+                            <h3>
+                                No Applications Yet
+                            </h3>
+
+                            <p>
+                                Students who apply for your internships
+                                will appear here.
+                            </p>
+
+                        </div>
+                    `;
+
+                    return;
+
+                }
+
+
+                let html = `
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Student
+                                </th>
+
+                                <th>
+                                    Internship
+                                </th>
+
+                                <th>
+                                    Applied On
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                `;
+
+
+                data.forEach(application => {
+
+                    const student =
+                        application.student || {};
+
+                    const internship =
+                        application.internship || {};
+
+
+                    const appliedDate =
+                        new Date(
+                            application.createdAt
+                        ).toLocaleDateString();
+
+
+                    const status =
+                        application.status ||
+                        "Applied";
+
+
+                    let statusClass =
+                        "status-applied";
+
+
+                    if (status === "Shortlisted") {
+
+                        statusClass =
+                            "status-shortlisted";
+
+                    } else if (status === "Selected") {
+
+                        statusClass =
+                            "status-selected";
+
+                    } else if (status === "Rejected") {
+
+                        statusClass =
+                            "status-rejected";
+
+                    }
+
+
+                    html += `
+
+                        <tr>
+
+                            <td>
+
+                                <div class="student-name">
+                                    ${student.name || "Unknown Student"}
+                                </div>
+
+                                <div class="student-email">
+                                    ${student.email || ""}
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <strong>
+                                    ${internship.title || "Internship"}
+                                </strong>
+
+                                <div class="student-email">
+                                    ${internship.location || ""}
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                ${appliedDate}
+                            </td>
+
+
+                            <td>
+
+                                <span class="status ${statusClass}">
+                                    ${status}
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <button
+                                        class="shortlist-btn"
+                                        onclick="updateStatus(
+                                            '${application._id}',
+                                            'Shortlisted'
+                                        )">
+                                        Shortlist
+                                    </button>
+
+                                    <button
+                                        class="select-btn"
+                                        onclick="updateStatus(
+                                            '${application._id}',
+                                            'Selected'
+                                        )">
+                                        Select
+                                    </button>
+
+                                    <button
+                                        class="reject-btn"
+                                        onclick="updateStatus(
+                                            '${application._id}',
+                                            'Rejected'
+                                        )">
+                                        Reject
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                });
+
+
+                html += `
+
+                        </tbody>
+
+                    </table>
+
+                `;
+
+
+                content.innerHTML = html;
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                content.innerHTML = `
+
+                    <div class="empty-box">
+
+                        <div class="icon">
+                            ⚠️
+                        </div>
+
+                        <h3>
+                            Server Connection Error
+                        </h3>
+
+                        <p>
+                            Please make sure the backend server is running.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        // ===============================
+        // UPDATE APPLICATION STATUS
+        // ===============================
+
+        async function updateStatus(
+            applicationId,
+            status
+        ) {
+
+            try {
+
+                const response =
+                    await fetch(
+                        `http://localhost:5000/api/applications/status/${applicationId}`,
+                        {
+                            method: "PUT",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
+
+                                "Authorization":
+                                    "Bearer " + token
+                            },
+
+                            body: JSON.stringify({
+                                status: status
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                const message =
+                    document.getElementById(
+                        "message"
+                    );
+
+
+                if (response.ok) {
+
+                    message.style.color =
+                        "#16a34a";
+
+                    message.textContent =
+                        data.message;
+
+                    loadApplications();
+
+                } else {
+
+                    message.style.color =
+                        "#dc2626";
+
+                    message.textContent =
+                        data.message;
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                const message =
+                    document.getElementById(
+                        "message"
+                    );
+
+                message.style.color =
+                    "#dc2626";
+
+                message.textContent =
+                    "Unable to connect to the server.";
+
+            }
+
+        }
+
+
+        // ===============================
+        // LOGOUT
+        // ===============================
+
+        function logout() {
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // ===============================
+        // START
+        // ===============================
+
+        loadApplications();
+
+    </script>
+
+</body>
+</html>

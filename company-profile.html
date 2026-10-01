@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>INTERNZO - Company Profile</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f8fafc;
+            color: #111827;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            width: 100%;
+            min-height: 72px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #7c3aed;
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #7c3aed;
+        }
+
+        .logout-btn {
+            width: auto;
+            padding: 9px 18px;
+            background: #ffffff;
+            color: #7c3aed;
+            border: 1px solid #ddd6fe;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #f3e8ff;
+        }
+
+        .profile-container {
+            width: 100%;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 45px 30px 60px;
+        }
+
+        .page-header {
+            margin-bottom: 35px;
+        }
+
+        .page-header h1 {
+            color: #111827;
+            font-size: 32px;
+            font-weight: 750;
+            line-height: 1.2;
+            margin-bottom: 9px;
+        }
+
+        .page-header h1 span {
+            color: #7c3aed;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .profile-top {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(17, 24, 39, 0.04);
+        }
+
+        .company-icon {
+            width: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3e8ff;
+            color: #7c3aed;
+            border-radius: 14px;
+            font-size: 30px;
+        }
+
+        .profile-top h2 {
+            color: #111827;
+            font-size: 23px;
+            margin-bottom: 5px;
+        }
+
+        .profile-top p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(17, 24, 39, 0.04);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: #111827;
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 22px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #334155;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #dbe0e7;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #111827;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+        }
+
+        .form-group input[readonly] {
+            background: #f8fafc;
+            color: #64748b;
+            cursor: not-allowed;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 11px 15px;
+            background: #7c3aed;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .save-btn:hover {
+            background: #6d28d9;
+            transform: translateY(-1px);
+        }
+
+        .save-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-icon {
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3e8ff;
+            color: #7c3aed;
+            border-radius: 9px;
+            font-size: 15px;
+        }
+
+        .detail-text {
+            min-width: 0;
+        }
+
+        .detail-label {
+            color: #94a3b8;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .detail-value {
+            color: #334155;
+            font-size: 14px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .info-box {
+            background: #f3e8ff;
+            border: 1px solid #ddd6fe;
+            border-radius: 11px;
+            padding: 18px;
+        }
+
+        .info-box i {
+            color: #7c3aed;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .info-box h3 {
+            color: #334155;
+            font-size: 15px;
+            margin-bottom: 7px;
+        }
+
+        .info-box p {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        #message {
+            margin-top: 14px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1050px) {
+
+            .navbar {
+                padding: 0 30px;
+            }
+
+            .nav-links {
+                gap: 17px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            .navbar {
+                min-height: auto;
+                padding: 18px 20px;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .nav-links {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px 15px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .logout-btn {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .profile-container {
+                padding: 30px 18px 45px;
+            }
+
+            .page-header h1 {
+                font-size: 27px;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-top {
+                padding: 22px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-top h2 {
+                font-size: 21px;
+            }
+
+            .page-header h1 {
+                font-size: 24px;
+            }
+
+            .page-header p {
+                font-size: 14px;
+            }
+
+            .nav-links {
+                gap: 9px 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .logout-btn {
+                font-size: 12px;
+                padding: 7px 12px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <nav class="navbar">
+
+        <div class="logo">
+            INTERNZO
+        </div>
+
+        <div class="nav-links">
+
+            <a href="company-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="post-internship.html">
+                Post Internship
+            </a>
+
+            <a href="manage-internships.html">
+                My Internships
+            </a>
+
+            <a href="company-applications.html">
+                Applications
+            </a>
+
+            <a href="company-profile.html"
+               class="active">
+                Profile
+            </a>
+
+            <button class="logout-btn"
+                    onclick="logout()">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <main class="profile-container">
+
+
+        <section class="page-header">
+
+            <h1>
+                Company
+                <span>Profile</span>
+            </h1>
+
+            <p>
+                Manage your company information
+                and keep your profile updated.
+            </p>
+
+        </section>
+
+
+        <section class="profile-top">
+
+            <div class="company-icon">
+
+                <i class="fa-solid fa-building"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="companyNameDisplay">
+                    Company Name
+                </h2>
+
+                <p id="companyEmailDisplay">
+                    company@example.com
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <div class="content-grid">
+
+
+            <div class="card">
+
+                <h2>
+                    Company Information
+                </h2>
+
+
+                <form id="profileForm">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Company Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="companyName"
+                            placeholder="Enter company name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Company email"
+                            readonly>
+
+                    </div>
+
+
+                    <div class="two-column">
+
+                        <div class="form-group">
+
+                            <label>
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="text"
+                                id="phone"
+                                placeholder="Enter phone number">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Website
+                            </label>
+
+                            <input
+                                type="text"
+                                id="website"
+                                placeholder="Company website">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="two-column">
+
+                        <div class="form-group">
+
+                            <label>
+                                Industry
+                            </label>
+
+                            <input
+                                type="text"
+                                id="industry"
+                                placeholder="Example: Information Technology">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Location
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location"
+                                placeholder="Company location">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            About Company
+                        </label>
+
+                        <textarea
+                            id="description"
+                            placeholder="Write a short description about your company..."></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                        id="saveButton">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Save Profile
+
+                    </button>
+
+
+                    <div id="message"></div>
+
+
+                </form>
+
+            </div>
+
+
+            <div>
+
+
+                <div class="card">
+
+                    <h2>
+                        Company Details
+                    </h2>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+
+                        <div class="detail-text">
+
+                            <div class="detail-label">
+                                Company
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="sideCompanyName">
+
+                                Not added
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+
+                        <div class="detail-text">
+
+                            <div class="detail-label">
+                                Email
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="sideEmail">
+
+                                Not available
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+
+                        <div class="detail-text">
+
+                            <div class="detail-label">
+                                Phone
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="sidePhone">
+
+                                Not added
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            <i class="fa-solid fa-industry"></i>
+                        </div>
+
+                        <div class="detail-text">
+
+                            <div class="detail-label">
+                                Industry
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="sideIndustry">
+
+                                Not added
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+
+                        <div class="detail-text">
+
+                            <div class="detail-label">
+                                Location
+                            </div>
+
+                            <div
+                                class="detail-value"
+                                id="sideLocation">
+
+                                Not added
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h2>
+                        Profile Information
+                    </h2>
+
+                    <div class="info-box">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <h3>
+                            Keep your profile updated
+                        </h3>
+
+                        <p>
+                            Students can view your company
+                            information when exploring
+                            internship opportunities.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        // =========================================
+        // API URL
+        // =========================================
+const API_URL = "https://internzo-backend.onrender.com";
+
+
+        // =========================================
+        // CHECK LOGIN
+        // =========================================
+
+        const token =
+            localStorage.getItem("token");
+
+        const userData =
+            localStorage.getItem("user");
+
+
+        if (!token || !userData) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        let user;
+
+
+        try {
+
+            user =
+                JSON.parse(userData);
+
+        } catch (error) {
+
+            localStorage.clear();
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // =========================================
+        // CHECK COMPANY ROLE
+        // =========================================
+
+        if (
+            user &&
+            user.role !== "company"
+        ) {
+
+            if (user.role === "student") {
+
+                window.location.href =
+                    "student-dashboard.html";
+
+            } else if (
+                user.role === "admin"
+            ) {
+
+                window.location.href =
+                    "admin-dashboard.html";
+
+            }
+
+        }
+
+
+        // =========================================
+        // SHOW BASIC USER INFORMATION
+        // =========================================
+
+        function showUserInformation() {
+
+            if (!user) {
+                return;
+            }
+
+
+            document.getElementById(
+                "email"
+            ).value =
+                user.email || "";
+
+
+            document.getElementById(
+                "companyEmailDisplay"
+            ).textContent =
+                user.email ||
+                "company@example.com";
+
+
+            document.getElementById(
+                "sideEmail"
+            ).textContent =
+                user.email ||
+                "Not available";
+
+        }
+
+
+        // =========================================
+        // LOAD COMPANY PROFILE FROM MONGODB
+        // =========================================
+
+        async function loadProfile() {
+
+            try {
+
+                showUserInformation();
+
+
+                const response =
+                    await fetch(
+                        `${API_URL}/api/company-profile`,
+                        {
+                            method: "GET",
+
+                            headers: {
+                                "Authorization":
+                                    `Bearer ${token}`
+                            }
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    if (
+                        response.status === 401
+                    ) {
+
+                        localStorage.clear();
+
+                        window.location.href =
+                            "login.html";
+
+                        return;
+
+                    }
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to load profile"
+                    );
+
+                }
+
+
+                // Company name from User account
+                // or saved CompanyProfile
+
+                const companyName =
+                    data.companyName ||
+                    user.name ||
+                    "";
+
+
+                document.getElementById(
+                    "companyName"
+                ).value =
+                    companyName;
+
+
+                document.getElementById(
+                    "companyNameDisplay"
+                ).textContent =
+                    companyName ||
+                    "Company Name";
+
+
+                document.getElementById(
+                    "sideCompanyName"
+                ).textContent =
+                    companyName ||
+                    "Not added";
+
+
+                document.getElementById(
+                    "phone"
+                ).value =
+                    data.phone || "";
+
+
+                document.getElementById(
+                    "website"
+                ).value =
+                    data.website || "";
+
+
+                document.getElementById(
+                    "industry"
+                ).value =
+                    data.industry || "";
+
+
+                document.getElementById(
+                    "location"
+                ).value =
+                    data.location || "";
+
+
+                document.getElementById(
+                    "description"
+                ).value =
+                    data.description || "";
+
+
+                updateDetails(data);
+
+            } catch (error) {
+
+                console.error(
+                    "LOAD PROFILE ERROR:",
+                    error
+                );
+
+
+                showMessage(
+                    "Unable to load company profile.",
+                    "#dc2626"
+                );
+
+            }
+
+        }
+
+
+        // =========================================
+        // UPDATE SIDE DETAILS
+        // =========================================
+
+        function updateDetails(profile) {
+
+            document.getElementById(
+                "sidePhone"
+            ).textContent =
+                profile.phone ||
+                "Not added";
+
+
+            document.getElementById(
+                "sideIndustry"
+            ).textContent =
+                profile.industry ||
+                "Not added";
+
+
+            document.getElementById(
+                "sideLocation"
+            ).textContent =
+                profile.location ||
+                "Not added";
+
+        }
+
+
+        // =========================================
+        // SHOW MESSAGE
+        // =========================================
+
+        function showMessage(
+            text,
+            color
+        ) {
+
+            const message =
+                document.getElementById(
+                    "message"
+                );
+
+
+            message.textContent =
+                text;
+
+
+            message.style.color =
+                color;
+
+
+            setTimeout(
+                function() {
+
+                    message.textContent = "";
+
+                },
+                3000
+            );
+
+        }
+
+
+        // =========================================
+        // SAVE PROFILE TO MONGODB
+        // =========================================
+
+        document.getElementById(
+            "profileForm"
+        ).addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const saveButton =
+                    document.getElementById(
+                        "saveButton"
+                    );
+
+
+                const companyName =
+                    document.getElementById(
+                        "companyName"
+                    ).value.trim();
+
+
+                const phone =
+                    document.getElementById(
+                        "phone"
+                    ).value.trim();
+
+
+                const website =
+                    document.getElementById(
+                        "website"
+                    ).value.trim();
+
+
+                const industry =
+                    document.getElementById(
+                        "industry"
+                    ).value.trim();
+
+
+                const location =
+                    document.getElementById(
+                        "location"
+                    ).value.trim();
+
+
+                const description =
+                    document.getElementById(
+                        "description"
+                    ).value.trim();
+
+
+                if (!companyName) {
+
+                    showMessage(
+                        "Please enter company name.",
+                        "#dc2626"
+                    );
+
+                    return;
+
+                }
+
+
+                saveButton.disabled = true;
+
+
+                saveButton.innerHTML =
+                    '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            `${API_URL}/api/company-profile`,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json",
+
+                                    "Authorization":
+                                        `Bearer ${token}`
+                                },
+
+                                body: JSON.stringify({
+
+                                    companyName:
+                                        companyName,
+
+                                    phone:
+                                        phone,
+
+                                    website:
+                                        website,
+
+                                    industry:
+                                        industry,
+
+                                    location:
+                                        location,
+
+                                    description:
+                                        description,
+
+                                    founded:
+                                        "",
+
+                                    employees:
+                                        ""
+
+                                })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        if (
+                            response.status === 401
+                        ) {
+
+                            localStorage.clear();
+
+                            window.location.href =
+                                "login.html";
+
+                            return;
+
+                        }
+
+                        throw new Error(
+                            data.message ||
+                            "Unable to save profile"
+                        );
+
+                    }
+
+
+                    // Update local user name
+                    // for displaying the latest name
+
+                    user.name =
+                        companyName;
+
+
+                    localStorage.setItem(
+                        "user",
+                        JSON.stringify(user)
+                    );
+
+
+                    // Update page
+
+                    document.getElementById(
+                        "companyNameDisplay"
+                    ).textContent =
+                        companyName;
+
+
+                    document.getElementById(
+                        "sideCompanyName"
+                    ).textContent =
+                        companyName;
+
+
+                    updateDetails({
+
+                        phone:
+                            phone,
+
+                        industry:
+                            industry,
+
+                        location:
+                            location
+
+                    });
+
+
+                    showMessage(
+                        "Profile saved successfully.",
+                        "#16a34a"
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "SAVE PROFILE ERROR:",
+                        error
+                    );
+
+
+                    showMessage(
+                        error.message ||
+                        "Unable to save profile.",
+                        "#dc2626"
+                    );
+
+                } finally {
+
+                    saveButton.disabled = false;
+
+                    saveButton.innerHTML =
+                        '<i class="fa-solid fa-floppy-disk"></i> Save Profile';
+
+                }
+
+            }
+        );
+
+
+        // =========================================
+        // LOGOUT
+        // =========================================
+
+        function logout() {
+
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "user"
+            );
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // =========================================
+        // START
+        // =========================================
+
+        loadProfile();
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Post Internship - INTERNZO</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <style>
+        .form-container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .form-box {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 5px 15px rgba(17, 24, 39, 0.04);
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h2 {
+            color: #111827;
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #334155;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            color: #111827;
+            background: #ffffff;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px #f3e8ff;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .button-row button {
+            width: auto;
+            padding: 12px 25px;
+        }
+
+        .cancel-btn {
+            background: #ffffff;
+            color: #7c3aed;
+            border: 1px solid #c4b5fd;
+        }
+
+        .cancel-btn:hover {
+            background: #f3e8ff;
+        }
+
+        #message {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 650px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-box {
+                padding: 22px;
+            }
+
+            .button-row {
+                flex-direction: column;
+            }
+
+            .button-row button {
+                width: 100%;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            INTERNZO
+        </div>
+
+        <div class="nav-links">
+
+            <a href="company-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="post-internship.html" class="active">
+                Post Internship
+            </a>
+
+            <a href="manage-internships.html">
+                My Internships
+            </a>
+
+            <a href="company-applications.html">
+                Applications
+            </a>
+
+            <a href="company-profile.html">
+                Profile
+            </a>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+    <main class="dashboard-container">
+
+        <div class="form-container">
+
+            <div class="page-header">
+
+                <h1>
+                    Post Internship
+                </h1>
+
+                <p>
+                    Create a new internship opportunity for students.
+                </p>
+
+            </div>
+
+
+            <div class="form-box">
+
+                <div id="message"></div>
+
+
+                <form id="internshipForm">
+
+                    <!-- BASIC INFORMATION -->
+                    <div class="form-section">
+
+                        <h2>
+                            Basic Information
+                        </h2>
+
+
+                        <div class="form-group">
+
+                            <label for="title">
+                                Internship Title *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="title"
+                                placeholder="Example: Web Development Intern"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="companyName">
+                                Company Name *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="companyName"
+                                placeholder="Enter company name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="location">
+                                    Location *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="location"
+                                    placeholder="Example: Mangalore / Remote"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="type">
+                                    Internship Type *
+                                </label>
+
+                                <select id="type" required>
+
+                                    <option value="">
+                                        Select type
+                                    </option>
+
+                                    <option value="Full Time">
+                                        Full Time
+                                    </option>
+
+                                    <option value="Part Time">
+                                        Part Time
+                                    </option>
+
+                                    <option value="Remote">
+                                        Remote
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- INTERNSHIP DETAILS -->
+                    <div class="form-section">
+
+                        <h2>
+                            Internship Details
+                        </h2>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="duration">
+                                    Duration *
+                                </label>
+
+                                <select id="duration" required>
+
+                                    <option value="">
+                                        Select duration
+                                    </option>
+
+                                    <option value="1 Month">
+                                        1 Month
+                                    </option>
+
+                                    <option value="2 Months">
+                                        2 Months
+                                    </option>
+
+                                    <option value="3 Months">
+                                        3 Months
+                                    </option>
+
+                                    <option value="6 Months">
+                                        6 Months
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="stipend">
+                                    Stipend
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="stipend"
+                                    placeholder="Example: ₹8,000/month"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="deadline">
+                                Application Deadline *
+                            </label>
+
+                            <input
+                                type="date"
+                                id="deadline"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="skills">
+                                Required Skills
+                            </label>
+
+                            <input
+                                type="text"
+                                id="skills"
+                                placeholder="Example: HTML, CSS, JavaScript, Git"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="description">
+                                Internship Description *
+                            </label>
+
+                            <textarea
+                                id="description"
+                                placeholder="Describe the internship role and responsibilities..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="requirements">
+                                Requirements
+                            </label>
+
+                            <textarea
+                                id="requirements"
+                                placeholder="Example: Basic knowledge of HTML, CSS and JavaScript..."
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUTTONS -->
+                    <div class="button-row">
+
+                        <button type="submit">
+                            Post Internship
+                        </button>
+
+                        <button
+                            type="button"
+                            class="cancel-btn"
+                            onclick="window.location.href='company-dashboard.html'"
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        // ===============================
+        // CHECK LOGIN
+        // ===============================
+
+        const token =
+            localStorage.getItem("token");
+
+        const userData =
+            localStorage.getItem("user");
+
+
+        if (!token || !userData) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        let user;
+
+        try {
+
+            user =
+                JSON.parse(userData);
+
+        } catch (error) {
+
+            localStorage.clear();
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // ===============================
+        // CHECK COMPANY ROLE
+        // ===============================
+
+        if (user && user.role !== "company") {
+
+            alert("Only companies can post internships.");
+
+            window.location.href =
+                "student-dashboard.html";
+
+        }
+
+
+        // ===============================
+        // AUTO FILL COMPANY NAME
+        // ===============================
+
+        if (user) {
+
+            document.getElementById(
+                "companyName"
+            ).value = user.name || "";
+
+        }
+
+
+        // ===============================
+        // POST INTERNSHIP
+        // ===============================
+
+        document.getElementById(
+            "internshipForm"
+        ).addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                const message =
+                    document.getElementById(
+                        "message"
+                    );
+
+
+                // Get form values
+                const title =
+                    document.getElementById(
+                        "title"
+                    ).value.trim();
+
+                const companyName =
+                    document.getElementById(
+                        "companyName"
+                    ).value.trim();
+
+                const location =
+                    document.getElementById(
+                        "location"
+                    ).value.trim();
+
+                const type =
+                    document.getElementById(
+                        "type"
+                    ).value;
+
+                const duration =
+                    document.getElementById(
+                        "duration"
+                    ).value;
+
+                const stipend =
+                    document.getElementById(
+                        "stipend"
+                    ).value.trim();
+
+                const deadline =
+                    document.getElementById(
+                        "deadline"
+                    ).value;
+
+                const skills =
+                    document.getElementById(
+                        "skills"
+                    ).value.trim();
+
+                const description =
+                    document.getElementById(
+                        "description"
+                    ).value.trim();
+
+                const requirements =
+                    document.getElementById(
+                        "requirements"
+                    ).value.trim();
+
+
+                // ===============================
+                // CHECK REQUIRED FIELDS
+                // ===============================
+
+                if (
+                    !title ||
+                    !companyName ||
+                    !location ||
+                    !type ||
+                    !duration ||
+                    !deadline ||
+                    !description
+                ) {
+
+                    message.style.color =
+                        "#dc2626";
+
+                    message.textContent =
+                        "Please fill all required fields.";
+
+                    return;
+
+                }
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "http://localhost:5000/api/internships",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json",
+
+                                    "Authorization":
+                                        "Bearer " + token
+                                },
+
+                                body: JSON.stringify({
+
+                                    title:
+                                        title,
+
+                                    companyName:
+                                        companyName,
+
+                                    location:
+                                        location,
+
+                                    type:
+                                        type,
+
+                                    duration:
+                                        duration,
+
+                                    stipend:
+                                        stipend || "Unpaid",
+
+                                    deadline:
+                                        deadline,
+
+                                    skills:
+                                        skills,
+
+                                    description:
+                                        description,
+
+                                    requirements:
+                                        requirements
+
+                                })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (response.ok) {
+
+                        message.style.color =
+                            "#16a34a";
+
+                        message.textContent =
+                            "Internship posted successfully!";
+
+
+                        document.getElementById(
+                            "internshipForm"
+                        ).reset();
+
+
+                        // Put company name back
+                        document.getElementById(
+                            "companyName"
+                        ).value =
+                            user.name || "";
+
+
+                    } else {
+
+                        message.style.color =
+                            "#dc2626";
+
+                        message.textContent =
+                            data.message ||
+                            "Unable to post internship.";
+
+                    }
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    message.style.color =
+                        "#dc2626";
+
+                    message.textContent =
+                        "Unable to connect to the server.";
+
+                }
+
+            }
+        );
+
+
+        // ===============================
+        // LOGOUT
+        // ===============================
+
+        function logout() {
+
+            localStorage.removeItem("token");
+
+            localStorage.removeItem("user");
+
+            window.location.href =
+                "login.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>INTERNZO - Student Dashboard</title>
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet"
+        href="css/dashboard.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <nav class="navbar">
+
+        <!-- LOGO -->
+
+        <div class="logo">
+            INTERNZO
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="nav-links">
+
+            <a href="student-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="internships.html">
+                Internships
+            </a>
+
+            <a href="my-applications.html">
+                My Applications
+            </a>
+
+            <a href="student-profile.html">
+                My Profile
+            </a>
+
+            <button type="button" onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         MAIN DASHBOARD
+    ========================================== -->
+
+    <main class="dashboard-container">
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome-section">
+
+            <h1>
+                Welcome,
+                <span id="studentName">
+                    Student
+                </span>
+            </h1>
+
+            <p>
+                Manage your internship journey,
+                explore opportunities and track your applications.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================================
+             DASHBOARD CARDS
+        ========================================== -->
+
+        <section class="dashboard-cards">
+
+
+            <!-- FIND INTERNSHIPS -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <h2>
+                    Find Internships
+                </h2>
+
+                <p>
+                    Explore internship opportunities
+                    from different companies and locations.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="goToInternships()">
+
+                    Search Internships
+
+                </button>
+
+            </div>
+
+
+
+            <!-- MY APPLICATIONS -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <h2>
+                    My Applications
+                </h2>
+
+                <p>
+                    View and track all your internship
+                    applications and their current status.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="goToApplications()">
+
+                    View Applications
+
+                </button>
+
+            </div>
+
+
+
+            <!-- SAVED INTERNSHIPS -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-bookmark"></i>
+                </div>
+
+                <h2>
+                    Saved Internships
+                </h2>
+
+                <p>
+                    Keep your favourite internship
+                    opportunities saved for later.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="savedInternships()">
+
+                    View Saved
+
+                </button>
+
+            </div>
+
+
+
+            <!-- MY PROFILE -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <h2>
+                    My Profile
+                </h2>
+
+                <p>
+                    Manage your personal information,
+                    education, skills and resume.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="goToProfile()">
+
+                    View Profile
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             RECENT APPLICATIONS
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                Recent Applications
+            </h2>
+
+
+            <div
+                id="recentApplications"
+                class="empty-box">
+
+                <p>
+                    <i class="fa-solid fa-folder-open"></i>
+                </p>
+
+                <h3>
+                    Loading Applications...
+                </h3>
+
+                <p>
+                    Please wait while we load your applications.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+
+        // =========================================
+        // CHECK LOGIN
+        // =========================================
+
+        const token =
+            localStorage.getItem("token");
+
+        const storedUser =
+            localStorage.getItem("user");
+
+
+        if (!token || !storedUser) {
+
+            window.location.replace(
+                "login.html"
+            );
+
+        }
+
+
+        // =========================================
+        // GET USER DATA
+        // =========================================
+
+        let user = null;
+
+
+        try {
+
+            user =
+                JSON.parse(storedUser);
+
+        } catch (error) {
+
+            console.error(
+                "User data error:",
+                error
+            );
+
+            localStorage.removeItem("token");
+
+            localStorage.removeItem("user");
+
+            window.location.replace(
+                "login.html"
+            );
+
+        }
+
+
+
+        // =========================================
+        // CHECK STUDENT ROLE
+        // =========================================
+
+        if (
+            user &&
+            user.role &&
+            user.role !== "student"
+        ) {
+
+            if (user.role === "company") {
+
+                window.location.replace(
+                    "company-dashboard.html"
+                );
+
+            }
+
+            else if (user.role === "admin") {
+
+                window.location.replace(
+                    "admin-dashboard.html"
+                );
+
+            }
+
+        }
+
+
+
+        // =========================================
+        // DISPLAY STUDENT NAME
+        // =========================================
+
+        if (user) {
+
+            const studentName =
+                document.getElementById(
+                    "studentName"
+                );
+
+
+            if (studentName) {
+
+                studentName.textContent =
+                    user.name || "Student";
+
+            }
+
+        }
+
+
+
+        // =========================================
+        // GO TO INTERNSHIPS
+        // =========================================
+
+        function goToInternships() {
+
+            window.location.href =
+                "internships.html";
+
+        }
+
+
+
+        // =========================================
+        // GO TO APPLICATIONS
+        // =========================================
+
+        function goToApplications() {
+
+            window.location.href =
+                "my-applications.html";
+
+        }
+
+
+
+        // =========================================
+        // GO TO PROFILE
+        // =========================================
+
+        function goToProfile() {
+
+            window.location.href =
+                "student-profile.html";
+
+        }
+
+
+
+        // =========================================
+        // SAVED INTERNSHIPS
+        // =========================================
+
+        function savedInternships() {
+
+            alert(
+                "Saved internships feature will be available soon."
+            );
+
+        }
+
+
+
+        // =========================================
+        // LOGOUT
+        // =========================================
+
+        function logout() {
+
+            localStorage.removeItem("token");
+
+            localStorage.removeItem("user");
+
+            window.location.replace(
+                "login.html"
+            );
+
+        }
+
+
+
+        // =========================================
+        // LOAD RECENT APPLICATIONS
+        // =========================================
+
+        async function loadRecentApplications() {
+
+            const container =
+                document.getElementById(
+                    "recentApplications"
+                );
+
+
+            if (!token) {
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/applications/my-applications",
+                        {
+                            method: "GET",
+
+                            headers: {
+
+                                "Authorization":
+                                    "Bearer " + token
+
+                            }
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    container.innerHTML = `
+
+                        <p>
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                        </p>
+
+                        <h3>
+                            Unable to Load Applications
+                        </h3>
+
+                        <p>
+                            Please try again later.
+                        </p>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                // =================================
+                // NO APPLICATIONS
+                // =================================
+
+                if (
+                    !Array.isArray(data) ||
+                    data.length === 0
+                ) {
+
+                    container.innerHTML = `
+
+                        <p>
+                            <i class="fa-solid fa-folder-open"></i>
+                        </p>
+
+                        <h3>
+                            No Applications Yet
+                        </h3>
+
+                        <p>
+                            Start exploring internships
+                            and apply for your first opportunity.
+                        </p>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                // =================================
+                // SHOW RECENT APPLICATIONS
+                // =================================
+
+                let html = "";
+
+
+                const recent =
+                    data.slice(0, 3);
+
+
+                recent.forEach(
+                    function(application) {
+
+                        const date =
+                            new Date(
+                                application.createdAt
+                            ).toLocaleDateString(
+                                "en-IN",
+                                {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric"
+                                }
+                            );
+
+
+                        html += `
+
+                            <div style="
+                                display:flex;
+                                justify-content:space-between;
+                                align-items:center;
+                                gap:15px;
+                                padding:15px 0;
+                                border-bottom:1px solid #e5e7eb;
+                            ">
+
+                                <div>
+
+                                    <h3 style="
+                                        color:#111827;
+                                        font-size:15px;
+                                        margin-bottom:5px;
+                                    ">
+                                        ${application.internship}
+                                    </h3>
+
+                                    <p style="
+                                        color:#64748b;
+                                        font-size:12px;
+                                    ">
+                                        Applied on ${date}
+                                    </p>
+
+                                </div>
+
+
+                                <span style="
+                                    background:#f3e8ff;
+                                    color:#7c3aed;
+                                    padding:6px 12px;
+                                    border-radius:20px;
+                                    font-size:12px;
+                                    font-weight:700;
+                                    white-space:nowrap;
+                                ">
+                                    ${application.status}
+                                </span>
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+
+                html += `
+
+                    <div style="
+                        margin-top:20px;
+                        text-align:center;
+                    ">
+
+                        <button
+                            type="button"
+                            onclick="goToApplications()"
+                            style="
+                                width:auto;
+                                padding:10px 18px;
+                            ">
+
+                            View All Applications
+
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                container.innerHTML =
+                    html;
+
+
+            } catch (error) {
+
+                console.error(
+                    "Application loading error:",
+                    error
+                );
+
+
+                container.innerHTML = `
+
+                    <p>
+                        <i class="fa-solid fa-server"></i>
+                    </p>
+
+                    <h3>
+                        Server Connection Error
+                    </h3>
+
+                    <p>
+                        Make sure the INTERNZO backend
+                        server is running.
+                    </p>
+
+                    <br>
+
+                    <button
+                        type="button"
+                        onclick="loadRecentApplications()"
+                        style="
+                            width:auto;
+                            padding:10px 18px;
+                        ">
+
+                        Try Again
+
+                    </button>
+
+                `;
+
+            }
+
+        }
+
+
+
+        // =========================================
+        // START DASHBOARD
+        // =========================================
+
+        if (token && user) {
+
+            loadRecentApplications();
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

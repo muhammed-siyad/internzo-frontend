@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>INTERNZO - My Applications</title>
+
+    <link rel="stylesheet"
+        href="css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <style>
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-header span {
+            color: #7c3aed;
+        }
+
+        .page-header p {
+            color: #64748b;
+        }
+
+
+        .applications-table {
+            width: 100%;
+
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 15px
+                rgba(17, 24, 39, 0.04);
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+
+        th,
+        td {
+            padding: 17px 20px;
+
+            text-align: left;
+
+            border-bottom:
+                1px solid #e5e7eb;
+        }
+
+
+        th {
+            background: #f8fafc;
+
+            color: #334155;
+
+            font-size: 14px;
+        }
+
+
+        td {
+            color: #475569;
+
+            font-size: 14px;
+        }
+
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        .status {
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            background: #f3e8ff;
+
+            color: #7c3aed;
+        }
+
+
+        .loading {
+            text-align: center;
+
+            padding: 45px;
+
+            color: #64748b;
+        }
+
+
+        .empty-box {
+            margin-top: 20px;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .applications-table {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 650px;
+            }
+
+            .page-header h1 {
+                font-size: 26px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            INTERNZO
+        </div>
+
+        <div class="nav-links">
+
+            <a href="student-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="internships.html">
+                Internships
+            </a>
+
+            <a href="my-applications.html">
+                My Applications
+            </a>
+
+            <a href="student-profile.html">
+                My Profile
+            </a>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="dashboard-container">
+
+
+        <section class="page-header">
+
+            <h1>
+                My <span>Applications</span>
+            </h1>
+
+            <p>
+                Track all the internships you have applied for.
+            </p>
+
+        </section>
+
+
+        <!-- LOADING -->
+
+        <div id="loading" class="loading">
+
+            <i class="fa-solid fa-spinner fa-spin"></i>
+
+            Loading applications...
+
+        </div>
+
+
+        <!-- APPLICATION TABLE -->
+
+        <div
+            id="applicationsContainer"
+            class="applications-table"
+            style="display:none;">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Internship
+                        </th>
+
+                        <th>
+                            Applied On
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="applicationsBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- EMPTY STATE -->
+
+        <div
+            id="emptyBox"
+            class="empty-box"
+            style="display:none;">
+
+            <p>
+                <i class="fa-solid fa-folder-open"></i>
+            </p>
+
+            <h3>
+                No Applications Yet
+            </h3>
+
+            <p>
+                You haven't applied for any internships yet.
+            </p>
+
+            <br>
+
+            <button
+                onclick="window.location.href='internships.html'"
+                style="width:auto; padding:11px 20px;">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                Find Internships
+
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+        // =========================================
+        // LOAD APPLICATIONS
+        // =========================================
+
+        async function loadApplications() {
+
+            const token =
+                localStorage.getItem("token");
+
+
+            if (!token) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/applications/my-applications",
+                        {
+                            method: "GET",
+
+                            headers: {
+                                "Authorization":
+                                    "Bearer " + token
+                            }
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                const loading =
+                    document.getElementById(
+                        "loading"
+                    );
+
+
+                const container =
+                    document.getElementById(
+                        "applicationsContainer"
+                    );
+
+
+                const emptyBox =
+                    document.getElementById(
+                        "emptyBox"
+                    );
+
+
+                const body =
+                    document.getElementById(
+                        "applicationsBody"
+                    );
+
+
+                loading.style.display =
+                    "none";
+
+
+                if (!response.ok) {
+
+                    alert(
+                        data.message ||
+                        "Unable to load applications."
+                    );
+
+                    return;
+
+                }
+
+
+                // NO APPLICATIONS
+
+                if (data.length === 0) {
+
+                    emptyBox.style.display =
+                        "block";
+
+                    return;
+
+                }
+
+
+                // APPLICATIONS FOUND
+
+                container.style.display =
+                    "block";
+
+
+                body.innerHTML = "";
+
+
+                data.forEach(
+                    function(application) {
+
+                        const row =
+                            document.createElement(
+                                "tr"
+                            );
+
+
+                        const date =
+                            new Date(
+                                application.createdAt
+                            ).toLocaleDateString(
+                                "en-IN",
+                                {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric"
+                                }
+                            );
+
+
+                        row.innerHTML = `
+
+                            <td>
+                                <strong>
+                                    ${application.internship}
+                                </strong>
+                            </td>
+
+                            <td>
+                                ${date}
+                            </td>
+
+                            <td>
+                                <span class="status">
+                                    ${application.status}
+                                </span>
+                            </td>
+
+                        `;
+
+
+                        body.appendChild(row);
+
+                    }
+                );
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                document.getElementById(
+                    "loading"
+                ).innerHTML = `
+
+                    <p>
+                        Unable to connect to the server.
+                    </p>
+
+                    <br>
+
+                    <button
+                        onclick="loadApplications()"
+                        style="width:auto;
+                               padding:10px 18px;">
+
+                        Try Again
+
+                    </button>
+
+                `;
+
+            }
+
+        }
+
+
+        // =========================================
+        // LOGOUT
+        // =========================================
+
+        function logout() {
+
+            localStorage.removeItem("token");
+
+            localStorage.removeItem("user");
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // =========================================
+        // START
+        // =========================================
+
+        loadApplications();
+
+    </script>
+
+</body>
+
+</html>
