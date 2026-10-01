@@ -1,4 +1,11 @@
 // ===============================
+// API CONFIG
+// ===============================
+
+const API_URL = "https://internzo-backend.onrender.com/api";
+
+
+// ===============================
 // REGISTER
 // ===============================
 
@@ -10,8 +17,8 @@ if (registerForm) {
 
         event.preventDefault();
 
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
         const role = document.getElementById("role").value;
 
@@ -20,7 +27,7 @@ if (registerForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/register",
+                `${API_URL}/auth/register`,
                 {
                     method: "POST",
 
@@ -42,24 +49,27 @@ if (registerForm) {
             if (response.ok) {
 
                 message.style.color = "green";
-                message.textContent = data.message;
+                message.textContent =
+                    data.message || "Registration successful!";
 
                 registerForm.reset();
 
             } else {
 
                 message.style.color = "red";
-                message.textContent = data.message;
+                message.textContent =
+                    data.message || "Registration failed.";
 
             }
 
         } catch (error) {
 
+            console.error("Register error:", error);
+
             message.style.color = "red";
             message.textContent =
                 "Unable to connect to the server.";
 
-            console.error(error);
         }
 
     });
@@ -79,15 +89,19 @@ if (loginForm) {
 
         event.preventDefault();
 
-        const email = document.getElementById("loginEmail").value;
-        const password = document.getElementById("loginPassword").value;
+        const email =
+            document.getElementById("loginEmail").value.trim();
 
-        const message = document.getElementById("loginMessage");
+        const password =
+            document.getElementById("loginPassword").value;
+
+        const message =
+            document.getElementById("loginMessage");
 
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/login",
+                `${API_URL}/auth/login`,
                 {
                     method: "POST",
 
@@ -107,7 +121,10 @@ if (loginForm) {
             if (response.ok) {
 
                 // Save JWT token
-                localStorage.setItem("token", data.token);
+                localStorage.setItem(
+                    "token",
+                    data.token
+                );
 
                 // Save user information
                 localStorage.setItem(
@@ -116,7 +133,8 @@ if (loginForm) {
                 );
 
                 message.style.color = "green";
-                message.textContent = "Login successful!";
+                message.textContent =
+                    "Login successful!";
 
                 // Redirect based on role
                 setTimeout(() => {
@@ -136,6 +154,12 @@ if (loginForm) {
                         window.location.href =
                             "admin-dashboard.html";
 
+                    } else {
+
+                        message.style.color = "red";
+                        message.textContent =
+                            "Unknown user role.";
+
                     }
 
                 }, 1000);
@@ -143,17 +167,19 @@ if (loginForm) {
             } else {
 
                 message.style.color = "red";
-                message.textContent = data.message;
+                message.textContent =
+                    data.message || "Login failed.";
 
             }
 
         } catch (error) {
 
+            console.error("Login error:", error);
+
             message.style.color = "red";
             message.textContent =
                 "Unable to connect to the server.";
 
-            console.error(error);
         }
 
     });
