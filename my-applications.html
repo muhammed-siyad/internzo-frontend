@@ -233,6 +233,10 @@
                         </th>
 
                         <th>
+                            Company
+                        </th>
+
+                        <th>
                             Applied On
                         </th>
 
@@ -297,6 +301,14 @@
     <script>
 
         // =========================================
+        // RENDER BACKEND API
+        // =========================================
+
+        const API_URL =
+            "https://internzo-backend.onrender.com";
+
+
+        // =========================================
         // LOAD APPLICATIONS
         // =========================================
 
@@ -316,11 +328,35 @@
             }
 
 
+            const loading =
+                document.getElementById(
+                    "loading"
+                );
+
+
+            const container =
+                document.getElementById(
+                    "applicationsContainer"
+                );
+
+
+            const emptyBox =
+                document.getElementById(
+                    "emptyBox"
+                );
+
+
+            const body =
+                document.getElementById(
+                    "applicationsBody"
+                );
+
+
             try {
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/applications/my-applications",
+                        `${API_URL}/api/applications/my-applications`,
                         {
                             method: "GET",
 
@@ -328,37 +364,30 @@
                                 "Authorization":
                                     "Bearer " + token
                             }
-
                         }
                     );
 
 
+                // =================================
+                // HANDLE LOGIN EXPIRATION
+                // =================================
+
+                if (response.status === 401) {
+
+                    localStorage.removeItem("token");
+
+                    localStorage.removeItem("user");
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
                 const data =
                     await response.json();
-
-
-                const loading =
-                    document.getElementById(
-                        "loading"
-                    );
-
-
-                const container =
-                    document.getElementById(
-                        "applicationsContainer"
-                    );
-
-
-                const emptyBox =
-                    document.getElementById(
-                        "emptyBox"
-                    );
-
-
-                const body =
-                    document.getElementById(
-                        "applicationsBody"
-                    );
 
 
                 loading.style.display =
@@ -377,9 +406,14 @@
                 }
 
 
+                // =================================
                 // NO APPLICATIONS
+                // =================================
 
-                if (data.length === 0) {
+                if (
+                    !Array.isArray(data) ||
+                    data.length === 0
+                ) {
 
                     emptyBox.style.display =
                         "block";
@@ -389,7 +423,9 @@
                 }
 
 
+                // =================================
                 // APPLICATIONS FOUND
+                // =================================
 
                 container.style.display =
                     "block";
@@ -420,12 +456,28 @@
                             );
 
 
+                        // Backend populates internship as an object
+                        const internshipTitle =
+                            application.internship?.title ||
+                            "Internship";
+
+
+                        const companyName =
+                            application.internship?.companyName ||
+                            application.company?.name ||
+                            "Company";
+
+
                         row.innerHTML = `
 
                             <td>
                                 <strong>
-                                    ${application.internship}
+                                    ${internshipTitle}
                                 </strong>
+                            </td>
+
+                            <td>
+                                ${companyName}
                             </td>
 
                             <td>
@@ -449,22 +501,30 @@
 
             } catch (error) {
 
-                console.error(error);
+                console.error(
+                    "Applications loading error:",
+                    error
+                );
 
-                document.getElementById(
-                    "loading"
-                ).innerHTML = `
+
+                loading.innerHTML = `
 
                     <p>
-                        Unable to connect to the server.
+                        <i class="fa-solid fa-server"></i>
+                    </p>
+
+                    <p>
+                        Unable to connect to the INTERNZO server.
                     </p>
 
                     <br>
 
                     <button
                         onclick="loadApplications()"
-                        style="width:auto;
-                               padding:10px 18px;">
+                        style="
+                            width:auto;
+                            padding:10px 18px;
+                        ">
 
                         Try Again
 
@@ -483,9 +543,13 @@
 
         function logout() {
 
-            localStorage.removeItem("token");
+            localStorage.removeItem(
+                "token"
+            );
 
-            localStorage.removeItem("user");
+            localStorage.removeItem(
+                "user"
+            );
 
             window.location.href =
                 "login.html";

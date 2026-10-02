@@ -6,12 +6,12 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0">
 
     <title>INTERNZO - Company Dashboard</title>
 
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
 
@@ -546,6 +546,7 @@
             <h1>
 
                 Welcome,
+
                 <span id="companyName">
                     Company
                 </span>
@@ -799,7 +800,21 @@
             localStorage.getItem("user");
 
 
-        if (!token || !userData) {
+        let user;
+
+
+        try {
+
+            user =
+                userData
+                    ? JSON.parse(userData)
+                    : null;
+
+        }
+
+        catch (error) {
+
+            localStorage.clear();
 
             window.location.href =
                 "login.html";
@@ -807,19 +822,7 @@
         }
 
 
-        let user;
-
-
-        try {
-
-            user =
-                JSON.parse(userData);
-
-        }
-
-        catch (error) {
-
-            localStorage.clear();
+        if (!token || !user) {
 
             window.location.href =
                 "login.html";
@@ -837,7 +840,9 @@
         ) {
 
 
-            if (user.role === "student") {
+            if (
+                user.role === "student"
+            ) {
 
                 window.location.href =
                     "student-dashboard.html";
@@ -851,6 +856,16 @@
 
                 window.location.href =
                     "admin-dashboard.html";
+
+            }
+
+
+            else {
+
+                localStorage.clear();
+
+                window.location.href =
+                    "login.html";
 
             }
 
@@ -896,6 +911,7 @@
             localStorage.removeItem(
                 "user"
             );
+
 
             window.location.href =
                 "login.html";

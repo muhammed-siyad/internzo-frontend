@@ -222,7 +222,6 @@
 
 <body>
 
-
     <!-- NAVBAR -->
 
     <nav class="navbar">
@@ -249,7 +248,6 @@
     <!-- MAIN -->
 
     <main class="dashboard-container">
-
 
         <div class="page-header">
 
@@ -318,7 +316,7 @@
         </div>
 
 
-        <!-- PENDING INTERNSHIPS -->
+        <!-- INTERNSHIP APPROVAL -->
 
         <section class="section">
 
@@ -340,11 +338,18 @@
 
         </section>
 
-
     </main>
 
 
     <script>
+
+        // ==========================================
+        // API URL
+        // ==========================================
+
+        const API_URL =
+            "https://internzo-backend.onrender.com";
+
 
         // ==========================================
         // LOGIN CHECK
@@ -417,8 +422,10 @@
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/internships/admin/all",
+                        `${API_URL}/api/internships/admin/all`,
                         {
+                            method: "GET",
+
                             headers: {
                                 "Authorization":
                                     "Bearer " + token
@@ -430,6 +437,31 @@
                 const data =
                     await response.json();
 
+
+                // ==========================================
+                // HANDLE UNAUTHORIZED
+                // ==========================================
+
+                if (response.status === 401) {
+
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+
+                    alert(
+                        "Your session has expired. Please login again."
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                // ==========================================
+                // HANDLE ERROR
+                // ==========================================
 
                 if (!response.ok) {
 
@@ -454,7 +486,9 @@
                 }
 
 
-                // Statistics
+                // ==========================================
+                // STATISTICS
+                // ==========================================
 
                 document.getElementById(
                     "totalInternships"
@@ -480,12 +514,20 @@
                     ).length;
 
 
+                // ==========================================
+                // DISPLAY
+                // ==========================================
+
                 displayInternships(data);
 
 
             } catch (error) {
 
-                console.error(error);
+                console.error(
+                    "LOAD INTERNSHIPS ERROR:",
+                    error
+                );
+
 
                 container.innerHTML = `
 
@@ -496,7 +538,7 @@
                         </h2>
 
                         <p>
-                            Please make sure the backend is running.
+                            Unable to connect to the INTERNZO server.
                         </p>
 
                     </div>
@@ -566,6 +608,7 @@
                                     ${internship.title}
                                 </h2>
 
+
                                 <div class="company">
                                     ${internship.companyName}
                                 </div>
@@ -585,7 +628,7 @@
                                         </small>
 
                                         <strong>
-                                            📍 ${internship.location}
+                                            ${internship.location}
                                         </strong>
 
                                     </div>
@@ -695,7 +738,9 @@
 
 
             if (!confirm(confirmMessage)) {
+
                 return;
+
             }
 
 
@@ -703,7 +748,7 @@
 
                 const response =
                     await fetch(
-                        `http://localhost:5000/api/internships/admin/status/${internshipId}`,
+                        `${API_URL}/api/internships/admin/status/${internshipId}`,
                         {
                             method: "PUT",
 
@@ -718,7 +763,9 @@
                             },
 
                             body: JSON.stringify({
+
                                 status: status
+
                             })
 
                         }
@@ -729,12 +776,38 @@
                     await response.json();
 
 
+                // ==========================================
+                // HANDLE EXPIRED TOKEN
+                // ==========================================
+
+                if (response.status === 401) {
+
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+
+                    alert(
+                        "Your session has expired. Please login again."
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                // ==========================================
+                // SUCCESS
+                // ==========================================
+
                 if (response.ok) {
 
                     alert(
                         data.message ||
                         "Status updated successfully."
                     );
+
 
                     loadInternships();
 
@@ -749,7 +822,11 @@
 
             } catch (error) {
 
-                console.error(error);
+                console.error(
+                    "UPDATE STATUS ERROR:",
+                    error
+                );
+
 
                 alert(
                     "Unable to connect to the server."
@@ -773,6 +850,7 @@
             localStorage.removeItem(
                 "user"
             );
+
 
             window.location.href =
                 "login.html";

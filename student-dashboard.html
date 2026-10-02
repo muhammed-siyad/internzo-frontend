@@ -30,14 +30,10 @@
 
     <nav class="navbar">
 
-        <!-- LOGO -->
-
         <div class="logo">
             INTERNZO
         </div>
 
-
-        <!-- NAVIGATION -->
 
         <div class="nav-links">
 
@@ -261,6 +257,13 @@
 
     <script>
 
+        // =========================================
+        // RENDER BACKEND API
+        // =========================================
+
+        const API_URL =
+            "https://internzo-backend.onrender.com";
+
 
         // =========================================
         // CHECK LOGIN
@@ -458,7 +461,7 @@
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/applications/my-applications",
+                        `${API_URL}/api/applications/my-applications`,
                         {
                             method: "GET",
 
@@ -471,6 +474,25 @@
 
                         }
                     );
+
+
+                // =================================
+                // HANDLE UNAUTHORIZED USER
+                // =================================
+
+                if (response.status === 401) {
+
+                    localStorage.removeItem("token");
+
+                    localStorage.removeItem("user");
+
+                    window.location.replace(
+                        "login.html"
+                    );
+
+                    return;
+
+                }
 
 
                 const data =
@@ -490,7 +512,7 @@
                         </h3>
 
                         <p>
-                            Please try again later.
+                            ${data.message || "Please try again later."}
                         </p>
 
                     `;
@@ -558,6 +580,18 @@
                             );
 
 
+                        // Backend returns internship as an object
+                        const internshipTitle =
+                            application.internship?.title ||
+                            "Internship";
+
+
+                        const companyName =
+                            application.internship?.companyName ||
+                            application.company?.name ||
+                            "Company";
+
+
                         html += `
 
                             <div style="
@@ -576,8 +610,16 @@
                                         font-size:15px;
                                         margin-bottom:5px;
                                     ">
-                                        ${application.internship}
+                                        ${internshipTitle}
                                     </h3>
+
+                                    <p style="
+                                        color:#64748b;
+                                        font-size:12px;
+                                        margin-bottom:3px;
+                                    ">
+                                        ${companyName}
+                                    </p>
 
                                     <p style="
                                         color:#64748b;
@@ -608,6 +650,10 @@
                     }
                 );
 
+
+                // =================================
+                // VIEW ALL BUTTON
+                // =================================
 
                 html += `
 
@@ -656,8 +702,7 @@
                     </h3>
 
                     <p>
-                        Make sure the INTERNZO backend
-                        server is running.
+                        Unable to connect to the INTERNZO server.
                     </p>
 
                     <br>

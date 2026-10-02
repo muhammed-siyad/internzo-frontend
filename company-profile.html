@@ -6,12 +6,12 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0">
 
     <title>INTERNZO - Company Profile</title>
 
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
 
@@ -27,6 +27,10 @@
             color: #111827;
             min-height: 100vh;
         }
+
+        /* ===============================
+           NAVBAR
+        =============================== */
 
         .navbar {
             width: 100%;
@@ -84,6 +88,10 @@
             background: #f3e8ff;
         }
 
+        /* ===============================
+           MAIN CONTAINER
+        =============================== */
+
         .profile-container {
             width: 100%;
             max-width: 1250px;
@@ -112,6 +120,10 @@
             font-size: 15px;
             line-height: 1.6;
         }
+
+        /* ===============================
+           PROFILE TOP
+        =============================== */
 
         .profile-top {
             background: #ffffff;
@@ -148,6 +160,10 @@
             font-size: 14px;
         }
 
+        /* ===============================
+           CONTENT GRID
+        =============================== */
+
         .content-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -171,6 +187,10 @@
             padding-bottom: 14px;
             border-bottom: 1px solid #e5e7eb;
         }
+
+        /* ===============================
+           FORM
+        =============================== */
 
         .form-group {
             margin-bottom: 18px;
@@ -220,6 +240,10 @@
             gap: 18px;
         }
 
+        /* ===============================
+           SAVE BUTTON
+        =============================== */
+
         .save-btn {
             width: 100%;
             padding: 11px 15px;
@@ -243,6 +267,10 @@
             cursor: not-allowed;
             transform: none;
         }
+
+        /* ===============================
+           DETAILS
+        =============================== */
 
         .detail-item {
             display: flex;
@@ -286,6 +314,10 @@
             word-break: break-word;
         }
 
+        /* ===============================
+           INFO BOX
+        =============================== */
+
         .info-box {
             background: #f3e8ff;
             border: 1px solid #ddd6fe;
@@ -311,11 +343,19 @@
             line-height: 1.6;
         }
 
+        /* ===============================
+           MESSAGE
+        =============================== */
+
         #message {
             margin-top: 14px;
             font-size: 13px;
             font-weight: 600;
         }
+
+        /* ===============================
+           RESPONSIVE
+        =============================== */
 
         @media (max-width: 1050px) {
 
@@ -330,6 +370,7 @@
             .content-grid {
                 grid-template-columns: 1fr;
             }
+
         }
 
         @media (max-width: 750px) {
@@ -365,6 +406,7 @@
             .page-header h1 {
                 font-size: 27px;
             }
+
         }
 
         @media (max-width: 550px) {
@@ -403,6 +445,7 @@
                 font-size: 12px;
                 padding: 7px 12px;
             }
+
         }
 
     </style>
@@ -412,6 +455,10 @@
 
 <body>
 
+
+    <!-- ===============================
+         NAVBAR
+    =============================== -->
 
     <nav class="navbar">
 
@@ -442,8 +489,9 @@
                 Profile
             </a>
 
-            <button class="logout-btn"
-                    onclick="logout()">
+            <button
+                class="logout-btn"
+                onclick="logout()">
 
                 <i class="fa-solid fa-right-from-bracket"></i>
 
@@ -456,14 +504,22 @@
     </nav>
 
 
+    <!-- ===============================
+         MAIN CONTENT
+    =============================== -->
+
     <main class="profile-container">
 
+
+        <!-- PAGE HEADER -->
 
         <section class="page-header">
 
             <h1>
+
                 Company
                 <span>Profile</span>
+
             </h1>
 
             <p>
@@ -473,6 +529,8 @@
 
         </section>
 
+
+        <!-- PROFILE HEADER -->
 
         <section class="profile-top">
 
@@ -497,8 +555,12 @@
         </section>
 
 
+        <!-- CONTENT -->
+
         <div class="content-grid">
 
+
+            <!-- LEFT SIDE -->
 
             <div class="card">
 
@@ -510,9 +572,11 @@
                 <form id="profileForm">
 
 
+                    <!-- COMPANY NAME -->
+
                     <div class="form-group">
 
-                        <label>
+                        <label for="companyName">
                             Company Name
                         </label>
 
@@ -525,9 +589,11 @@
                     </div>
 
 
+                    <!-- EMAIL -->
+
                     <div class="form-group">
 
-                        <label>
+                        <label for="email">
                             Email Address
                         </label>
 
@@ -540,11 +606,13 @@
                     </div>
 
 
+                    <!-- PHONE + WEBSITE -->
+
                     <div class="two-column">
 
                         <div class="form-group">
 
-                            <label>
+                            <label for="phone">
                                 Phone Number
                             </label>
 
@@ -558,7 +626,7 @@
 
                         <div class="form-group">
 
-                            <label>
+                            <label for="website">
                                 Website
                             </label>
 
@@ -572,11 +640,13 @@
                     </div>
 
 
+                    <!-- INDUSTRY + LOCATION -->
+
                     <div class="two-column">
 
                         <div class="form-group">
 
-                            <label>
+                            <label for="industry">
                                 Industry
                             </label>
 
@@ -590,7 +660,7 @@
 
                         <div class="form-group">
 
-                            <label>
+                            <label for="location">
                                 Location
                             </label>
 
@@ -604,9 +674,11 @@
                     </div>
 
 
+                    <!-- DESCRIPTION -->
+
                     <div class="form-group">
 
-                        <label>
+                        <label for="description">
                             About Company
                         </label>
 
@@ -616,6 +688,8 @@
 
                     </div>
 
+
+                    <!-- SAVE -->
 
                     <button
                         type="submit"
@@ -637,8 +711,12 @@
             </div>
 
 
+            <!-- RIGHT SIDE -->
+
             <div>
 
+
+                <!-- COMPANY DETAILS -->
 
                 <div class="card">
 
@@ -647,10 +725,14 @@
                     </h2>
 
 
+                    <!-- COMPANY -->
+
                     <div class="detail-item">
 
                         <div class="detail-icon">
+
                             <i class="fa-solid fa-building"></i>
+
                         </div>
 
                         <div class="detail-text">
@@ -672,10 +754,14 @@
                     </div>
 
 
+                    <!-- EMAIL -->
+
                     <div class="detail-item">
 
                         <div class="detail-icon">
+
                             <i class="fa-solid fa-envelope"></i>
+
                         </div>
 
                         <div class="detail-text">
@@ -697,10 +783,14 @@
                     </div>
 
 
+                    <!-- PHONE -->
+
                     <div class="detail-item">
 
                         <div class="detail-icon">
+
                             <i class="fa-solid fa-phone"></i>
+
                         </div>
 
                         <div class="detail-text">
@@ -722,10 +812,14 @@
                     </div>
 
 
+                    <!-- INDUSTRY -->
+
                     <div class="detail-item">
 
                         <div class="detail-icon">
+
                             <i class="fa-solid fa-industry"></i>
+
                         </div>
 
                         <div class="detail-text">
@@ -747,10 +841,14 @@
                     </div>
 
 
+                    <!-- LOCATION -->
+
                     <div class="detail-item">
 
                         <div class="detail-icon">
+
                             <i class="fa-solid fa-location-dot"></i>
+
                         </div>
 
                         <div class="detail-text">
@@ -771,8 +869,11 @@
 
                     </div>
 
+
                 </div>
 
+
+                <!-- INFORMATION -->
 
                 <div class="card">
 
@@ -806,12 +907,18 @@
     </main>
 
 
+    <!-- ===============================
+         JAVASCRIPT
+    =============================== -->
+
     <script>
 
         // =========================================
-        // API URL
+        // BACKEND API URL
         // =========================================
-const API_URL = "https://internzo-backend.onrender.com";
+
+        const API_URL =
+            "https://internzo-backend.onrender.com";
 
 
         // =========================================
@@ -833,8 +940,11 @@ const API_URL = "https://internzo-backend.onrender.com";
         }
 
 
-        let user;
+        // =========================================
+        // GET USER DATA
+        // =========================================
 
+        let user;
 
         try {
 
@@ -911,7 +1021,7 @@ const API_URL = "https://internzo-backend.onrender.com";
 
 
         // =========================================
-        // LOAD COMPANY PROFILE FROM MONGODB
+        // LOAD COMPANY PROFILE
         // =========================================
 
         async function loadProfile() {
@@ -929,7 +1039,7 @@ const API_URL = "https://internzo-backend.onrender.com";
 
                             headers: {
                                 "Authorization":
-                                    `Bearer ${token}`
+                                    "Bearer " + token
                             }
                         }
                     );
@@ -962,8 +1072,9 @@ const API_URL = "https://internzo-backend.onrender.com";
                 }
 
 
-                // Company name from User account
-                // or saved CompanyProfile
+                // =================================
+                // COMPANY NAME
+                // =================================
 
                 const companyName =
                     data.companyName ||
@@ -990,6 +1101,10 @@ const API_URL = "https://internzo-backend.onrender.com";
                     companyName ||
                     "Not added";
 
+
+                // =================================
+                // OTHER FIELDS
+                // =================================
 
                 document.getElementById(
                     "phone"
@@ -1020,6 +1135,10 @@ const API_URL = "https://internzo-backend.onrender.com";
                 ).value =
                     data.description || "";
 
+
+                // =================================
+                // UPDATE SIDE DETAILS
+                // =================================
 
                 updateDetails(data);
 
@@ -1106,7 +1225,7 @@ const API_URL = "https://internzo-backend.onrender.com";
 
 
         // =========================================
-        // SAVE PROFILE TO MONGODB
+        // SAVE PROFILE
         // =========================================
 
         document.getElementById(
@@ -1123,6 +1242,10 @@ const API_URL = "https://internzo-backend.onrender.com";
                         "saveButton"
                     );
 
+
+                // =================================
+                // GET FORM VALUES
+                // =================================
 
                 const companyName =
                     document.getElementById(
@@ -1160,6 +1283,10 @@ const API_URL = "https://internzo-backend.onrender.com";
                     ).value.trim();
 
 
+                // =================================
+                // VALIDATION
+                // =================================
+
                 if (!companyName) {
 
                     showMessage(
@@ -1172,14 +1299,21 @@ const API_URL = "https://internzo-backend.onrender.com";
                 }
 
 
-                saveButton.disabled = true;
+                // =================================
+                // DISABLE BUTTON
+                // =================================
 
+                saveButton.disabled = true;
 
                 saveButton.innerHTML =
                     '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
 
 
                 try {
+
+                    // =================================
+                    // SEND TO BACKEND
+                    // =================================
 
                     const response =
                         await fetch(
@@ -1188,40 +1322,44 @@ const API_URL = "https://internzo-backend.onrender.com";
                                 method: "POST",
 
                                 headers: {
+
                                     "Content-Type":
                                         "application/json",
 
                                     "Authorization":
-                                        `Bearer ${token}`
+                                        "Bearer " + token
+
                                 },
 
-                                body: JSON.stringify({
+                                body:
+                                    JSON.stringify({
 
-                                    companyName:
-                                        companyName,
+                                        companyName:
+                                            companyName,
 
-                                    phone:
-                                        phone,
+                                        phone:
+                                            phone,
 
-                                    website:
-                                        website,
+                                        website:
+                                            website,
 
-                                    industry:
-                                        industry,
+                                        industry:
+                                            industry,
 
-                                    location:
-                                        location,
+                                        location:
+                                            location,
 
-                                    description:
-                                        description,
+                                        description:
+                                            description,
 
-                                    founded:
-                                        "",
+                                        founded:
+                                            "",
 
-                                    employees:
-                                        ""
+                                        employees:
+                                            ""
 
-                                })
+                                    })
+
                             }
                         );
 
@@ -1229,6 +1367,10 @@ const API_URL = "https://internzo-backend.onrender.com";
                     const data =
                         await response.json();
 
+
+                    // =================================
+                    // ERROR
+                    // =================================
 
                     if (!response.ok) {
 
@@ -1253,8 +1395,9 @@ const API_URL = "https://internzo-backend.onrender.com";
                     }
 
 
-                    // Update local user name
-                    // for displaying the latest name
+                    // =================================
+                    // UPDATE LOCAL USER
+                    // =================================
 
                     user.name =
                         companyName;
@@ -1266,7 +1409,9 @@ const API_URL = "https://internzo-backend.onrender.com";
                     );
 
 
-                    // Update page
+                    // =================================
+                    // UPDATE PAGE
+                    // =================================
 
                     document.getElementById(
                         "companyNameDisplay"
@@ -1293,6 +1438,10 @@ const API_URL = "https://internzo-backend.onrender.com";
 
                     });
 
+
+                    // =================================
+                    // SUCCESS MESSAGE
+                    // =================================
 
                     showMessage(
                         "Profile saved successfully.",

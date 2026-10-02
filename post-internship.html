@@ -154,6 +154,7 @@
 <body>
 
     <!-- NAVBAR -->
+
     <nav class="navbar">
 
         <div class="logo">
@@ -192,6 +193,7 @@
 
 
     <!-- MAIN -->
+
     <main class="dashboard-container">
 
         <div class="form-container">
@@ -217,6 +219,7 @@
                 <form id="internshipForm">
 
                     <!-- BASIC INFORMATION -->
+
                     <div class="form-section">
 
                         <h2>
@@ -308,6 +311,7 @@
 
 
                     <!-- INTERNSHIP DETAILS -->
+
                     <div class="form-section">
 
                         <h2>
@@ -429,6 +433,7 @@
 
 
                     <!-- BUTTONS -->
+
                     <div class="button-row">
 
                         <button type="submit">
@@ -455,6 +460,14 @@
 
 
     <script>
+
+        // ===============================
+        // BACKEND API URL
+        // ===============================
+
+        const API_URL =
+            "https://internzo-backend.onrender.com";
+
 
         // ===============================
         // CHECK LOGIN
@@ -498,7 +511,9 @@
 
         if (user && user.role !== "company") {
 
-            alert("Only companies can post internships.");
+            alert(
+                "Only companies can post internships."
+            );
 
             window.location.href =
                 "student-dashboard.html";
@@ -514,7 +529,8 @@
 
             document.getElementById(
                 "companyName"
-            ).value = user.name || "";
+            ).value =
+                user.name || "";
 
         }
 
@@ -539,50 +555,60 @@
 
 
                 // Get form values
+
                 const title =
                     document.getElementById(
                         "title"
                     ).value.trim();
+
 
                 const companyName =
                     document.getElementById(
                         "companyName"
                     ).value.trim();
 
+
                 const location =
                     document.getElementById(
                         "location"
                     ).value.trim();
+
 
                 const type =
                     document.getElementById(
                         "type"
                     ).value;
 
+
                 const duration =
                     document.getElementById(
                         "duration"
                     ).value;
+
 
                 const stipend =
                     document.getElementById(
                         "stipend"
                     ).value.trim();
 
+
                 const deadline =
                     document.getElementById(
                         "deadline"
                     ).value;
+
 
                 const skills =
                     document.getElementById(
                         "skills"
                     ).value.trim();
 
+
                 const description =
                     document.getElementById(
                         "description"
                     ).value.trim();
+
 
                 const requirements =
                     document.getElementById(
@@ -619,7 +645,7 @@
 
                     const response =
                         await fetch(
-                            "http://localhost:5000/api/internships",
+                            `${API_URL}/api/internships`,
                             {
                                 method: "POST",
 
@@ -687,6 +713,7 @@
 
 
                         // Put company name back
+
                         document.getElementById(
                             "companyName"
                         ).value =

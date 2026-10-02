@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>INTERNZO - My Profile</title>
 
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -328,10 +333,14 @@
                 font-size: 12px;
             }
         }
+
     </style>
+
 </head>
 
+
 <body>
+
 
     <!-- NAVBAR -->
 
@@ -355,13 +364,18 @@
                 My Applications
             </a>
 
-            <a href="student-profile.html" class="active">
+            <a href="student-profile.html"
+                class="active">
                 My Profile
             </a>
 
-            <button class="logout-btn" onclick="logout()">
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
                 <i class="fa-solid fa-right-from-bracket"></i>
                 Logout
+
             </button>
 
         </div>
@@ -369,9 +383,11 @@
     </nav>
 
 
+
     <!-- MAIN -->
 
     <main class="profile-container">
+
 
         <div class="page-header">
 
@@ -386,12 +402,15 @@
         </div>
 
 
+
         <!-- PROFILE INFORMATION -->
 
         <div class="profile-header">
 
             <div class="profile-icon">
+
                 <i class="fa-solid fa-user"></i>
+
             </div>
 
             <div class="profile-info">
@@ -409,17 +428,22 @@
         </div>
 
 
+
         <!-- PROFILE FORM -->
 
         <div class="profile-card">
 
             <h2>
+
                 <i class="fa-solid fa-user-pen"></i>
+
                 Personal & Academic Information
+
             </h2>
 
 
             <div class="form-grid">
+
 
                 <!-- PHONE -->
 
@@ -436,6 +460,7 @@
                     >
 
                 </div>
+
 
 
                 <!-- COLLEGE -->
@@ -455,6 +480,7 @@
                 </div>
 
 
+
                 <!-- COURSE -->
 
                 <div class="form-group">
@@ -470,6 +496,7 @@
                     >
 
                 </div>
+
 
 
                 <!-- EDUCATION -->
@@ -507,6 +534,7 @@
                 </div>
 
 
+
                 <!-- SKILLS -->
 
                 <div class="form-group full-width">
@@ -526,20 +554,22 @@
                         <button
                             type="button"
                             class="add-skill-btn"
-                            onclick="addSkill()"
-                        >
+                            onclick="addSkill()">
+
                             <i class="fa-solid fa-plus"></i>
                             Add
+
                         </button>
 
                     </div>
 
                     <div
                         class="skills-container"
-                        id="skillsContainer"
-                    ></div>
+                        id="skillsContainer">
+                    </div>
 
                 </div>
+
 
 
                 <!-- BIO -->
@@ -556,6 +586,7 @@
                     ></textarea>
 
                 </div>
+
 
 
                 <!-- RESUME -->
@@ -577,6 +608,7 @@
             </div>
 
 
+
             <!-- SAVE BUTTON -->
 
             <div class="save-section">
@@ -584,10 +616,11 @@
                 <button
                     type="button"
                     class="save-btn"
-                    onclick="saveProfile()"
-                >
+                    onclick="saveProfile()">
+
                     <i class="fa-solid fa-floppy-disk"></i>
                     Save Profile
+
                 </button>
 
                 <span id="message"></span>
@@ -599,121 +632,223 @@
     </main>
 
 
+
     <script>
+
+        // =========================================
+        // RENDER BACKEND API
+        // =========================================
+
+        const API_URL =
+            "https://internzo-backend.onrender.com";
+
 
         let skills = [];
 
-        // CHECK LOGIN
 
-        const token = localStorage.getItem("token");
-        const userData = localStorage.getItem("user");
+        // =========================================
+        // CHECK LOGIN
+        // =========================================
+
+        const token =
+            localStorage.getItem("token");
+
+        const userData =
+            localStorage.getItem("user");
+
 
         if (!token || !userData) {
 
-            window.location.href = "login.html";
+            window.location.href =
+                "login.html";
 
         }
+
+
+        // =========================================
+        // GET USER
+        // =========================================
 
         let user;
 
+
         try {
 
-            user = JSON.parse(userData);
+            user =
+                JSON.parse(userData);
 
         } catch (error) {
 
-            localStorage.clear();
+            console.error(
+                "User data error:",
+                error
+            );
 
-            window.location.href = "login.html";
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
 
-        }
-
-
-        // DISPLAY USER
-
-        if (user) {
-
-            document.getElementById("profileName").textContent =
-                user.name || "Student";
-
-            document.getElementById("profileEmail").textContent =
-                user.email || "";
+            window.location.href =
+                "login.html";
 
         }
 
 
-        // LOAD PROFILE
+        // =========================================
+        // CHECK STUDENT ROLE
+        // =========================================
 
-        async function loadProfile() {
+        if (
+            user &&
+            user.role &&
+            user.role !== "student"
+        ) {
 
-            try {
+            if (user.role === "company") {
 
-                const response = await fetch(
-                    "http://localhost:5000/api/profile",
-                    {
-                        method: "GET",
+                window.location.href =
+                    "company-dashboard.html";
 
-                        headers: {
-                            "Authorization":
-                                "Bearer " + token
-                        }
-                    }
-                );
+            } else if (
+                user.role === "admin"
+            ) {
 
-                const data = await response.json();
-
-                if (!response.ok) {
-
-                    if (response.status === 401) {
-
-                        localStorage.clear();
-
-                        window.location.href =
-                            "login.html";
-
-                        return;
-
-                    }
-
-                    return;
-                }
-
-
-                document.getElementById("phone").value =
-                    data.phone || "";
-
-                document.getElementById("college").value =
-                    data.college || "";
-
-                document.getElementById("course").value =
-                    data.course || "";
-
-                document.getElementById("education").value =
-                    data.education || "";
-
-                document.getElementById("bio").value =
-                    data.bio || "";
-
-                document.getElementById("resume").value =
-                    data.resume || "";
-
-
-                skills = Array.isArray(data.skills)
-                    ? data.skills
-                    : [];
-
-                displaySkills();
-
-            } catch (error) {
-
-                console.error(error);
+                window.location.href =
+                    "admin-dashboard.html";
 
             }
 
         }
 
 
+        // =========================================
+        // DISPLAY USER
+        // =========================================
+
+        if (user) {
+
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                user.name || "Student";
+
+            document.getElementById(
+                "profileEmail"
+            ).textContent =
+                user.email || "";
+
+        }
+
+
+        // =========================================
+        // LOAD PROFILE
+        // =========================================
+
+        async function loadProfile() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_URL}/api/profile`,
+                        {
+                            method: "GET",
+
+                            headers: {
+                                "Authorization":
+                                    "Bearer " + token
+                            }
+                        }
+                    );
+
+
+                if (response.status === 401) {
+
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    console.error(
+                        "Profile loading failed:",
+                        data.message
+                    );
+
+                    return;
+
+                }
+
+
+                document.getElementById(
+                    "phone"
+                ).value =
+                    data.phone || "";
+
+
+                document.getElementById(
+                    "college"
+                ).value =
+                    data.college || "";
+
+
+                document.getElementById(
+                    "course"
+                ).value =
+                    data.course || "";
+
+
+                document.getElementById(
+                    "education"
+                ).value =
+                    data.education || "";
+
+
+                document.getElementById(
+                    "bio"
+                ).value =
+                    data.bio || "";
+
+
+                document.getElementById(
+                    "resume"
+                ).value =
+                    data.resume || "";
+
+
+                skills =
+                    Array.isArray(data.skills)
+                        ? data.skills
+                        : [];
+
+
+                displaySkills();
+
+            } catch (error) {
+
+                console.error(
+                    "Profile loading error:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        // =========================================
         // DISPLAY SKILLS
+        // =========================================
 
         function displaySkills() {
 
@@ -722,34 +857,49 @@
                     "skillsContainer"
                 );
 
+
             container.innerHTML = "";
 
-            skills.forEach((skill, index) => {
 
-                const tag =
-                    document.createElement("div");
+            skills.forEach(
+                function(skill, index) {
 
-                tag.className = "skill-tag";
+                    const tag =
+                        document.createElement(
+                            "div"
+                        );
 
-                tag.innerHTML = `
-                    ${skill}
 
-                    <button
-                        type="button"
-                        onclick="removeSkill(${index})"
-                    >
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                `;
+                    tag.className =
+                        "skill-tag";
 
-                container.appendChild(tag);
 
-            });
+                    tag.innerHTML = `
+
+                        ${skill}
+
+                        <button
+                            type="button"
+                            onclick="removeSkill(${index})">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    `;
+
+
+                    container.appendChild(tag);
+
+                }
+            );
 
         }
 
 
+        // =========================================
         // ADD SKILL
+        // =========================================
 
         function addSkill() {
 
@@ -758,12 +908,17 @@
                     "skillInput"
                 );
 
+
             const skill =
                 input.value.trim();
 
+
             if (!skill) {
+
                 return;
+
             }
+
 
             if (
                 skills.some(
@@ -772,9 +927,13 @@
                         skill.toLowerCase()
                 )
             ) {
+
                 input.value = "";
+
                 return;
+
             }
+
 
             skills.push(skill);
 
@@ -785,7 +944,9 @@
         }
 
 
+        // =========================================
         // ENTER KEY
+        // =========================================
 
         document
             .getElementById("skillInput")
@@ -793,7 +954,9 @@
                 "keydown",
                 function(event) {
 
-                    if (event.key === "Enter") {
+                    if (
+                        event.key === "Enter"
+                    ) {
 
                         event.preventDefault();
 
@@ -805,18 +968,25 @@
             );
 
 
+        // =========================================
         // REMOVE SKILL
+        // =========================================
 
         function removeSkill(index) {
 
-            skills.splice(index, 1);
+            skills.splice(
+                index,
+                1
+            );
 
             displaySkills();
 
         }
 
 
+        // =========================================
         // SAVE PROFILE
+        // =========================================
 
         async function saveProfile() {
 
@@ -868,7 +1038,7 @@
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/profile",
+                        `${API_URL}/api/profile`,
                         {
                             method: "POST",
 
@@ -889,6 +1059,19 @@
 
                         }
                     );
+
+
+                if (response.status === 401) {
+
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
 
 
                 const data =
@@ -916,7 +1099,10 @@
 
             } catch (error) {
 
-                console.error(error);
+                console.error(
+                    "Profile save error:",
+                    error
+                );
 
                 message.style.color =
                     "#dc2626";
@@ -929,13 +1115,19 @@
         }
 
 
+        // =========================================
         // LOGOUT
+        // =========================================
 
         function logout() {
 
-            localStorage.removeItem("token");
+            localStorage.removeItem(
+                "token"
+            );
 
-            localStorage.removeItem("user");
+            localStorage.removeItem(
+                "user"
+            );
 
             window.location.href =
                 "login.html";
@@ -943,11 +1135,18 @@
         }
 
 
+        // =========================================
         // LOAD PROFILE
+        // =========================================
 
-        loadProfile();
+        if (token && user) {
+
+            loadProfile();
+
+        }
 
     </script>
 
 </body>
+
 </html>
