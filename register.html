@@ -2,85 +2,184 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>INTERNZO - Register</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+        href="css/style.css">
+
 </head>
+
 
 <body>
 
-    <div class="container">
+
+    <!-- =========================================
+         REGISTER PAGE
+    ========================================= -->
+
+    <main class="container">
 
         <div class="register-box">
 
-            <h1>INTERNZO</h1>
 
-            <h2>Create Account</h2>
+            <!-- LOGO -->
+
+            <h1>
+                INTERNZO
+            </h1>
+
+
+            <!-- TITLE -->
+
+            <h2>
+                Create Account
+            </h2>
+
 
             <p class="subtitle">
                 Register to find and apply for internships
             </p>
 
+
+            <!-- =========================================
+                 REGISTER FORM
+            ========================================= -->
+
             <form id="registerForm">
 
+
+                <!-- NAME -->
+
                 <div class="input-group">
-                    <label for="name">Full Name</label>
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
                     <input
                         type="text"
                         id="name"
+                        name="name"
                         placeholder="Enter your full name"
+                        autocomplete="name"
                         required
                     >
+
                 </div>
 
+
+                <!-- EMAIL -->
+
                 <div class="input-group">
-                    <label for="email">Email</label>
+
+                    <label for="email">
+                        Email
+                    </label>
+
                     <input
                         type="email"
                         id="email"
+                        name="email"
                         placeholder="Enter your email"
+                        autocomplete="email"
                         required
                     >
+
                 </div>
 
+
+                <!-- PASSWORD -->
+
                 <div class="input-group">
-                    <label for="password">Password</label>
+
+                    <label for="password">
+                        Password
+                    </label>
+
                     <input
                         type="password"
                         id="password"
+                        name="password"
                         placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="6"
                         required
                     >
+
                 </div>
+
+
+                <!-- ROLE -->
 
                 <div class="input-group">
-                    <label for="role">Register As</label>
 
-                    <select id="role">
-                        <option value="student">Student</option>
-                        <option value="company">Company</option>
+                    <label for="role">
+                        Register As
+                    </label>
+
+                    <select
+                        id="role"
+                        name="role"
+                        required
+                    >
+
+                        <option value="student">
+                            Student
+                        </option>
+
+                        <option value="company">
+                            Company
+                        </option>
+
                     </select>
+
                 </div>
 
-                <button type="submit">
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    id="registerButton">
+
                     Create Account
+
                 </button>
+
 
             </form>
 
+
+            <!-- MESSAGE -->
+
             <p id="message"></p>
 
+
+            <!-- LOGIN LINK -->
+
             <p class="login-link">
+
                 Already have an account?
-                <a href="login.html">Login</a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
             </p>
+
 
         </div>
 
-    </div>
+    </main>
+
+
+    <!-- AUTH JAVASCRIPT -->
 
     <script src="js/auth.js"></script>
 

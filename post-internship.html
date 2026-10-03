@@ -2,158 +2,517 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Post Internship - INTERNZO</title>
 
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet"
+        href="css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 
     <style>
+
+        /* =========================================
+           PAGE CONTAINER
+        ========================================= */
+
         .form-container {
+            width: 100%;
             max-width: 850px;
             margin: 0 auto;
         }
+
+
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
 
         .page-header {
             margin-bottom: 30px;
         }
 
+        .page-label {
+            color: #8b5cf6;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
         .page-header h1 {
-            font-size: 30px;
-            color: #111827;
-            margin-bottom: 8px;
+            color: #ffffff;
+            font-size: clamp(36px, 5vw, 48px);
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
         }
 
         .page-header p {
-            color: #64748b;
-            font-size: 14px;
+            color: #a1a1aa;
+            font-size: 15px;
+            line-height: 1.6;
         }
+
+
+        /* =========================================
+           FORM BOX
+        ========================================= */
 
         .form-box {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 15px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #0b0b0b
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-radius: 20px;
+
             padding: 35px;
-            box-shadow: 0 5px 15px rgba(17, 24, 39, 0.04);
+
+            box-shadow:
+                0 18px 50px
+                rgba(0, 0, 0, 0.25);
+
+            animation:
+                formAppear 0.35s ease both;
         }
 
+
+        @keyframes formAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================================
+           FORM SECTION
+        ========================================= */
+
         .form-section {
-            margin-bottom: 30px;
+            margin-bottom: 32px;
+        }
+
+        .form-section:last-of-type {
+            margin-bottom: 10px;
         }
 
         .form-section h2 {
-            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: #ffffff;
+
             font-size: 18px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e5e7eb;
+
+            margin-bottom: 22px;
+
+            padding-bottom: 12px;
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.07);
         }
+
+        .form-section h2 i {
+            color: #8b5cf6;
+            font-size: 16px;
+        }
+
+
+        /* =========================================
+           FORM ROW
+        ========================================= */
 
         .form-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
             gap: 18px;
         }
 
+
+        /* =========================================
+           FORM GROUP
+        ========================================= */
+
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 19px;
         }
 
         .form-group label {
             display: block;
-            color: #334155;
+
+            color: #d4d4d8;
+
             font-size: 13px;
+
             font-weight: 600;
-            margin-bottom: 7px;
+
+            margin-bottom: 8px;
         }
+
+
+        /* =========================================
+           INPUTS
+        ========================================= */
 
         .form-group input,
         .form-group select,
         .form-group textarea {
+
             width: 100%;
-            padding: 12px 13px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
+
+            padding: 13px 14px;
+
+            background: #101010;
+
+            color: #ffffff;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.09);
+
+            border-radius: 10px;
+
+            outline: none;
+
             font-family: inherit;
+
             font-size: 14px;
-            color: #111827;
-            background: #ffffff;
+
+            transition: 0.2s ease;
+
         }
 
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
+
+        /* =========================================
+           PLACEHOLDER
+        ========================================= */
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #71717a;
         }
+
+
+        /* =========================================
+           SELECT
+        ========================================= */
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: #101010;
+            color: #ffffff;
+        }
+
+
+        /* =========================================
+           FOCUS
+        ========================================= */
 
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
-            outline: none;
+
             border-color: #7c3aed;
-            box-shadow: 0 0 0 3px #f3e8ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(124, 58, 237, 0.12);
+
         }
 
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #94a3b8;
+
+        /* =========================================
+           TEXTAREA
+        ========================================= */
+
+        .form-group textarea {
+
+            min-height: 120px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+
         }
+
+
+        /* =========================================
+           DATE INPUT
+        ========================================= */
+
+        .form-group input[type="date"] {
+            color-scheme: dark;
+        }
+
+
+        /* =========================================
+           MESSAGE
+        ========================================= */
+
+        #message {
+
+            min-height: 20px;
+
+            margin-bottom: 20px;
+
+            text-align: center;
+
+            color: #a1a1aa;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================================
+           BUTTON ROW
+        ========================================= */
 
         .button-row {
+
             display: flex;
+
             gap: 12px;
+
+            margin-top: 25px;
+
         }
+
 
         .button-row button {
+
             width: auto;
-            padding: 12px 25px;
+
+            min-height: 46px;
+
+            padding:
+                0 24px;
+
         }
 
+
+        /* =========================================
+           POST BUTTON
+        ========================================= */
+
+        .post-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            background: #7c3aed;
+
+            color: #ffffff;
+
+            border: none;
+
+            border-radius: 11px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+        .post-btn:hover {
+
+            background: #6d28d9;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+        .post-btn:disabled {
+
+            opacity: 0.65;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
+        /* =========================================
+           CANCEL BUTTON
+        ========================================= */
+
         .cancel-btn {
-            background: #ffffff;
-            color: #7c3aed;
-            border: 1px solid #c4b5fd;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            background: #151515;
+
+            color: #d4d4d8;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.09);
+
+            border-radius: 11px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
         }
 
         .cancel-btn:hover {
-            background: #f3e8ff;
+
+            background: #1c1c1c;
+
+            color: #ffffff;
+
+            border-color:
+                rgba(255, 255, 255, 0.15);
+
+            transform:
+                translateY(-2px);
+
         }
 
-        #message {
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
+
+        /* =========================================
+           AUTOFILL
+        ========================================= */
+
+        .form-group input:-webkit-autofill,
+        .form-group input:-webkit-autofill:hover,
+        .form-group input:-webkit-autofill:focus {
+
+            -webkit-text-fill-color: #ffffff;
+
+            -webkit-box-shadow:
+                0 0 0 1000px #101010 inset;
+
+            transition:
+                background-color
+                5000s ease-in-out 0s;
+
         }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
 
         @media (max-width: 650px) {
+
             .form-row {
+
                 grid-template-columns: 1fr;
+
                 gap: 0;
+
             }
 
             .form-box {
+
                 padding: 22px;
+
             }
 
             .button-row {
+
                 flex-direction: column;
+
             }
 
             .button-row button {
+
                 width: 100%;
+
             }
 
             .page-header h1 {
-                font-size: 25px;
+
+                font-size: 36px;
+
             }
+
         }
+
+
+        @media (max-width: 380px) {
+
+            .form-box {
+
+                padding: 18px;
+
+            }
+
+            .page-header h1 {
+
+                font-size: 32px;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- NAVBAR -->
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
 
     <nav class="navbar">
 
@@ -161,14 +520,19 @@
             INTERNZO
         </div>
 
+
         <div class="nav-links">
 
             <a href="company-dashboard.html">
                 Dashboard
             </a>
 
-            <a href="post-internship.html" class="active">
+            <a
+                href="post-internship.html"
+                class="active">
+
                 Post Internship
+
             </a>
 
             <a href="manage-internships.html">
@@ -183,8 +547,12 @@
                 Profile
             </a>
 
-            <button onclick="logout()">
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
                 Logout
+
             </button>
 
         </div>
@@ -192,16 +560,25 @@
     </nav>
 
 
-    <!-- MAIN -->
+    <!-- =========================================
+         MAIN
+    ========================================= -->
 
     <main class="dashboard-container">
 
         <div class="form-container">
 
+
+            <!-- PAGE HEADER -->
+
             <div class="page-header">
 
+                <div class="page-label">
+                    COMPANY PORTAL
+                </div>
+
                 <h1>
-                    Post Internship
+                    Post <span style="color:#8b5cf6;">Internship</span>
                 </h1>
 
                 <p>
@@ -211,6 +588,10 @@
             </div>
 
 
+            <!-- =========================================
+                 FORM BOX
+            ========================================= -->
+
             <div class="form-box">
 
                 <div id="message"></div>
@@ -218,14 +599,23 @@
 
                 <form id="internshipForm">
 
-                    <!-- BASIC INFORMATION -->
+
+                    <!-- =====================================
+                         BASIC INFORMATION
+                    ===================================== -->
 
                     <div class="form-section">
 
                         <h2>
+
+                            <i class="fa-solid fa-briefcase"></i>
+
                             Basic Information
+
                         </h2>
 
+
+                        <!-- TITLE -->
 
                         <div class="form-group">
 
@@ -243,6 +633,8 @@
                         </div>
 
 
+                        <!-- COMPANY -->
+
                         <div class="form-group">
 
                             <label for="companyName">
@@ -259,7 +651,10 @@
                         </div>
 
 
+                        <!-- LOCATION + TYPE -->
+
                         <div class="form-row">
+
 
                             <div class="form-group">
 
@@ -283,7 +678,10 @@
                                     Internship Type *
                                 </label>
 
-                                <select id="type" required>
+                                <select
+                                    id="type"
+                                    required
+                                >
 
                                     <option value="">
                                         Select type
@@ -310,16 +708,25 @@
                     </div>
 
 
-                    <!-- INTERNSHIP DETAILS -->
+                    <!-- =====================================
+                         INTERNSHIP DETAILS
+                    ===================================== -->
 
                     <div class="form-section">
 
                         <h2>
+
+                            <i class="fa-solid fa-file-lines"></i>
+
                             Internship Details
+
                         </h2>
 
 
+                        <!-- DURATION + STIPEND -->
+
                         <div class="form-row">
+
 
                             <div class="form-group">
 
@@ -327,7 +734,10 @@
                                     Duration *
                                 </label>
 
-                                <select id="duration" required>
+                                <select
+                                    id="duration"
+                                    required
+                                >
 
                                     <option value="">
                                         Select duration
@@ -371,6 +781,8 @@
                         </div>
 
 
+                        <!-- DEADLINE -->
+
                         <div class="form-group">
 
                             <label for="deadline">
@@ -385,6 +797,8 @@
 
                         </div>
 
+
+                        <!-- SKILLS -->
 
                         <div class="form-group">
 
@@ -401,6 +815,8 @@
                         </div>
 
 
+                        <!-- DESCRIPTION -->
+
                         <div class="form-group">
 
                             <label for="description">
@@ -415,6 +831,8 @@
 
                         </div>
 
+
+                        <!-- REQUIREMENTS -->
 
                         <div class="form-group">
 
@@ -432,23 +850,37 @@
                     </div>
 
 
-                    <!-- BUTTONS -->
+                    <!-- =====================================
+                         BUTTONS
+                    ===================================== -->
 
                     <div class="button-row">
 
-                        <button type="submit">
+                        <button
+                            type="submit"
+                            class="post-btn"
+                            id="postButton">
+
+                            <i class="fa-solid fa-paper-plane"></i>
+
                             Post Internship
+
                         </button>
+
 
                         <button
                             type="button"
                             class="cancel-btn"
-                            onclick="window.location.href='company-dashboard.html'"
-                        >
+                            onclick="window.location.href='company-dashboard.html'">
+
+                            <i class="fa-solid fa-xmark"></i>
+
                             Cancel
+
                         </button>
 
                     </div>
+
 
                 </form>
 
@@ -459,19 +891,18 @@
     </main>
 
 
+    <!-- =========================================
+         API HELPER
+    ========================================= -->
+
+    <script src="js/api.js"></script>
+
+
     <script>
 
-        // ===============================
-        // BACKEND API URL
-        // ===============================
-
-        const API_URL =
-            "https://internzo-backend.onrender.com";
-
-
-        // ===============================
+        // =========================================
         // CHECK LOGIN
-        // ===============================
+        // =========================================
 
         const token =
             localStorage.getItem("token");
@@ -488,7 +919,12 @@
         }
 
 
-        let user;
+        // =========================================
+        // USER
+        // =========================================
+
+        let user = null;
+
 
         try {
 
@@ -497,7 +933,18 @@
 
         } catch (error) {
 
-            localStorage.clear();
+            console.error(
+                "User data error:",
+                error
+            );
+
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "user"
+            );
 
             window.location.href =
                 "login.html";
@@ -505,25 +952,40 @@
         }
 
 
-        // ===============================
+        // =========================================
         // CHECK COMPANY ROLE
-        // ===============================
+        // =========================================
 
-        if (user && user.role !== "company") {
+        if (
+            user &&
+            user.role !== "company"
+        ) {
 
-            alert(
-                "Only companies can post internships."
-            );
+            if (user.role === "student") {
 
-            window.location.href =
-                "student-dashboard.html";
+                window.location.href =
+                    "student-dashboard.html";
+
+            } else if (
+                user.role === "admin"
+            ) {
+
+                window.location.href =
+                    "admin-dashboard.html";
+
+            } else {
+
+                window.location.href =
+                    "login.html";
+
+            }
 
         }
 
 
-        // ===============================
+        // =========================================
         // AUTO FILL COMPANY NAME
-        // ===============================
+        // =========================================
 
         if (user) {
 
@@ -535,181 +997,204 @@
         }
 
 
-        // ===============================
-        // POST INTERNSHIP
-        // ===============================
+        // =========================================
+        // FORM SUBMIT
+        // =========================================
 
-        document.getElementById(
-            "internshipForm"
-        ).addEventListener(
-            "submit",
-            async function (event) {
+        document
+            .getElementById("internshipForm")
+            .addEventListener(
+                "submit",
+                async function(event) {
 
-                event.preventDefault();
-
-
-                const message =
-                    document.getElementById(
-                        "message"
-                    );
+                    event.preventDefault();
 
 
-                // Get form values
-
-                const title =
-                    document.getElementById(
-                        "title"
-                    ).value.trim();
+                    const message =
+                        document.getElementById(
+                            "message"
+                        );
 
 
-                const companyName =
-                    document.getElementById(
-                        "companyName"
-                    ).value.trim();
+                    const postButton =
+                        document.getElementById(
+                            "postButton"
+                        );
 
 
-                const location =
-                    document.getElementById(
-                        "location"
-                    ).value.trim();
+                    // =================================
+                    // GET VALUES
+                    // =================================
+
+                    const title =
+                        document.getElementById(
+                            "title"
+                        ).value.trim();
 
 
-                const type =
-                    document.getElementById(
-                        "type"
-                    ).value;
+                    const companyName =
+                        document.getElementById(
+                            "companyName"
+                        ).value.trim();
 
 
-                const duration =
-                    document.getElementById(
-                        "duration"
-                    ).value;
+                    const location =
+                        document.getElementById(
+                            "location"
+                        ).value.trim();
 
 
-                const stipend =
-                    document.getElementById(
-                        "stipend"
-                    ).value.trim();
+                    const type =
+                        document.getElementById(
+                            "type"
+                        ).value;
 
 
-                const deadline =
-                    document.getElementById(
-                        "deadline"
-                    ).value;
+                    const duration =
+                        document.getElementById(
+                            "duration"
+                        ).value;
 
 
-                const skills =
-                    document.getElementById(
-                        "skills"
-                    ).value.trim();
+                    const stipend =
+                        document.getElementById(
+                            "stipend"
+                        ).value.trim();
 
 
-                const description =
-                    document.getElementById(
-                        "description"
-                    ).value.trim();
+                    const deadline =
+                        document.getElementById(
+                            "deadline"
+                        ).value;
 
 
-                const requirements =
-                    document.getElementById(
-                        "requirements"
-                    ).value.trim();
+                    const skills =
+                        document.getElementById(
+                            "skills"
+                        ).value.trim();
 
 
-                // ===============================
-                // CHECK REQUIRED FIELDS
-                // ===============================
-
-                if (
-                    !title ||
-                    !companyName ||
-                    !location ||
-                    !type ||
-                    !duration ||
-                    !deadline ||
-                    !description
-                ) {
-
-                    message.style.color =
-                        "#dc2626";
-
-                    message.textContent =
-                        "Please fill all required fields.";
-
-                    return;
-
-                }
+                    const description =
+                        document.getElementById(
+                            "description"
+                        ).value.trim();
 
 
-                try {
+                    const requirements =
+                        document.getElementById(
+                            "requirements"
+                        ).value.trim();
 
-                    const response =
-                        await fetch(
-                            `${API_URL}/api/internships`,
+
+                    // =================================
+                    // VALIDATION
+                    // =================================
+
+                    if (
+                        !title ||
+                        !companyName ||
+                        !location ||
+                        !type ||
+                        !duration ||
+                        !deadline ||
+                        !description
+                    ) {
+
+                        message.style.color =
+                            "#f87171";
+
+                        message.textContent =
+                            "Please fill all required fields.";
+
+                        return;
+
+                    }
+
+
+                    try {
+
+                        // =============================
+                        // LOADING
+                        // =============================
+
+                        postButton.disabled =
+                            true;
+
+                        postButton.innerHTML = `
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                            Posting...
+                        `;
+
+                        message.textContent =
+                            "";
+
+
+                        // =============================
+                        // API REQUEST
+                        // =============================
+
+                        await apiFetch(
+                            "/api/internships",
                             {
                                 method: "POST",
 
-                                headers: {
-                                    "Content-Type":
-                                        "application/json",
+                                body:
+                                    JSON.stringify({
 
-                                    "Authorization":
-                                        "Bearer " + token
-                                },
+                                        title:
+                                            title,
 
-                                body: JSON.stringify({
+                                        companyName:
+                                            companyName,
 
-                                    title:
-                                        title,
+                                        location:
+                                            location,
 
-                                    companyName:
-                                        companyName,
+                                        type:
+                                            type,
 
-                                    location:
-                                        location,
+                                        duration:
+                                            duration,
 
-                                    type:
-                                        type,
+                                        stipend:
+                                            stipend ||
+                                            "Unpaid",
 
-                                    duration:
-                                        duration,
+                                        deadline:
+                                            deadline,
 
-                                    stipend:
-                                        stipend || "Unpaid",
+                                        skills:
+                                            skills,
 
-                                    deadline:
-                                        deadline,
+                                        description:
+                                            description,
 
-                                    skills:
-                                        skills,
+                                        requirements:
+                                            requirements
 
-                                    description:
-                                        description,
-
-                                    requirements:
-                                        requirements
-
-                                })
+                                    })
                             }
                         );
 
 
-                    const data =
-                        await response.json();
-
-
-                    if (response.ok) {
+                        // =============================
+                        // SUCCESS
+                        // =============================
 
                         message.style.color =
-                            "#16a34a";
+                            "#4ade80";
 
                         message.textContent =
                             "Internship posted successfully!";
 
 
-                        document.getElementById(
-                            "internshipForm"
-                        ).reset();
+                        // Reset form
+
+                        document
+                            .getElementById(
+                                "internshipForm"
+                            )
+                            .reset();
 
 
                         // Put company name back
@@ -720,42 +1205,62 @@
                             user.name || "";
 
 
-                    } else {
+                        // Clear internship cache
+
+                        if (
+                            typeof clearInternshipCache ===
+                            "function"
+                        ) {
+
+                            clearInternshipCache();
+
+                        }
+
+
+                    } catch (error) {
+
+                        console.error(
+                            "Post internship error:",
+                            error
+                        );
+
 
                         message.style.color =
-                            "#dc2626";
+                            "#f87171";
 
                         message.textContent =
-                            data.message ||
+                            error.message ||
                             "Unable to post internship.";
+
+                    } finally {
+
+                        postButton.disabled =
+                            false;
+
+                        postButton.innerHTML = `
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Post Internship
+                        `;
 
                     }
 
-                } catch (error) {
-
-                    console.error(error);
-
-                    message.style.color =
-                        "#dc2626";
-
-                    message.textContent =
-                        "Unable to connect to the server.";
-
                 }
-
-            }
-        );
+            );
 
 
-        // ===============================
+        // =========================================
         // LOGOUT
-        // ===============================
+        // =========================================
 
         function logout() {
 
-            localStorage.removeItem("token");
+            localStorage.removeItem(
+                "token"
+            );
 
-            localStorage.removeItem("user");
+            localStorage.removeItem(
+                "user"
+            );
 
             window.location.href =
                 "login.html";

@@ -2,74 +2,151 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>INTERNZO - Login</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
 </head>
+
 
 <body>
 
-    <div class="container">
+
+    <!-- =========================================
+         LOGIN PAGE
+    ========================================= -->
+
+    <main class="container">
+
 
         <div class="register-box">
 
-            <h1>INTERNZO</h1>
 
-            <h2>Welcome Back</h2>
+            <!-- LOGO -->
+
+            <h1>
+                INTERNZO
+            </h1>
+
+
+            <!-- TITLE -->
+
+            <h2>
+                Welcome Back
+            </h2>
+
 
             <p class="subtitle">
                 Login to your account
             </p>
 
+
+            <!-- =========================================
+                 LOGIN FORM
+            ========================================= -->
+
             <form id="loginForm">
+
+
+                <!-- EMAIL -->
 
                 <div class="input-group">
 
-                    <label for="email">Email</label>
+                    <label for="loginEmail">
+                        Email
+                    </label>
+
 
                     <input
                         type="email"
                         id="loginEmail"
+                        name="email"
                         placeholder="Enter your email"
+                        autocomplete="email"
                         required
                     >
 
                 </div>
 
+
+                <!-- PASSWORD -->
+
                 <div class="input-group">
 
-                    <label for="password">Password</label>
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
 
                     <input
                         type="password"
                         id="loginPassword"
+                        name="password"
                         placeholder="Enter your password"
+                        autocomplete="current-password"
                         required
                     >
 
                 </div>
 
-                <button type="submit">
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    id="loginButton">
+
                     Login
+
                 </button>
+
 
             </form>
 
+
+            <!-- =========================================
+                 LOGIN MESSAGE
+            ========================================= -->
+
             <p id="loginMessage"></p>
 
+
+            <!-- =========================================
+                 REGISTER LINK
+            ========================================= -->
+
             <p class="login-link">
+
                 Don't have an account?
-                <a href="register.html">Register</a>
+
+                <a href="register.html">
+                    Register
+                </a>
+
             </p>
+
 
         </div>
 
-    </div>
+    </main>
 
-    <script src="js/auth.js"></script>
+
+    <!-- =========================================
+         AUTH JAVASCRIPT
+    ========================================= -->
+
+    <script
+        src="js/auth.js">
+    </script>
+
 
 </body>
 

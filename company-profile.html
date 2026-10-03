@@ -11,186 +11,184 @@
     <title>INTERNZO - Company Profile</title>
 
     <link rel="stylesheet"
+        href="css/dashboard.css">
+
+    <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 
     <style>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: #f8fafc;
-            color: #111827;
-            min-height: 100vh;
-        }
-
-        /* ===============================
-           NAVBAR
-        =============================== */
-
-        .navbar {
-            width: 100%;
-            min-height: 72px;
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 6%;
-            border-bottom: 1px solid #e5e7eb;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            color: #7c3aed;
-            font-size: 25px;
-            font-weight: 800;
-            letter-spacing: -0.8px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .nav-links a {
-            color: #475569;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            transition: 0.2s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #7c3aed;
-        }
-
-        .logout-btn {
-            width: auto;
-            padding: 9px 18px;
-            background: #ffffff;
-            color: #7c3aed;
-            border: 1px solid #ddd6fe;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .logout-btn:hover {
-            background: #f3e8ff;
-        }
-
-        /* ===============================
-           MAIN CONTAINER
-        =============================== */
-
-        .profile-container {
-            width: 100%;
-            max-width: 1250px;
-            margin: 0 auto;
-            padding: 45px 30px 60px;
-        }
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
 
         .page-header {
             margin-bottom: 35px;
         }
 
+        .page-label {
+            color: #8b5cf6;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
         .page-header h1 {
-            color: #111827;
-            font-size: 32px;
-            font-weight: 750;
-            line-height: 1.2;
-            margin-bottom: 9px;
+            color: #ffffff;
+            font-size: clamp(36px, 5vw, 48px);
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
         }
 
         .page-header h1 span {
-            color: #7c3aed;
+            color: #8b5cf6;
         }
 
         .page-header p {
-            color: #64748b;
+            color: #a1a1aa;
             font-size: 15px;
             line-height: 1.6;
         }
 
-        /* ===============================
-           PROFILE TOP
-        =============================== */
+
+        /* =========================================
+           PROFILE HEADER
+        ========================================= */
 
         .profile-top {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 15px;
-            padding: 28px;
             display: flex;
             align-items: center;
-            gap: 22px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(17, 24, 39, 0.04);
+            gap: 20px;
+
+            padding: 25px;
+
+            margin-bottom: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #0b0b0b
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 18px 50px
+                rgba(0, 0, 0, 0.20);
+
+            animation:
+                cardAppear 0.35s ease both;
         }
 
         .company-icon {
-            width: 72px;
-            height: 72px;
+            width: 68px;
+            height: 68px;
+
+            flex-shrink: 0;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f3e8ff;
-            color: #7c3aed;
-            border-radius: 14px;
-            font-size: 30px;
+
+            background:
+                rgba(124, 58, 237, 0.12);
+
+            color: #8b5cf6;
+
+            border:
+                1px solid
+                rgba(124, 58, 237, 0.18);
+
+            border-radius: 16px;
+
+            font-size: 28px;
         }
 
         .profile-top h2 {
-            color: #111827;
-            font-size: 23px;
-            margin-bottom: 5px;
+            color: #ffffff;
+            font-size: 22px;
+            margin-bottom: 6px;
         }
 
         .profile-top p {
-            color: #64748b;
+            color: #71717a;
             font-size: 14px;
         }
 
-        /* ===============================
+
+        /* =========================================
            CONTENT GRID
-        =============================== */
+        ========================================= */
 
         .content-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+
+            grid-template-columns:
+                minmax(0, 2fr)
+                minmax(300px, 1fr);
+
             gap: 20px;
         }
 
-        .card {
-            background: #ffffff;
+
+        /* =========================================
+           CARD
+        ========================================= */
+
+        .profile-card {
             padding: 25px;
-            border: 1px solid #e5e7eb;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(17, 24, 39, 0.04);
+
             margin-bottom: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #0b0b0b
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 18px 50px
+                rgba(0, 0, 0, 0.20);
+
+            animation:
+                cardAppear 0.35s ease both;
         }
 
-        .card h2 {
-            color: #111827;
+        .profile-card h2 {
+            color: #ffffff;
+
             font-size: 19px;
+
             font-weight: 700;
+
             margin-bottom: 22px;
+
             padding-bottom: 14px;
-            border-bottom: 1px solid #e5e7eb;
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.07);
         }
 
-        /* ===============================
+
+        /* =========================================
            FORM
-        =============================== */
+        ========================================= */
 
         .form-group {
             margin-bottom: 18px;
@@ -198,86 +196,149 @@
 
         .form-group label {
             display: block;
-            color: #334155;
+
+            color: #d4d4d8;
+
             font-size: 13px;
+
             font-weight: 600;
+
             margin-bottom: 7px;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 11px 13px;
-            border: 1px solid #dbe0e7;
-            border-radius: 8px;
-            background: #ffffff;
-            color: #111827;
-            font-size: 14px;
+
+            padding: 12px 13px;
+
+            background: #101010;
+
+            color: #ffffff;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.09);
+
+            border-radius: 10px;
+
             outline: none;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
             transition: 0.2s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #52525b;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             border-color: #7c3aed;
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(124, 58, 237, 0.12);
         }
 
         .form-group input[readonly] {
-            background: #f8fafc;
-            color: #64748b;
+            background: #0b0b0b;
+
+            color: #71717a;
+
             cursor: not-allowed;
         }
 
         .form-group textarea {
-            min-height: 120px;
+            min-height: 125px;
+
             resize: vertical;
+
+            line-height: 1.6;
         }
 
         .two-column {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
             gap: 18px;
         }
 
-        /* ===============================
+
+        /* =========================================
            SAVE BUTTON
-        =============================== */
+        ========================================= */
 
         .save-btn {
             width: 100%;
-            padding: 11px 15px;
+
+            min-height: 46px;
+
+            padding: 12px 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
             background: #7c3aed;
+
             color: #ffffff;
+
             border: none;
-            border-radius: 8px;
+
+            border-radius: 11px;
+
             font-size: 13px;
-            font-weight: 600;
+
+            font-weight: 700;
+
             cursor: pointer;
+
             transition: 0.2s ease;
         }
 
         .save-btn:hover {
             background: #6d28d9;
-            transform: translateY(-1px);
+
+            transform:
+                translateY(-2px);
         }
 
         .save-btn:disabled {
-            opacity: 0.7;
+            opacity: 0.65;
+
             cursor: not-allowed;
+
             transform: none;
         }
 
-        /* ===============================
-           DETAILS
-        =============================== */
+
+        /* =========================================
+           SIDE DETAILS
+        ========================================= */
 
         .detail-item {
             display: flex;
+
             align-items: flex-start;
-            gap: 14px;
+
+            gap: 13px;
+
             padding: 15px 0;
-            border-bottom: 1px solid #f1f5f9;
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.06);
         }
 
         .detail-item:last-child {
@@ -287,14 +348,27 @@
         .detail-icon {
             width: 38px;
             height: 38px;
+
             flex-shrink: 0;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
-            background: #f3e8ff;
-            color: #7c3aed;
-            border-radius: 9px;
-            font-size: 15px;
+
+            background:
+                rgba(124, 58, 237, 0.12);
+
+            color: #8b5cf6;
+
+            border:
+                1px solid
+                rgba(124, 58, 237, 0.15);
+
+            border-radius: 10px;
+
+            font-size: 14px;
         }
 
         .detail-text {
@@ -302,70 +376,142 @@
         }
 
         .detail-label {
-            color: #94a3b8;
-            font-size: 11px;
-            margin-bottom: 4px;
+            color: #71717a;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.6px;
+
+            margin-bottom: 5px;
         }
 
         .detail-value {
-            color: #334155;
-            font-size: 14px;
+            color: #d4d4d8;
+
+            font-size: 13px;
+
             font-weight: 600;
+
+            line-height: 1.5;
+
             word-break: break-word;
         }
 
-        /* ===============================
-           INFO BOX
-        =============================== */
+
+        /* =========================================
+           INFORMATION BOX
+        ========================================= */
 
         .info-box {
-            background: #f3e8ff;
-            border: 1px solid #ddd6fe;
-            border-radius: 11px;
             padding: 18px;
+
+            background:
+                rgba(124, 58, 237, 0.08);
+
+            border:
+                1px solid
+                rgba(124, 58, 237, 0.16);
+
+            border-radius: 13px;
         }
 
         .info-box i {
-            color: #7c3aed;
+            display: block;
+
+            color: #8b5cf6;
+
             font-size: 20px;
+
             margin-bottom: 10px;
         }
 
         .info-box h3 {
-            color: #334155;
+            color: #ffffff;
+
             font-size: 15px;
+
             margin-bottom: 7px;
         }
 
         .info-box p {
-            color: #64748b;
+            color: #a1a1aa;
+
             font-size: 13px;
-            line-height: 1.6;
+
+            line-height: 1.7;
         }
 
-        /* ===============================
+
+        /* =========================================
            MESSAGE
-        =============================== */
+        ========================================= */
 
         #message {
-            margin-top: 14px;
+            min-height: 20px;
+
+            margin-top: 13px;
+
             font-size: 13px;
+
             font-weight: 600;
+
+            text-align: center;
         }
 
-        /* ===============================
+
+        /* =========================================
+           LOADING
+        ========================================= */
+
+        .profile-loading {
+            padding: 60px 20px;
+
+            text-align: center;
+
+            color: #71717a;
+
+            font-size: 14px;
+        }
+
+        .profile-loading i {
+            display: block;
+
+            color: #8b5cf6;
+
+            font-size: 24px;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* =========================================
+           ANIMATION
+        ========================================= */
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================================
            RESPONSIVE
-        =============================== */
+        ========================================= */
 
-        @media (max-width: 1050px) {
-
-            .navbar {
-                padding: 0 30px;
-            }
-
-            .nav-links {
-                gap: 17px;
-            }
+        @media (max-width: 1000px) {
 
             .content-grid {
                 grid-template-columns: 1fr;
@@ -373,43 +519,8 @@
 
         }
 
-        @media (max-width: 750px) {
 
-            .navbar {
-                min-height: auto;
-                padding: 18px 20px;
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            .nav-links {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 10px 15px;
-            }
-
-            .nav-links a {
-                font-size: 13px;
-            }
-
-            .logout-btn {
-                padding: 8px 14px;
-                font-size: 13px;
-            }
-
-            .profile-container {
-                padding: 30px 18px 45px;
-            }
-
-            .page-header h1 {
-                font-size: 27px;
-            }
-
-        }
-
-        @media (max-width: 550px) {
+        @media (max-width: 800px) {
 
             .two-column {
                 grid-template-columns: 1fr;
@@ -417,36 +528,35 @@
 
             .profile-top {
                 padding: 22px;
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .profile-top h2 {
-                font-size: 21px;
-            }
-
-            .page-header h1 {
-                font-size: 24px;
-            }
-
-            .page-header p {
-                font-size: 14px;
-            }
-
-            .nav-links {
-                gap: 9px 12px;
-            }
-
-            .nav-links a {
-                font-size: 12px;
-            }
-
-            .logout-btn {
-                font-size: 12px;
-                padding: 7px 12px;
             }
 
         }
+
+
+        @media (max-width: 550px) {
+
+            .profile-top {
+                flex-direction: column;
+
+                text-align: center;
+
+                padding: 22px 18px;
+            }
+
+            .profile-top h2 {
+                font-size: 20px;
+            }
+
+            .profile-card {
+                padding: 20px;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+        }
+
 
     </style>
 
@@ -456,9 +566,9 @@
 <body>
 
 
-    <!-- ===============================
+    <!-- =========================================
          NAVBAR
-    =============================== -->
+    ========================================= -->
 
     <nav class="navbar">
 
@@ -466,34 +576,41 @@
             INTERNZO
         </div>
 
+
         <div class="nav-links">
 
             <a href="company-dashboard.html">
                 Dashboard
             </a>
 
+
             <a href="post-internship.html">
                 Post Internship
             </a>
+
 
             <a href="manage-internships.html">
                 My Internships
             </a>
 
+
             <a href="company-applications.html">
                 Applications
             </a>
 
-            <a href="company-profile.html"
-               class="active">
+
+            <a
+                href="company-profile.html"
+                class="active">
+
                 Profile
+
             </a>
+
 
             <button
                 class="logout-btn"
                 onclick="logout()">
-
-                <i class="fa-solid fa-right-from-bracket"></i>
 
                 Logout
 
@@ -504,16 +621,23 @@
     </nav>
 
 
-    <!-- ===============================
-         MAIN CONTENT
-    =============================== -->
+    <!-- =========================================
+         MAIN
+    ========================================= -->
 
-    <main class="profile-container">
+    <main class="dashboard-container">
 
 
-        <!-- PAGE HEADER -->
+        <!-- =========================================
+             PAGE HEADER
+        ========================================= -->
 
         <section class="page-header">
+
+            <div class="page-label">
+                COMPANY PORTAL
+            </div>
+
 
             <h1>
 
@@ -521,6 +645,7 @@
                 <span>Profile</span>
 
             </h1>
+
 
             <p>
                 Manage your company information
@@ -530,9 +655,12 @@
         </section>
 
 
-        <!-- PROFILE HEADER -->
+        <!-- =========================================
+             PROFILE HEADER
+        ========================================= -->
 
         <section class="profile-top">
+
 
             <div class="company-icon">
 
@@ -540,11 +668,13 @@
 
             </div>
 
+
             <div>
 
                 <h2 id="companyNameDisplay">
                     Company Name
                 </h2>
+
 
                 <p id="companyEmailDisplay">
                     company@example.com
@@ -552,17 +682,22 @@
 
             </div>
 
+
         </section>
 
 
-        <!-- CONTENT -->
+        <!-- =========================================
+             CONTENT GRID
+        ========================================= -->
 
         <div class="content-grid">
 
 
-            <!-- LEFT SIDE -->
+            <!-- =====================================
+                 LEFT SIDE
+            ===================================== -->
 
-            <div class="card">
+            <div class="profile-card">
 
                 <h2>
                     Company Information
@@ -580,10 +715,12 @@
                             Company Name
                         </label>
 
+
                         <input
                             type="text"
                             id="companyName"
                             placeholder="Enter company name"
+                            autocomplete="organization"
                             required>
 
                     </div>
@@ -596,6 +733,7 @@
                         <label for="email">
                             Email Address
                         </label>
+
 
                         <input
                             type="email"
@@ -610,16 +748,19 @@
 
                     <div class="two-column">
 
+
                         <div class="form-group">
 
                             <label for="phone">
                                 Phone Number
                             </label>
 
+
                             <input
                                 type="text"
                                 id="phone"
-                                placeholder="Enter phone number">
+                                placeholder="Enter phone number"
+                                autocomplete="tel">
 
                         </div>
 
@@ -630,12 +771,15 @@
                                 Website
                             </label>
 
+
                             <input
                                 type="text"
                                 id="website"
-                                placeholder="Company website">
+                                placeholder="Company website"
+                                autocomplete="url">
 
                         </div>
+
 
                     </div>
 
@@ -644,11 +788,13 @@
 
                     <div class="two-column">
 
+
                         <div class="form-group">
 
                             <label for="industry">
                                 Industry
                             </label>
+
 
                             <input
                                 type="text"
@@ -664,12 +810,15 @@
                                 Location
                             </label>
 
+
                             <input
                                 type="text"
                                 id="location"
-                                placeholder="Company location">
+                                placeholder="Company location"
+                                autocomplete="address-level2">
 
                         </div>
+
 
                     </div>
 
@@ -681,6 +830,7 @@
                         <label for="description">
                             About Company
                         </label>
+
 
                         <textarea
                             id="description"
@@ -711,14 +861,16 @@
             </div>
 
 
-            <!-- RIGHT SIDE -->
+            <!-- =====================================
+                 RIGHT SIDE
+            ===================================== -->
 
             <div>
 
 
                 <!-- COMPANY DETAILS -->
 
-                <div class="card">
+                <div class="profile-card">
 
                     <h2>
                         Company Details
@@ -735,11 +887,13 @@
 
                         </div>
 
+
                         <div class="detail-text">
 
                             <div class="detail-label">
                                 Company
                             </div>
+
 
                             <div
                                 class="detail-value"
@@ -764,11 +918,13 @@
 
                         </div>
 
+
                         <div class="detail-text">
 
                             <div class="detail-label">
                                 Email
                             </div>
+
 
                             <div
                                 class="detail-value"
@@ -793,11 +949,13 @@
 
                         </div>
 
+
                         <div class="detail-text">
 
                             <div class="detail-label">
                                 Phone
                             </div>
+
 
                             <div
                                 class="detail-value"
@@ -822,11 +980,13 @@
 
                         </div>
 
+
                         <div class="detail-text">
 
                             <div class="detail-label">
                                 Industry
                             </div>
+
 
                             <div
                                 class="detail-value"
@@ -851,11 +1011,13 @@
 
                         </div>
 
+
                         <div class="detail-text">
 
                             <div class="detail-label">
                                 Location
                             </div>
+
 
                             <div
                                 class="detail-value"
@@ -875,19 +1037,22 @@
 
                 <!-- INFORMATION -->
 
-                <div class="card">
+                <div class="profile-card">
 
                     <h2>
                         Profile Information
                     </h2>
 
+
                     <div class="info-box">
 
                         <i class="fa-solid fa-circle-info"></i>
 
+
                         <h3>
                             Keep your profile updated
                         </h3>
+
 
                         <p>
                             Students can view your company
@@ -907,19 +1072,14 @@
     </main>
 
 
-    <!-- ===============================
-         JAVASCRIPT
-    =============================== -->
+    <!-- =========================================
+         API HELPER
+    ========================================= -->
+
+    <script src="js/api.js"></script>
+
 
     <script>
-
-        // =========================================
-        // BACKEND API URL
-        // =========================================
-
-        const API_URL =
-            "https://internzo-backend.onrender.com";
-
 
         // =========================================
         // CHECK LOGIN
@@ -941,10 +1101,11 @@
 
 
         // =========================================
-        // GET USER DATA
+        // USER DATA
         // =========================================
 
-        let user;
+        let user = null;
+
 
         try {
 
@@ -953,7 +1114,18 @@
 
         } catch (error) {
 
-            localStorage.clear();
+            console.error(
+                "USER DATA ERROR:",
+                error
+            );
+
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "user"
+            );
 
             window.location.href =
                 "login.html";
@@ -962,7 +1134,7 @@
 
 
         // =========================================
-        // CHECK COMPANY ROLE
+        // ROLE CHECK
         // =========================================
 
         if (
@@ -982,13 +1154,18 @@
                 window.location.href =
                     "admin-dashboard.html";
 
+            } else {
+
+                window.location.href =
+                    "login.html";
+
             }
 
         }
 
 
         // =========================================
-        // SHOW BASIC USER INFORMATION
+        // BASIC USER INFORMATION
         // =========================================
 
         function showUserInformation() {
@@ -998,78 +1175,47 @@
             }
 
 
+            const email =
+                user.email || "";
+
+
             document.getElementById(
                 "email"
             ).value =
-                user.email || "";
+                email;
 
 
             document.getElementById(
                 "companyEmailDisplay"
             ).textContent =
-                user.email ||
+                email ||
                 "company@example.com";
 
 
             document.getElementById(
                 "sideEmail"
             ).textContent =
-                user.email ||
+                email ||
                 "Not available";
 
         }
 
 
         // =========================================
-        // LOAD COMPANY PROFILE
+        // LOAD PROFILE
         // =========================================
 
         async function loadProfile() {
 
+            showUserInformation();
+
+
             try {
 
-                showUserInformation();
-
-
-                const response =
-                    await fetch(
-                        `${API_URL}/api/company-profile`,
-                        {
-                            method: "GET",
-
-                            headers: {
-                                "Authorization":
-                                    "Bearer " + token
-                            }
-                        }
-                    );
-
-
                 const data =
-                    await response.json();
-
-
-                if (!response.ok) {
-
-                    if (
-                        response.status === 401
-                    ) {
-
-                        localStorage.clear();
-
-                        window.location.href =
-                            "login.html";
-
-                        return;
-
-                    }
-
-                    throw new Error(
-                        data.message ||
-                        "Unable to load profile"
+                    await apiFetch(
+                        "/api/company-profile"
                     );
-
-                }
 
 
                 // =================================
@@ -1137,10 +1283,11 @@
 
 
                 // =================================
-                // UPDATE SIDE DETAILS
+                // SIDE DETAILS
                 // =================================
 
                 updateDetails(data);
+
 
             } catch (error) {
 
@@ -1152,7 +1299,7 @@
 
                 showMessage(
                     "Unable to load company profile.",
-                    "#dc2626"
+                    "#f87171"
                 );
 
             }
@@ -1244,7 +1391,7 @@
 
 
                 // =================================
-                // GET FORM VALUES
+                // GET VALUES
                 // =================================
 
                 const companyName =
@@ -1291,7 +1438,7 @@
 
                     showMessage(
                         "Please enter company name.",
-                        "#dc2626"
+                        "#f87171"
                     );
 
                     return;
@@ -1300,36 +1447,32 @@
 
 
                 // =================================
-                // DISABLE BUTTON
+                // LOADING STATE
                 // =================================
 
                 saveButton.disabled = true;
 
-                saveButton.innerHTML =
-                    '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+                saveButton.innerHTML = `
+
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+
+                    Saving...
+
+                `;
 
 
                 try {
 
                     // =================================
-                    // SEND TO BACKEND
+                    // SAVE
                     // =================================
 
-                    const response =
-                        await fetch(
-                            `${API_URL}/api/company-profile`,
+                    const data =
+                        await apiFetch(
+                            "/api/company-profile",
                             {
                                 method: "POST",
-
-                                headers: {
-
-                                    "Content-Type":
-                                        "application/json",
-
-                                    "Authorization":
-                                        "Bearer " + token
-
-                                },
 
                                 body:
                                     JSON.stringify({
@@ -1359,40 +1502,8 @@
                                             ""
 
                                     })
-
                             }
                         );
-
-
-                    const data =
-                        await response.json();
-
-
-                    // =================================
-                    // ERROR
-                    // =================================
-
-                    if (!response.ok) {
-
-                        if (
-                            response.status === 401
-                        ) {
-
-                            localStorage.clear();
-
-                            window.location.href =
-                                "login.html";
-
-                            return;
-
-                        }
-
-                        throw new Error(
-                            data.message ||
-                            "Unable to save profile"
-                        );
-
-                    }
 
 
                     // =================================
@@ -1440,12 +1551,12 @@
 
 
                     // =================================
-                    // SUCCESS MESSAGE
+                    // SUCCESS
                     // =================================
 
                     showMessage(
                         "Profile saved successfully.",
-                        "#16a34a"
+                        "#4ade80"
                     );
 
 
@@ -1460,15 +1571,21 @@
                     showMessage(
                         error.message ||
                         "Unable to save profile.",
-                        "#dc2626"
+                        "#f87171"
                     );
 
                 } finally {
 
                     saveButton.disabled = false;
 
-                    saveButton.innerHTML =
-                        '<i class="fa-solid fa-floppy-disk"></i> Save Profile';
+
+                    saveButton.innerHTML = `
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Save Profile
+
+                    `;
 
                 }
 
@@ -1489,6 +1606,7 @@
             localStorage.removeItem(
                 "user"
             );
+
 
             window.location.href =
                 "login.html";

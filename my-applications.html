@@ -19,122 +19,492 @@
 
     <style>
 
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
+
         .page-header {
             margin-bottom: 30px;
         }
 
-        .page-header h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
+        .page-label {
+            color: #8b5cf6;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 12px;
         }
 
-        .page-header span {
-            color: #7c3aed;
+        .page-header h1 {
+            color: #ffffff;
+
+            font-size: clamp(36px, 5vw, 48px);
+
+            line-height: 1.05;
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 12px;
+        }
+
+        .page-header h1 span {
+            color: #8b5cf6;
         }
 
         .page-header p {
-            color: #64748b;
+            color: #a1a1aa;
+
+            font-size: 15px;
+
+            line-height: 1.6;
         }
 
 
+        /* =========================================
+           APPLICATIONS TABLE
+        ========================================= */
+
         .applications-table {
+
             width: 100%;
 
-            background: #ffffff;
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #0b0b0b
+                );
 
-            border: 1px solid #e5e7eb;
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
 
-            border-radius: 15px;
+            border-radius: 20px;
 
             overflow: hidden;
 
             box-shadow:
-                0 5px 15px
-                rgba(17, 24, 39, 0.04);
+                0 18px 50px
+                rgba(0, 0, 0, 0.25);
+
+            animation:
+                tableAppear 0.35s ease both;
+
         }
 
+
+        @keyframes tableAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        /* =========================================
+           TABLE
+        ========================================= */
 
         table {
+
             width: 100%;
+
             border-collapse: collapse;
+
         }
 
 
-        th,
-        td {
-            padding: 17px 20px;
+        /* =========================================
+           TABLE HEAD
+        ========================================= */
+
+        th {
+
+            padding:
+                17px 20px;
 
             text-align: left;
 
+            background: #0d0d0d;
+
+            color: #a1a1aa;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+
             border-bottom:
-                1px solid #e5e7eb;
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
         }
 
 
-        th {
-            background: #f8fafc;
-
-            color: #334155;
-
-            font-size: 14px;
-        }
-
+        /* =========================================
+           TABLE CELLS
+        ========================================= */
 
         td {
-            color: #475569;
+
+            padding:
+                18px 20px;
+
+            text-align: left;
+
+            color: #a1a1aa;
 
             font-size: 14px;
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.06);
+
+            transition: 0.2s ease;
+
         }
 
+
+        /* =========================================
+           LAST ROW
+        ========================================= */
 
         tr:last-child td {
             border-bottom: none;
         }
 
 
-        .status {
-            display: inline-block;
+        /* =========================================
+           ROW HOVER
+        ========================================= */
 
-            padding: 6px 12px;
+        tbody tr {
+            transition: 0.2s ease;
+        }
+
+        tbody tr:hover {
+
+            background:
+                rgba(124, 58, 237, 0.04);
+
+        }
+
+
+        /* =========================================
+           INTERNSHIP TITLE
+        ========================================= */
+
+        td strong {
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            padding:
+                6px 12px;
 
             border-radius: 20px;
 
-            font-size: 12px;
+            background:
+                rgba(124, 58, 237, 0.12);
+
+            border:
+                1px solid
+                rgba(124, 58, 237, 0.18);
+
+            color: #a78bfa;
+
+            font-size: 11px;
 
             font-weight: 700;
 
-            background: #f3e8ff;
+            text-transform: capitalize;
 
-            color: #7c3aed;
         }
 
+
+        /* =========================================
+           LOADING
+        ========================================= */
 
         .loading {
+
+            width: 100%;
+
+            padding: 70px 20px;
+
             text-align: center;
 
-            padding: 45px;
+            color: #71717a;
 
-            color: #64748b;
+            font-size: 14px;
+
         }
 
+        .loading i {
+
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: #8b5cf6;
+
+            font-size: 24px;
+
+        }
+
+
+        /* =========================================
+           EMPTY BOX
+        ========================================= */
 
         .empty-box {
+
+            width: 100%;
+
             margin-top: 20px;
+
+            padding: 65px 20px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #0b0b0b
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-radius: 20px;
+
+            animation:
+                tableAppear 0.35s ease both;
+
         }
 
+
+        .empty-box > p:first-child {
+
+            margin-bottom: 15px;
+
+            color: #8b5cf6;
+
+            font-size: 38px;
+
+        }
+
+
+        .empty-box h3 {
+
+            color: #ffffff;
+
+            font-size: 19px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .empty-box p {
+
+            color: #71717a;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================================
+           FIND INTERNSHIPS BUTTON
+        ========================================= */
+
+        .find-btn {
+
+            width: auto;
+
+            min-height: 44px;
+
+            padding:
+                0 20px;
+
+            margin-top: 22px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            background: #7c3aed;
+
+            color: #ffffff;
+
+            border: none;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .find-btn:hover {
+
+            background: #6d28d9;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =========================================
+           ERROR / RETRY BUTTON
+        ========================================= */
+
+        .retry-btn {
+
+            width: auto;
+
+            min-height: 44px;
+
+            padding:
+                0 20px;
+
+            margin-top: 15px;
+
+            background: #7c3aed;
+
+            color: #ffffff;
+
+            border: none;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .retry-btn:hover {
+
+            background: #6d28d9;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
 
         @media (max-width: 700px) {
 
             .applications-table {
+
                 overflow-x: auto;
+
+                border-radius: 16px;
+
             }
 
             table {
+
                 min-width: 650px;
+
             }
 
             .page-header h1 {
-                font-size: 26px;
+
+                font-size: 36px;
+
+            }
+
+            .page-header {
+
+                margin-bottom: 25px;
+
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .page-header h1 {
+
+                font-size: 34px;
+
+            }
+
+            th,
+            td {
+
+                padding:
+                    15px 16px;
+
+            }
+
+            .empty-box {
+
+                padding:
+                    50px 18px;
+
             }
 
         }
@@ -149,13 +519,14 @@
 
     <!-- =========================================
          NAVBAR
-    ========================================== -->
+    ========================================= -->
 
     <nav class="navbar">
 
         <div class="logo">
             INTERNZO
         </div>
+
 
         <div class="nav-links">
 
@@ -167,16 +538,24 @@
                 Internships
             </a>
 
-            <a href="my-applications.html">
+            <a
+                href="my-applications.html"
+                class="active">
+
                 My Applications
+
             </a>
 
             <a href="student-profile.html">
                 My Profile
             </a>
 
-            <button onclick="logout()">
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
                 Logout
+
             </button>
 
         </div>
@@ -185,13 +564,19 @@
 
 
     <!-- =========================================
-         MAIN CONTENT
-    ========================================== -->
+         MAIN
+    ========================================= -->
 
     <main class="dashboard-container">
 
 
+        <!-- PAGE HEADER -->
+
         <section class="page-header">
+
+            <div class="page-label">
+                APPLICATION TRACKER
+            </div>
 
             <h1>
                 My <span>Applications</span>
@@ -204,9 +589,13 @@
         </section>
 
 
-        <!-- LOADING -->
+        <!-- =========================================
+             LOADING
+        ========================================= -->
 
-        <div id="loading" class="loading">
+        <div
+            id="loading"
+            class="loading">
 
             <i class="fa-solid fa-spinner fa-spin"></i>
 
@@ -215,12 +604,14 @@
         </div>
 
 
-        <!-- APPLICATION TABLE -->
+        <!-- =========================================
+             APPLICATION TABLE
+        ========================================= -->
 
         <div
             id="applicationsContainer"
             class="applications-table"
-            style="display:none;">
+            style="display: none;">
 
             <table>
 
@@ -249,8 +640,8 @@
                 </thead>
 
 
-                <tbody id="applicationsBody">
-
+                <tbody
+                    id="applicationsBody">
                 </tbody>
 
             </table>
@@ -258,12 +649,14 @@
         </div>
 
 
-        <!-- EMPTY STATE -->
+        <!-- =========================================
+             EMPTY STATE
+        ========================================= -->
 
         <div
             id="emptyBox"
             class="empty-box"
-            style="display:none;">
+            style="display: none;">
 
             <p>
                 <i class="fa-solid fa-folder-open"></i>
@@ -277,11 +670,10 @@
                 You haven't applied for any internships yet.
             </p>
 
-            <br>
 
             <button
-                onclick="window.location.href='internships.html'"
-                style="width:auto; padding:11px 20px;">
+                class="find-btn"
+                onclick="window.location.href='internships.html'">
 
                 <i class="fa-solid fa-magnifying-glass"></i>
 
@@ -295,18 +687,13 @@
 
 
     <!-- =========================================
-         JAVASCRIPT
-    ========================================== -->
+         API HELPER
+    ========================================= -->
+
+    <script src="js/api.js"></script>
+
 
     <script>
-
-        // =========================================
-        // RENDER BACKEND API
-        // =========================================
-
-        const API_URL =
-            "https://internzo-backend.onrender.com";
-
 
         // =========================================
         // LOAD APPLICATIONS
@@ -315,8 +702,14 @@
         async function loadApplications() {
 
             const token =
-                localStorage.getItem("token");
+                localStorage.getItem(
+                    "token"
+                );
 
+
+            // =====================================
+            // LOGIN CHECK
+            // =====================================
 
             if (!token) {
 
@@ -352,58 +745,36 @@
                 );
 
 
+            // Reset states
+
+            loading.style.display =
+                "block";
+
+            container.style.display =
+                "none";
+
+            emptyBox.style.display =
+                "none";
+
+
             try {
 
-                const response =
-                    await fetch(
-                        `${API_URL}/api/applications/my-applications`,
-                        {
-                            method: "GET",
+                // =================================
+                // API REQUEST
+                // =================================
 
-                            headers: {
-                                "Authorization":
-                                    "Bearer " + token
-                            }
-                        }
+                const data =
+                    await apiFetch(
+                        "/api/applications/my-applications"
                     );
 
 
                 // =================================
-                // HANDLE LOGIN EXPIRATION
+                // HIDE LOADING
                 // =================================
-
-                if (response.status === 401) {
-
-                    localStorage.removeItem("token");
-
-                    localStorage.removeItem("user");
-
-                    window.location.href =
-                        "login.html";
-
-                    return;
-
-                }
-
-
-                const data =
-                    await response.json();
-
 
                 loading.style.display =
                     "none";
-
-
-                if (!response.ok) {
-
-                    alert(
-                        data.message ||
-                        "Unable to load applications."
-                    );
-
-                    return;
-
-                }
 
 
                 // =================================
@@ -424,7 +795,7 @@
 
 
                 // =================================
-                // APPLICATIONS FOUND
+                // SHOW TABLE
                 // =================================
 
                 container.style.display =
@@ -433,6 +804,10 @@
 
                 body.innerHTML = "";
 
+
+                // =================================
+                // RENDER APPLICATIONS
+                // =================================
 
                 data.forEach(
                     function(application) {
@@ -443,57 +818,127 @@
                             );
 
 
-                        const date =
-                            new Date(
-                                application.createdAt
-                            ).toLocaleDateString(
-                                "en-IN",
-                                {
-                                    day: "2-digit",
-                                    month: "short",
-                                    year: "numeric"
-                                }
-                            );
+                        // =============================
+                        // DATE
+                        // =============================
+
+                        let date =
+                            "—";
 
 
-                        // Backend populates internship as an object
+                        if (
+                            application.createdAt
+                        ) {
+
+                            const parsedDate =
+                                new Date(
+                                    application.createdAt
+                                );
+
+
+                            if (
+                                !isNaN(
+                                    parsedDate.getTime()
+                                )
+                            ) {
+
+                                date =
+                                    parsedDate
+                                        .toLocaleDateString(
+                                            "en-IN",
+                                            {
+                                                day: "2-digit",
+                                                month: "short",
+                                                year: "numeric"
+                                            }
+                                        );
+
+                            }
+
+                        }
+
+
+                        // =============================
+                        // INTERNSHIP
+                        // =============================
+
                         const internshipTitle =
-                            application.internship?.title ||
+                            application
+                                .internship
+                                ?.title ||
                             "Internship";
 
 
+                        // =============================
+                        // COMPANY
+                        // =============================
+
                         const companyName =
-                            application.internship?.companyName ||
-                            application.company?.name ||
+                            application
+                                .internship
+                                ?.companyName ||
+                            application
+                                .company
+                                ?.name ||
                             "Company";
 
+
+                        // =============================
+                        // STATUS
+                        // =============================
+
+                        const status =
+                            application.status ||
+                            "Pending";
+
+
+                        // =============================
+                        // CREATE ROW
+                        // =============================
 
                         row.innerHTML = `
 
                             <td>
+
                                 <strong>
-                                    ${internshipTitle}
+                                    ${escapeHTML(
+                                        internshipTitle
+                                    )}
                                 </strong>
+
                             </td>
 
+
                             <td>
-                                ${companyName}
+                                ${escapeHTML(
+                                    companyName
+                                )}
                             </td>
+
 
                             <td>
                                 ${date}
                             </td>
 
+
                             <td>
+
                                 <span class="status">
-                                    ${application.status}
+
+                                    ${escapeHTML(
+                                        status
+                                    )}
+
                                 </span>
+
                             </td>
 
                         `;
 
 
-                        body.appendChild(row);
+                        body.appendChild(
+                            row
+                        );
 
                     }
                 );
@@ -509,22 +954,15 @@
 
                 loading.innerHTML = `
 
-                    <p>
-                        <i class="fa-solid fa-server"></i>
-                    </p>
+                    <i class="fa-solid fa-server"></i>
 
                     <p>
                         Unable to connect to the INTERNZO server.
                     </p>
 
-                    <br>
-
                     <button
-                        onclick="loadApplications()"
-                        style="
-                            width:auto;
-                            padding:10px 18px;
-                        ">
+                        class="retry-btn"
+                        onclick="loadApplications()">
 
                         Try Again
 
@@ -532,7 +970,30 @@
 
                 `;
 
+
+                loading.style.display =
+                    "block";
+
             }
+
+        }
+
+
+        // =========================================
+        // ESCAPE HTML
+        // =========================================
+
+        function escapeHTML(value) {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+            div.textContent =
+                value;
+
+            return div.innerHTML;
 
         }
 

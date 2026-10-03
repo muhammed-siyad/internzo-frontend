@@ -5,17 +5,20 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
+    <meta
+        name="viewport"
         content="width=device-width, initial-scale=1.0">
 
     <title>INTERNZO - Student Dashboard</title>
 
     <!-- Dashboard CSS -->
-    <link rel="stylesheet"
+    <link
+        rel="stylesheet"
         href="css/dashboard.css">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet"
+    <link
+        rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
@@ -53,8 +56,12 @@
                 My Profile
             </a>
 
-            <button type="button" onclick="logout()">
+            <button
+                type="button"
+                onclick="logout()">
+
                 Logout
+
             </button>
 
         </div>
@@ -75,10 +82,13 @@
         <section class="welcome-section">
 
             <h1>
+
                 Welcome,
+
                 <span id="studentName">
                     Student
                 </span>
+
             </h1>
 
             <p>
@@ -252,17 +262,13 @@
 
 
     <!-- =========================================
-         JAVASCRIPT
+         API HELPER
     ========================================== -->
 
+    <script src="js/api.js"></script>
+
+
     <script>
-
-        // =========================================
-        // RENDER BACKEND API
-        // =========================================
-
-        const API_URL =
-            "https://internzo-backend.onrender.com";
 
 
         // =========================================
@@ -271,6 +277,7 @@
 
         const token =
             localStorage.getItem("token");
+
 
         const storedUser =
             localStorage.getItem("user");
@@ -297,16 +304,24 @@
             user =
                 JSON.parse(storedUser);
 
-        } catch (error) {
+        }
+
+        catch (error) {
 
             console.error(
                 "User data error:",
                 error
             );
 
-            localStorage.removeItem("token");
 
-            localStorage.removeItem("user");
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "user"
+            );
+
 
             window.location.replace(
                 "login.html"
@@ -326,7 +341,9 @@
             user.role !== "student"
         ) {
 
-            if (user.role === "company") {
+            if (
+                user.role === "company"
+            ) {
 
                 window.location.replace(
                     "company-dashboard.html"
@@ -334,7 +351,9 @@
 
             }
 
-            else if (user.role === "admin") {
+            else if (
+                user.role === "admin"
+            ) {
 
                 window.location.replace(
                     "admin-dashboard.html"
@@ -428,13 +447,65 @@
 
         function logout() {
 
-            localStorage.removeItem("token");
+            localStorage.removeItem(
+                "token"
+            );
 
-            localStorage.removeItem("user");
+            localStorage.removeItem(
+                "user"
+            );
+
 
             window.location.replace(
                 "login.html"
             );
+
+        }
+
+
+
+        // =========================================
+        // ESCAPE HTML
+        // =========================================
+
+        function escapeHTML(value) {
+
+            if (
+                value === null ||
+                value === undefined
+            ) {
+
+                return "";
+
+            }
+
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
 
         }
 
@@ -453,73 +524,21 @@
 
 
             if (!token) {
+
                 return;
+
             }
 
 
             try {
 
-                const response =
-                    await fetch(
-                        `${API_URL}/api/applications/my-applications`,
-                        {
-                            method: "GET",
-
-                            headers: {
-
-                                "Authorization":
-                                    "Bearer " + token
-
-                            }
-
-                        }
-                    );
-
-
-                // =================================
-                // HANDLE UNAUTHORIZED USER
-                // =================================
-
-                if (response.status === 401) {
-
-                    localStorage.removeItem("token");
-
-                    localStorage.removeItem("user");
-
-                    window.location.replace(
-                        "login.html"
-                    );
-
-                    return;
-
-                }
-
+                // Use the common API helper.
+                // No direct fetch here.
 
                 const data =
-                    await response.json();
-
-
-                if (!response.ok) {
-
-                    container.innerHTML = `
-
-                        <p>
-                            <i class="fa-solid fa-circle-exclamation"></i>
-                        </p>
-
-                        <h3>
-                            Unable to Load Applications
-                        </h3>
-
-                        <p>
-                            ${data.message || "Please try again later."}
-                        </p>
-
-                    `;
-
-                    return;
-
-                }
+                    await apiFetch(
+                        "/api/applications/my-applications"
+                    );
 
 
                 // =================================
@@ -553,6 +572,7 @@
                 }
 
 
+
                 // =================================
                 // SHOW RECENT APPLICATIONS
                 // =================================
@@ -567,80 +587,161 @@
                 recent.forEach(
                     function(application) {
 
-                        const date =
-                            new Date(
-                                application.createdAt
-                            ).toLocaleDateString(
-                                "en-IN",
-                                {
-                                    day: "2-digit",
-                                    month: "short",
-                                    year: "numeric"
-                                }
-                            );
+
+                        // =================================
+                        // DATE
+                        // =================================
+
+                        let date =
+                            "Date unavailable";
 
 
-                        // Backend returns internship as an object
+                        if (
+                            application.createdAt
+                        ) {
+
+                            const applicationDate =
+                                new Date(
+                                    application.createdAt
+                                );
+
+
+                            if (
+                                !isNaN(
+                                    applicationDate
+                                )
+                            ) {
+
+                                date =
+                                    applicationDate.toLocaleDateString(
+                                        "en-IN",
+                                        {
+                                            day: "2-digit",
+                                            month: "short",
+                                            year: "numeric"
+                                        }
+                                    );
+
+                            }
+
+                        }
+
+
+
+                        // =================================
+                        // INTERNSHIP TITLE
+                        // =================================
+
                         const internshipTitle =
-                            application.internship?.title ||
+                            application
+                                .internship
+                                ?.title ||
+
+                            application
+                                .internship
+                                ?.internshipTitle ||
+
                             "Internship";
 
 
+
+                        // =================================
+                        // COMPANY NAME
+                        // =================================
+
                         const companyName =
-                            application.internship?.companyName ||
-                            application.company?.name ||
+                            application
+                                .internship
+                                ?.companyName ||
+
+                            application
+                                .company
+                                ?.name ||
+
                             "Company";
+
+
+
+                        // =================================
+                        // STATUS
+                        // =================================
+
+                        const status =
+                            application.status ||
+                            "Pending";
+
 
 
                         html += `
 
-                            <div style="
-                                display:flex;
-                                justify-content:space-between;
-                                align-items:center;
-                                gap:15px;
-                                padding:15px 0;
-                                border-bottom:1px solid #e5e7eb;
-                            ">
+                            <div
+                                style="
+                                    display:flex;
+                                    justify-content:space-between;
+                                    align-items:center;
+                                    gap:15px;
+                                    padding:15px 0;
+                                    border-bottom:1px solid #e5e7eb;
+                                "
+                            >
 
                                 <div>
 
-                                    <h3 style="
-                                        color:#111827;
-                                        font-size:15px;
-                                        margin-bottom:5px;
-                                    ">
-                                        ${internshipTitle}
+                                    <h3
+                                        style="
+                                            color:#111827;
+                                            font-size:15px;
+                                            margin-bottom:5px;
+                                        "
+                                    >
+                                        ${escapeHTML(
+                                            internshipTitle
+                                        )}
                                     </h3>
 
-                                    <p style="
-                                        color:#64748b;
-                                        font-size:12px;
-                                        margin-bottom:3px;
-                                    ">
-                                        ${companyName}
+
+                                    <p
+                                        style="
+                                            color:#64748b;
+                                            font-size:12px;
+                                            margin-bottom:3px;
+                                        "
+                                    >
+                                        ${escapeHTML(
+                                            companyName
+                                        )}
                                     </p>
 
-                                    <p style="
-                                        color:#64748b;
-                                        font-size:12px;
-                                    ">
-                                        Applied on ${date}
+
+                                    <p
+                                        style="
+                                            color:#64748b;
+                                            font-size:12px;
+                                        "
+                                    >
+                                        Applied on
+                                        ${escapeHTML(
+                                            date
+                                        )}
                                     </p>
 
                                 </div>
 
 
-                                <span style="
-                                    background:#f3e8ff;
-                                    color:#7c3aed;
-                                    padding:6px 12px;
-                                    border-radius:20px;
-                                    font-size:12px;
-                                    font-weight:700;
-                                    white-space:nowrap;
-                                ">
-                                    ${application.status}
+                                <span
+                                    style="
+                                        background:#f3e8ff;
+                                        color:#7c3aed;
+                                        padding:6px 12px;
+                                        border-radius:20px;
+                                        font-size:12px;
+                                        font-weight:700;
+                                        white-space:nowrap;
+                                    "
+                                >
+                                    ${escapeHTML(
+                                        status
+                                    )}
                                 </span>
 
                             </div>
@@ -651,16 +752,19 @@
                 );
 
 
+
                 // =================================
                 // VIEW ALL BUTTON
                 // =================================
 
                 html += `
 
-                    <div style="
-                        margin-top:20px;
-                        text-align:center;
-                    ">
+                    <div
+                        style="
+                            margin-top:20px;
+                            text-align:center;
+                        "
+                    >
 
                         <button
                             type="button"
@@ -668,7 +772,8 @@
                             style="
                                 width:auto;
                                 padding:10px 18px;
-                            ">
+                            "
+                        >
 
                             View All Applications
 
@@ -683,13 +788,60 @@
                     html;
 
 
-            } catch (error) {
+            }
+
+            catch (error) {
 
                 console.error(
                     "Application loading error:",
                     error
                 );
 
+
+                // =================================
+                // TOKEN EXPIRED / UNAUTHORIZED
+                // =================================
+
+                if (
+                    error.message &&
+                    (
+                        error.message
+                            .toLowerCase()
+                            .includes("unauthorized") ||
+
+                        error.message
+                            .toLowerCase()
+                            .includes("token") ||
+
+                        error.message
+                            .toLowerCase()
+                            .includes("expired")
+                    )
+                ) {
+
+                    localStorage.removeItem(
+                        "token"
+                    );
+
+                    localStorage.removeItem(
+                        "user"
+                    );
+
+
+                    window.location.replace(
+                        "login.html"
+                    );
+
+
+                    return;
+
+                }
+
+
+
+                // =================================
+                // ERROR UI
+                // =================================
 
                 container.innerHTML = `
 
@@ -713,7 +865,8 @@
                         style="
                             width:auto;
                             padding:10px 18px;
-                        ">
+                        "
+                    >
 
                         Try Again
 
@@ -731,7 +884,10 @@
         // START DASHBOARD
         // =========================================
 
-        if (token && user) {
+        if (
+            token &&
+            user
+        ) {
 
             loadRecentApplications();
 

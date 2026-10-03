@@ -13,82 +13,188 @@
     <link rel="stylesheet"
         href="css/dashboard.css">
 
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
     <style>
 
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
+
         .page-header {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+        }
+
+        .page-label {
+            color: #8b5cf6;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 12px;
         }
 
         .page-header h1 {
-            font-size: 30px;
-            color: #111827;
-            margin-bottom: 8px;
+            color: #ffffff;
+
+            font-size: clamp(36px, 5vw, 48px);
+
+            line-height: 1.05;
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 12px;
+        }
+
+        .page-header h1 span {
+            color: #8b5cf6;
         }
 
         .page-header p {
-            color: #64748b;
-            font-size: 14px;
+            color: #a1a1aa;
+
+            font-size: 15px;
+
+            line-height: 1.6;
         }
+
+
+        /* =========================================
+           INTERNSHIP LIST
+        ========================================= */
 
         .internship-list {
+
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
             gap: 20px;
+
         }
+
+
+        /* =========================================
+           INTERNSHIP CARD
+        ========================================= */
 
         .internship-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 15px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            min-width: 0;
+
             padding: 25px;
 
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #0b0b0b
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-radius: 20px;
+
             box-shadow:
-                0 5px 15px
-                rgba(17, 24, 39, 0.04);
+                0 18px 50px
+                rgba(0, 0, 0, 0.20);
 
             transition: 0.25s ease;
+
+            animation:
+                cardAppear 0.35s ease both;
+
         }
+
 
         .internship-card:hover {
-            transform: translateY(-4px);
 
-            border-color: #c4b5fd;
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(124, 58, 237, 0.40);
 
             box-shadow:
-                0 15px 30px
-                rgba(124, 58, 237, 0.10);
+                0 20px 55px
+                rgba(0, 0, 0, 0.35);
+
         }
 
+
+        /* =========================================
+           CARD TOP
+        ========================================= */
+
         .internship-top {
+
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                flex-start;
 
             gap: 15px;
 
-            margin-bottom: 18px;
+            margin-bottom: 20px;
+
         }
 
+
         .internship-title {
-            color: #111827;
+
+            color: #ffffff;
 
             font-size: 19px;
 
             font-weight: 700;
 
-            margin-bottom: 6px;
+            line-height: 1.35;
+
+            margin-bottom: 7px;
+
         }
 
+
         .company-name {
-            color: #7c3aed;
+
+            color: #8b5cf6;
 
             font-size: 13px;
 
             font-weight: 600;
+
         }
 
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
         .status {
-            padding: 6px 11px;
+
+            flex-shrink: 0;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            padding:
+                6px 11px;
 
             border-radius: 20px;
 
@@ -97,71 +203,156 @@
             font-weight: 700;
 
             white-space: nowrap;
+
+            text-transform:
+                capitalize;
+
         }
+
 
         .status.pending {
-            background: #fef3c7;
-            color: #92400e;
+
+            background:
+                rgba(245, 158, 11, 0.12);
+
+            color: #fbbf24;
+
+            border:
+                1px solid
+                rgba(245, 158, 11, 0.18);
+
         }
+
 
         .status.approved {
-            background: #dcfce7;
-            color: #166534;
+
+            background:
+                rgba(34, 197, 94, 0.12);
+
+            color: #4ade80;
+
+            border:
+                1px solid
+                rgba(34, 197, 94, 0.18);
+
         }
+
 
         .status.rejected {
-            background: #fee2e2;
-            color: #991b1b;
+
+            background:
+                rgba(239, 68, 68, 0.12);
+
+            color: #f87171;
+
+            border:
+                1px solid
+                rgba(239, 68, 68, 0.18);
+
         }
 
+
+        /* =========================================
+           DETAILS GRID
+        ========================================= */
+
         .details {
+
             display: grid;
 
             grid-template-columns:
-                repeat(2, 1fr);
+                repeat(2, minmax(0, 1fr));
 
-            gap: 12px;
+            gap: 10px;
 
             margin-bottom: 20px;
+
         }
+
 
         .detail-box {
-            background: #f8fafc;
 
-            border-radius: 9px;
+            padding: 12px;
 
-            padding: 11px;
+            background: #0d0d0d;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.06);
+
+            border-radius: 11px;
+
         }
+
 
         .detail-box span {
+
             display: block;
 
-            color: #94a3b8;
+            color: #71717a;
 
-            font-size: 11px;
+            font-size: 10px;
 
-            margin-bottom: 4px;
+            font-weight: 600;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 5px;
+
         }
 
+
         .detail-box strong {
-            color: #334155;
+
+            display: block;
+
+            color: #d4d4d8;
 
             font-size: 13px;
 
             font-weight: 600;
+
+            line-height: 1.4;
+
+            word-break: break-word;
+
         }
 
+
+        /* =========================================
+           DESCRIPTION
+        ========================================= */
+
         .description {
-            color: #64748b;
+
+            color: #a1a1aa;
 
             font-size: 13px;
 
-            line-height: 1.6;
+            line-height: 1.7;
 
             margin-bottom: 18px;
+
+            display: -webkit-box;
+
+            -webkit-line-clamp: 4;
+
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
+
         }
 
+
+        /* =========================================
+           SKILLS
+        ========================================= */
+
         .skills {
+
             display: flex;
 
             flex-wrap: wrap;
@@ -169,59 +360,108 @@
             gap: 7px;
 
             margin-bottom: 20px;
+
         }
 
+
         .skill {
-            background: #f3e8ff;
 
-            color: #7c3aed;
+            display: inline-block;
 
-            padding: 5px 9px;
+            padding:
+                5px 9px;
 
-            border-radius: 6px;
+            background:
+                rgba(124, 58, 237, 0.12);
+
+            color: #a78bfa;
+
+            border:
+                1px solid
+                rgba(124, 58, 237, 0.18);
+
+            border-radius: 7px;
 
             font-size: 11px;
 
             font-weight: 600;
+
         }
 
+
+        /* =========================================
+           DEADLINE
+        ========================================= */
+
         .deadline {
-            color: #64748b;
+
+            margin-top: auto;
+
+            padding-top: 15px;
+
+            border-top:
+                1px solid
+                rgba(255, 255, 255, 0.07);
+
+            color: #71717a;
 
             font-size: 12px;
 
-            border-top:
-                1px solid #e5e7eb;
+            line-height: 2;
 
-            padding-top: 15px;
         }
 
+
+        .deadline strong {
+
+            color: #a1a1aa;
+
+            font-weight: 600;
+
+        }
+
+
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
+
         .empty-state {
-            background: #ffffff;
 
-            border: 1px solid #e5e7eb;
+            width: 100%;
 
-            border-radius: 15px;
-
-            padding: 60px 25px;
+            padding:
+                70px 25px;
 
             text-align: center;
 
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #0b0b0b
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-radius: 20px;
+
             box-shadow:
-                0 5px 15px
-                rgba(17, 24, 39, 0.04);
+                0 18px 50px
+                rgba(0, 0, 0, 0.20);
+
+            animation:
+                cardAppear 0.35s ease both;
+
         }
 
+
         .empty-icon {
+
             width: 65px;
 
             height: 65px;
-
-            background: #f3e8ff;
-
-            color: #7c3aed;
-
-            border-radius: 50%;
 
             display: flex;
 
@@ -229,29 +469,63 @@
 
             justify-content: center;
 
-            margin: 0 auto 18px;
+            margin:
+                0 auto 18px;
+
+            background:
+                rgba(124, 58, 237, 0.12);
+
+            color: #8b5cf6;
+
+            border:
+                1px solid
+                rgba(124, 58, 237, 0.18);
+
+            border-radius: 50%;
 
             font-size: 27px;
+
         }
+
 
         .empty-state h2 {
-            color: #334155;
 
-            font-size: 19px;
+            color: #ffffff;
+
+            font-size: 20px;
 
             margin-bottom: 8px;
+
         }
 
+
         .empty-state p {
-            color: #64748b;
+
+            color: #71717a;
 
             font-size: 14px;
 
+            line-height: 1.6;
+
             margin-bottom: 22px;
+
         }
 
+
         .empty-state a {
-            display: inline-block;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            min-height: 44px;
+
+            padding:
+                0 20px;
 
             background: #7c3aed;
 
@@ -259,65 +533,215 @@
 
             text-decoration: none;
 
-            padding: 11px 20px;
-
-            border-radius: 8px;
+            border-radius: 11px;
 
             font-size: 13px;
 
-            font-weight: 600;
+            font-weight: 700;
+
+            transition: 0.2s ease;
+
         }
+
 
         .empty-state a:hover {
+
             background: #6d28d9;
+
+            transform:
+                translateY(-2px);
+
         }
+
+
+        /* =========================================
+           LOADING
+        ========================================= */
 
         .loading {
+
+            padding:
+                70px 20px;
+
             text-align: center;
 
-            padding: 50px;
-
-            color: #64748b;
+            color: #71717a;
 
             font-size: 14px;
+
         }
 
+
+        .loading i {
+
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: #8b5cf6;
+
+            font-size: 25px;
+
+        }
+
+
+        /* =========================================
+           ERROR
+        ========================================= */
+
         .error-message {
-            background: #fee2e2;
 
-            color: #991b1b;
+            padding: 25px;
 
-            border: 1px solid #fecaca;
+            background:
+                rgba(239, 68, 68, 0.07);
 
-            padding: 15px;
+            color: #f87171;
+
+            border:
+                1px solid
+                rgba(239, 68, 68, 0.15);
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .retry-btn {
+
+            width: auto;
+
+            min-height: 42px;
+
+            padding:
+                0 18px;
+
+            margin-top: 15px;
+
+            background: #7c3aed;
+
+            color: #ffffff;
+
+            border: none;
 
             border-radius: 10px;
 
-            text-align: center;
+            font-size: 13px;
 
-            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
         }
+
+
+        .retry-btn:hover {
+
+            background: #6d28d9;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =========================================
+           ANIMATION
+        ========================================= */
+
+        @keyframes cardAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(10px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
 
         @media (max-width: 800px) {
 
             .internship-list {
+
                 grid-template-columns: 1fr;
+
             }
 
         }
 
-        @media (max-width: 500px) {
+
+        @media (max-width: 550px) {
 
             .internship-top {
+
                 flex-direction: column;
+
+            }
+
+            .status {
+
+                align-self: flex-start;
+
             }
 
             .details {
+
                 grid-template-columns: 1fr;
+
             }
 
             .page-header h1 {
-                font-size: 25px;
+
+                font-size: 36px;
+
+            }
+
+            .internship-card {
+
+                padding: 20px;
+
+            }
+
+        }
+
+
+        @media (max-width: 380px) {
+
+            .page-header h1 {
+
+                font-size: 32px;
+
+            }
+
+            .internship-card {
+
+                padding: 18px;
+
             }
 
         }
@@ -332,7 +756,7 @@
 
     <!-- =========================================
          NAVBAR
-    ========================================== -->
+    ========================================= -->
 
     <nav class="navbar">
 
@@ -353,8 +777,9 @@
             </a>
 
 
-            <a href="manage-internships.html"
-               class="active">
+            <a
+                href="manage-internships.html"
+                class="active">
 
                 My Internships
 
@@ -371,8 +796,12 @@
             </a>
 
 
-            <button onclick="logout()">
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
                 Logout
+
             </button>
 
         </div>
@@ -382,17 +811,22 @@
 
     <!-- =========================================
          MAIN CONTENT
-    ========================================== -->
+    ========================================= -->
 
     <main class="dashboard-container">
 
 
+        <!-- PAGE HEADER -->
+
         <div class="page-header">
 
-            <h1>
-                My Internships
-            </h1>
+            <div class="page-label">
+                COMPANY PORTAL
+            </div>
 
+            <h1>
+                My <span>Internships</span>
+            </h1>
 
             <p>
                 Manage and monitor the internships posted by your company.
@@ -403,12 +837,16 @@
 
         <!-- =========================================
              INTERNSHIP CONTENT
-        ========================================== -->
+        ========================================= -->
 
         <div id="internshipContainer">
 
             <div class="loading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
                 Loading internships...
+
             </div>
 
         </div>
@@ -417,19 +855,13 @@
 
 
     <!-- =========================================
-         JAVASCRIPT
-    ========================================== -->
+         API HELPER
+    ========================================= -->
+
+    <script src="js/api.js"></script>
+
 
     <script>
-
-
-        // =========================================
-        // BACKEND API URL
-        // =========================================
-
-        const API_URL =
-            "https://internzo-backend.onrender.com";
-
 
         // =========================================
         // CHECK LOGIN
@@ -437,7 +869,6 @@
 
         const token =
             localStorage.getItem("token");
-
 
         const userData =
             localStorage.getItem("user");
@@ -451,7 +882,11 @@
         }
 
 
-        let user;
+        // =========================================
+        // USER
+        // =========================================
+
+        let user = null;
 
 
         try {
@@ -461,7 +896,18 @@
 
         } catch (error) {
 
-            localStorage.clear();
+            console.error(
+                "User data error:",
+                error
+            );
+
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "user"
+            );
 
             window.location.href =
                 "login.html";
@@ -478,10 +924,24 @@
             user.role !== "company"
         ) {
 
-            alert("Access denied");
+            if (user.role === "student") {
 
-            window.location.href =
-                "student-dashboard.html";
+                window.location.href =
+                    "student-dashboard.html";
+
+            } else if (
+                user.role === "admin"
+            ) {
+
+                window.location.href =
+                    "admin-dashboard.html";
+
+            } else {
+
+                window.location.href =
+                    "login.html";
+
+            }
 
         }
 
@@ -498,89 +958,43 @@
                 );
 
 
+            container.innerHTML = `
+
+                <div class="loading">
+
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+
+                    Loading internships...
+
+                </div>
+
+            `;
+
+
             try {
 
-                // =========================================
+                // =================================
                 // API REQUEST
-                // =========================================
+                // =================================
 
-                const response =
-                    await fetch(
-                        `${API_URL}/api/internships/my-internships`,
-                        {
-                            method: "GET",
-
-                            headers: {
-                                "Authorization":
-                                    "Bearer " + token
-                            }
-                        }
+                const data =
+                    await apiFetch(
+                        "/api/internships/my-internships"
                     );
 
 
-                const data =
-                    await response.json();
-
-
-                // =========================================
-                // CHECK RESPONSE
-                // =========================================
-
-                if (!response.ok) {
-
-                    // Token expired
-
-                    if (
-                        response.status === 401
-                    ) {
-
-                        localStorage.removeItem(
-                            "token"
-                        );
-
-                        localStorage.removeItem(
-                            "user"
-                        );
-
-                        window.location.href =
-                            "login.html";
-
-                        return;
-
-                    }
-
-
-                    container.innerHTML = `
-
-                        <div class="error-message">
-
-                            ${
-                                data.message ||
-                                "Unable to load internships."
-                            }
-
-                        </div>
-
-                    `;
-
-                    return;
-
-                }
-
-
-                // =========================================
+                // =================================
                 // NO INTERNSHIPS
-                // =========================================
+                // =================================
 
                 if (
-                    !data ||
+                    !Array.isArray(data) ||
                     data.length === 0
                 ) {
 
                     container.innerHTML = `
 
                         <div class="empty-state">
-
 
                             <div class="empty-icon">
 
@@ -599,13 +1013,13 @@
                             </p>
 
 
-                            <a
-                                href="post-internship.html">
+                            <a href="post-internship.html">
+
+                                <i class="fa-solid fa-plus"></i>
 
                                 Post Your First Internship
 
                             </a>
-
 
                         </div>
 
@@ -616,68 +1030,55 @@
                 }
 
 
-                // =========================================
+                // =================================
                 // DISPLAY INTERNSHIPS
-                // =========================================
+                // =================================
 
                 container.innerHTML = `
 
                     <div class="internship-list">
 
                         ${data.map(
-                            internship => {
+                            function(internship) {
 
-                                // =========================================
+                                // =============================
                                 // CREATED DATE
-                                // =========================================
+                                // =============================
 
                                 const createdDate =
-                                    internship.createdAt
-                                        ? new Date(
-                                            internship.createdAt
-                                        ).toLocaleDateString(
-                                            "en-IN",
-                                            {
-                                                day: "2-digit",
-                                                month: "short",
-                                                year: "numeric"
-                                            }
-                                        )
-                                        : "N/A";
+                                    formatDate(
+                                        internship.createdAt
+                                    );
 
 
-                                // =========================================
+                                // =============================
                                 // DEADLINE DATE
-                                // =========================================
+                                // =============================
 
                                 const deadlineDate =
-                                    internship.deadline
-                                        ? new Date(
-                                            internship.deadline
-                                        ).toLocaleDateString(
-                                            "en-IN",
-                                            {
-                                                day: "2-digit",
-                                                month: "short",
-                                                year: "numeric"
-                                            }
-                                        )
-                                        : "N/A";
+                                    formatDate(
+                                        internship.deadline
+                                    );
 
 
-                                // =========================================
+                                // =============================
                                 // STATUS
-                                // =========================================
+                                // =============================
+
+                                const rawStatus =
+                                    internship.status ||
+                                    "Pending";
+
 
                                 const status =
-                                    internship.status
-                                        ? internship.status.toLowerCase()
-                                        : "pending";
+                                    String(
+                                        rawStatus
+                                    ).toLowerCase();
 
 
-                                // =========================================
+                                // =============================
                                 // SKILLS
-                                // =========================================
+                                // =============================
 
                                 const skills =
                                     Array.isArray(
@@ -687,36 +1088,76 @@
                                         : [];
 
 
-                                // =========================================
-                                // RETURN CARD
-                                // =========================================
+                                // =============================
+                                // SKILL HTML
+                                // =============================
+
+                                const skillsHTML =
+                                    skills.length > 0
+
+                                        ? skills
+                                            .map(
+                                                function(skill) {
+
+                                                    return `
+
+                                                        <span class="skill">
+
+                                                            ${escapeHTML(
+                                                                skill
+                                                            )}
+
+                                                        </span>
+
+                                                    `;
+
+                                                }
+                                            )
+                                            .join("")
+
+                                        : `
+
+                                            <span class="skill">
+                                                No skills specified
+                                            </span>
+
+                                          `;
+
+
+                                // =============================
+                                // CARD
+                                // =============================
 
                                 return `
 
-                                    <div class="internship-card">
+                                    <article
+                                        class="internship-card">
 
 
-                                        <div class="internship-top">
+                                        <div
+                                            class="internship-top">
 
 
                                             <div>
 
-                                                <div class="internship-title">
+                                                <div
+                                                    class="internship-title">
 
-                                                    ${
+                                                    ${escapeHTML(
                                                         internship.title ||
                                                         "Untitled Internship"
-                                                    }
+                                                    )}
 
                                                 </div>
 
 
-                                                <div class="company-name">
+                                                <div
+                                                    class="company-name">
 
-                                                    ${
+                                                    ${escapeHTML(
                                                         internship.companyName ||
                                                         "Company"
-                                                    }
+                                                    )}
 
                                                 </div>
 
@@ -724,12 +1165,11 @@
 
 
                                             <div
-                                                class="status ${status}">
+                                                class="status ${getStatusClass(status)}">
 
-                                                ${
-                                                    internship.status ||
-                                                    "Pending"
-                                                }
+                                                ${escapeHTML(
+                                                    rawStatus
+                                                )}
 
                                             </div>
 
@@ -737,79 +1177,82 @@
                                         </div>
 
 
-                                        <div class="details">
+                                        <!-- DETAILS -->
+
+                                        <div
+                                            class="details">
 
 
-                                            <div class="detail-box">
+                                            <div
+                                                class="detail-box">
 
                                                 <span>
                                                     Location
                                                 </span>
 
-
                                                 <strong>
 
-                                                    ${
+                                                    ${escapeHTML(
                                                         internship.location ||
                                                         "Not specified"
-                                                    }
+                                                    )}
 
                                                 </strong>
 
                                             </div>
 
 
-                                            <div class="detail-box">
+                                            <div
+                                                class="detail-box">
 
                                                 <span>
                                                     Type
                                                 </span>
 
-
                                                 <strong>
 
-                                                    ${
+                                                    ${escapeHTML(
                                                         internship.type ||
                                                         "Not specified"
-                                                    }
+                                                    )}
 
                                                 </strong>
 
                                             </div>
 
 
-                                            <div class="detail-box">
+                                            <div
+                                                class="detail-box">
 
                                                 <span>
                                                     Duration
                                                 </span>
 
-
                                                 <strong>
 
-                                                    ${
+                                                    ${escapeHTML(
                                                         internship.duration ||
                                                         "Not specified"
-                                                    }
+                                                    )}
 
                                                 </strong>
 
                                             </div>
 
 
-                                            <div class="detail-box">
+                                            <div
+                                                class="detail-box">
 
                                                 <span>
                                                     Stipend
                                                 </span>
 
-
                                                 <strong>
 
-                                                    ${
+                                                    ${escapeHTML(
                                                         internship.stipend ||
                                                         "Unpaid"
-                                                    }
+                                                    )}
 
                                                 </strong>
 
@@ -819,51 +1262,38 @@
                                         </div>
 
 
-                                        <div class="description">
+                                        <!-- DESCRIPTION -->
 
-                                            ${
+                                        <div
+                                            class="description">
+
+                                            ${escapeHTML(
                                                 internship.description ||
                                                 "No description provided."
-                                            }
+                                            )}
 
                                         </div>
 
 
-                                        <div class="skills">
+                                        <!-- SKILLS -->
 
+                                        <div
+                                            class="skills">
 
-                                            ${
-                                                skills.length > 0
-
-                                                    ? skills
-                                                        .map(
-                                                            skill =>
-                                                                `
-                                                                <span class="skill">
-                                                                    ${skill}
-                                                                </span>
-                                                                `
-                                                        )
-                                                        .join("")
-
-                                                    : `
-                                                        <span class="skill">
-                                                            No skills specified
-                                                        </span>
-                                                      `
-                                            }
-
+                                            ${skillsHTML}
 
                                         </div>
 
 
-                                        <div class="deadline">
+                                        <!-- DATES -->
+
+                                        <div
+                                            class="deadline">
 
 
                                             <strong>
                                                 Application Deadline:
                                             </strong>
-
 
                                             ${deadlineDate}
 
@@ -875,20 +1305,18 @@
                                                 Posted:
                                             </strong>
 
-
                                             ${createdDate}
 
 
                                         </div>
 
 
-                                    </div>
+                                    </article>
 
                                 `;
 
                             }
                         ).join("")}
-
 
                     </div>
 
@@ -896,7 +1324,6 @@
 
 
             } catch (error) {
-
 
                 console.error(
                     "LOAD INTERNSHIPS ERROR:",
@@ -908,25 +1335,40 @@
 
                     <div class="error-message">
 
-                        Unable to connect to the server.
+                        <i
+                            class="fa-solid fa-triangle-exclamation"
+                            style="
+                                display:block;
+                                font-size:24px;
+                                margin-bottom:12px;
+                            ">
+                        </i>
 
-                        <br><br>
 
-                        Please try again.
+                        Unable to connect to the INTERNZO server.
 
-                        <br><br>
+
+                        <br>
+
+                        <span
+                            style="
+                                color:#71717a;
+                                font-size:13px;
+                            ">
+
+                            Please try again.
+
+                        </span>
+
+
+                        <br>
+
 
                         <button
-                            onclick="loadInternships()"
-                            style="
-                                width:auto;
-                                padding:10px 18px;
-                                background:#7c3aed;
-                                color:white;
-                                border:none;
-                                border-radius:8px;
-                                cursor:pointer;
-                            ">
+                            class="retry-btn"
+                            onclick="loadInternships()">
+
+                            <i class="fa-solid fa-rotate-right"></i>
 
                             Try Again
 
@@ -937,6 +1379,94 @@
                 `;
 
             }
+
+        }
+
+
+        // =========================================
+        // FORMAT DATE
+        // =========================================
+
+        function formatDate(dateValue) {
+
+            if (!dateValue) {
+
+                return "N/A";
+
+            }
+
+
+            const date =
+                new Date(dateValue);
+
+
+            if (
+                isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return "N/A";
+
+            }
+
+
+            return date.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        // =========================================
+        // STATUS CLASS
+        // =========================================
+
+        function getStatusClass(status) {
+
+            if (
+                status === "approved"
+            ) {
+
+                return "approved";
+
+            }
+
+
+            if (
+                status === "rejected"
+            ) {
+
+                return "rejected";
+
+            }
+
+
+            return "pending";
+
+        }
+
+
+        // =========================================
+        // ESCAPE HTML
+        // =========================================
+
+        function escapeHTML(value) {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+            div.textContent =
+                String(value);
+
+            return div.innerHTML;
 
         }
 
@@ -968,9 +1498,7 @@
 
         loadInternships();
 
-
     </script>
-
 
 </body>
 

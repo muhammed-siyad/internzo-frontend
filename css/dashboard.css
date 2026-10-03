@@ -1,5 +1,6 @@
 /* =========================================
    INTERNZO - DASHBOARD CSS
+   MATCHED WITH INTERNSHIPS PAGE
 ========================================= */
 
 * {
@@ -8,16 +9,24 @@
     box-sizing: border-box;
 }
 
-
-/* =========================================
-   BODY
-========================================= */
+html {
+    scroll-behavior: smooth;
+}
 
 body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #f8fafc;
-    color: #111827;
     min-height: 100vh;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: #050505;
+    color: #ffffff;
+
+    overflow-x: hidden;
 }
 
 
@@ -27,35 +36,37 @@ body {
 
 .navbar {
     width: 100%;
-    min-height: 72px;
 
-    background: #ffffff;
+    padding: 18px 6%;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 6%;
-
-    border-bottom: 1px solid #e5e7eb;
-
     position: sticky;
     top: 0;
-
     z-index: 1000;
+
+    background: rgba(5, 5, 5, 0.88);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid
+        rgba(255, 255, 255, 0.07);
 }
 
 
 /* LOGO */
 
 .logo {
-    color: #7c3aed;
+    color: #ffffff;
 
-    font-size: 25px;
+    font-size: 24px;
 
     font-weight: 800;
 
-    letter-spacing: -0.8px;
+    letter-spacing: -0.5px;
 
     white-space: nowrap;
 }
@@ -68,123 +79,97 @@ body {
 
     align-items: center;
 
-    justify-content: flex-end;
-
-    gap: 26px;
+    gap: 25px;
 }
 
-
 .nav-links a {
-    color: #475569;
+    color: #a1a1aa;
 
     text-decoration: none;
 
     font-size: 14px;
 
-    font-weight: 600;
-
-    white-space: nowrap;
+    font-weight: 500;
 
     transition: 0.2s ease;
 }
 
-
-.nav-links a:hover {
-    color: #7c3aed;
-}
-
-
-/* ACTIVE PAGE */
-
+.nav-links a:hover,
 .nav-links a.active {
-    color: #7c3aed;
+    color: #ffffff;
 }
 
 
-/* LOGOUT BUTTON */
+/* LOGOUT */
 
 .nav-links button {
-    width: auto;
+    border: none;
 
-    padding: 9px 18px;
+    background: transparent;
 
-    background: #ffffff;
-
-    color: #7c3aed;
-
-    border: 1px solid #ddd6fe;
-
-    border-radius: 8px;
+    color: #a1a1aa;
 
     font-size: 14px;
 
-    font-weight: 600;
+    font-weight: 500;
 
     cursor: pointer;
-
-    white-space: nowrap;
 
     transition: 0.2s ease;
 }
 
-
 .nav-links button:hover {
-    background: #f3e8ff;
-
-    color: #6d28d9;
-
-    transform: translateY(-1px);
+    color: #ff5c5c;
 }
 
 
 /* =========================================
-   MAIN CONTAINER
+   MAIN DASHBOARD CONTAINER
 ========================================= */
 
 .dashboard-container {
-    width: 100%;
-
-    max-width: 1250px;
+    width: min(1200px, 92%);
 
     margin: 0 auto;
 
-    padding: 45px 30px 60px;
+    padding: 70px 0 100px;
 }
 
 
 /* =========================================
-   WELCOME / PAGE HEADER
+   WELCOME SECTION
 ========================================= */
 
 .welcome-section {
-    margin-bottom: 35px;
+    margin-bottom: 45px;
 }
-
 
 .welcome-section h1 {
-    color: #111827;
+    max-width: 800px;
 
-    font-size: 32px;
+    font-size: clamp(36px, 5vw, 56px);
 
-    font-weight: 750;
+    line-height: 1.05;
 
-    line-height: 1.2;
+    letter-spacing: -2px;
 
-    margin-bottom: 9px;
+    margin-bottom: 18px;
+
+    color: #ffffff;
 }
-
 
 .welcome-section span {
-    color: #7c3aed;
+    color: #8b5cf6;
 }
 
-
 .welcome-section p {
-    color: #64748b;
+    max-width: 650px;
 
-    font-size: 15px;
+    color: #a1a1aa;
 
-    line-height: 1.6;
+    font-size: 16px;
+
+    line-height: 1.7;
 }
 
 
@@ -196,7 +181,7 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(2, minmax(0, 1fr));
 
     gap: 20px;
 
@@ -204,31 +189,69 @@ body {
 }
 
 
+/* =========================================
+   DASHBOARD CARD
+========================================= */
+
 .dashboard-card {
-    background: #ffffff;
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 100%;
 
     padding: 25px;
 
-    border: 1px solid #e5e7eb;
+    border: 1px solid
+        rgba(255, 255, 255, 0.08);
 
-    border-radius: 15px;
+    border-radius: 20px;
 
-    box-shadow:
-        0 5px 15px
-        rgba(17, 24, 39, 0.04);
+    background:
+        linear-gradient(
+            145deg,
+            #111111,
+            #0b0b0b
+        );
 
-    transition: all 0.25s ease;
+    transition: 0.25s ease;
+
+    animation:
+        cardAppear 0.35s ease both;
 }
-
 
 .dashboard-card:hover {
     transform: translateY(-5px);
 
-    border-color: #c4b5fd;
+    border-color:
+        rgba(124, 58, 237, 0.4);
 
     box-shadow:
-        0 15px 30px
-        rgba(124, 58, 237, 0.10);
+        0 18px 50px
+        rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================
+   CARD ANIMATION
+========================================= */
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
 }
 
 
@@ -245,31 +268,37 @@ body {
     align-items: center;
     justify-content: center;
 
-    background: #f3e8ff;
+    background: rgba(124, 58, 237, 0.12);
 
-    color: #7c3aed;
+    color: #8b5cf6;
 
-    border-radius: 11px;
+    border: 1px solid
+        rgba(124, 58, 237, 0.18);
 
-    font-size: 22px;
+    border-radius: 12px;
 
-    margin-bottom: 18px;
+    font-size: 21px;
+
+    margin-bottom: 20px;
 }
 
+
+/* =========================================
+   CARD CONTENT
+========================================= */
 
 .dashboard-card h2 {
-    color: #111827;
+    color: #ffffff;
 
-    font-size: 18px;
+    font-size: 21px;
 
-    font-weight: 700;
+    line-height: 1.3;
 
-    margin-bottom: 9px;
+    margin-bottom: 10px;
 }
 
-
 .dashboard-card p {
-    color: #64748b;
+    color: #a1a1aa;
 
     font-size: 13px;
 
@@ -279,37 +308,39 @@ body {
 }
 
 
-/* CARD BUTTON */
+/* =========================================
+   CARD BUTTON
+========================================= */
 
 .dashboard-card button {
     width: 100%;
 
-    margin-top: 16px;
+    min-height: 46px;
 
-    padding: 11px 15px;
+    margin-top: 20px;
+
+    border: none;
+
+    border-radius: 11px;
 
     background: #7c3aed;
 
     color: #ffffff;
 
-    border: none;
+    font-size: 14px;
 
-    border-radius: 8px;
-
-    font-size: 13px;
-
-    font-weight: 600;
+    font-weight: 700;
 
     cursor: pointer;
 
     transition: 0.2s ease;
 }
 
-
 .dashboard-card button:hover {
     background: #6d28d9;
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-2px);
 }
 
 
@@ -321,13 +352,12 @@ body {
     margin-top: 10px;
 }
 
-
 .section h2 {
-    color: #111827;
+    color: #ffffff;
 
-    font-size: 21px;
+    font-size: 24px;
 
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 
@@ -338,42 +368,43 @@ body {
 .empty-box {
     width: 100%;
 
-    background: #ffffff;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 15px;
-
-    padding: 50px 25px;
+    padding: 70px 20px;
 
     text-align: center;
 
-    box-shadow:
-        0 5px 15px
-        rgba(17, 24, 39, 0.04);
+    border: 1px solid
+        rgba(255, 255, 255, 0.07);
+
+    border-radius: 20px;
+
+    background: #0d0d0d;
+
+    transition: 0.25s ease;
 }
 
+.empty-box:hover {
+    border-color:
+        rgba(124, 58, 237, 0.25);
+}
 
 .empty-box > p:first-child {
     font-size: 38px;
 
-    color: #7c3aed;
+    color: #8b5cf6;
 
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
-
 
 .empty-box h3 {
-    color: #334155;
+    color: #ffffff;
 
-    font-size: 17px;
+    font-size: 18px;
 
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
-
 .empty-box p {
-    color: #64748b;
+    color: #71717a;
 
     font-size: 14px;
 
@@ -400,168 +431,204 @@ a {
 
 
 /* =========================================
+   APPLICATION LIST
+   For recent applications section
+========================================= */
+
+#recentApplications {
+    display: grid;
+
+    gap: 12px;
+}
+
+.application-item {
+    padding: 18px 20px;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111111,
+            #0b0b0b
+        );
+
+    color: #ffffff;
+
+    transition: 0.2s ease;
+}
+
+.application-item:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(124, 58, 237, 0.35);
+}
+
+
+/* =========================================
+   APPLICATION TEXT
+========================================= */
+
+.application-item h3 {
+    color: #ffffff;
+
+    font-size: 16px;
+
+    margin-bottom: 6px;
+}
+
+.application-item p {
+    color: #71717a;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.application-status {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding: 5px 10px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(124, 58, 237, 0.12);
+
+    color: #a78bfa;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
    TABLET
 ========================================= */
 
-@media (max-width: 1050px) {
+@media (max-width: 800px) {
 
     .navbar {
-        padding: 0 30px;
+        padding: 16px 5%;
     }
-
 
     .nav-links {
-        gap: 17px;
+        gap: 14px;
     }
 
-
-    .dashboard-cards {
-        grid-template-columns:
-            repeat(2, 1fr);
+    .nav-links a,
+    .nav-links button {
+        font-size: 12px;
     }
-
-}
-
-
-/* =========================================
-   MOBILE NAVBAR
-========================================= */
-
-@media (max-width: 750px) {
-
-    .navbar {
-        min-height: auto;
-
-        padding: 18px 20px;
-
-        flex-direction: column;
-
-        gap: 16px;
-    }
-
 
     .logo {
-        font-size: 24px;
+        font-size: 20px;
     }
-
-
-    .nav-links {
-        width: 100%;
-
-        display: flex;
-
-        justify-content: center;
-
-        flex-wrap: wrap;
-
-        gap: 10px 15px;
-    }
-
-
-    .nav-links a {
-        font-size: 13px;
-    }
-
-
-    .nav-links button {
-        padding: 8px 14px;
-
-        font-size: 13px;
-    }
-
 
     .dashboard-container {
-        padding: 30px 18px 45px;
+        width: 90%;
+
+        padding-top: 50px;
     }
 
-
-    .welcome-section h1 {
-        font-size: 27px;
+    .dashboard-cards {
+        grid-template-columns: 1fr;
     }
 
 }
 
 
 /* =========================================
-   SMALL MOBILE
+   MOBILE
 ========================================= */
 
 @media (max-width: 550px) {
 
-    .dashboard-cards {
-        grid-template-columns: 1fr;
+    .navbar {
+        align-items: flex-start;
+
+        flex-direction: column;
 
         gap: 15px;
     }
 
+    .nav-links {
+        width: 100%;
 
-    .dashboard-card {
-        padding: 22px;
+        justify-content:
+            space-between;
+
+        gap: 8px;
     }
 
+    .dashboard-container {
+        padding-top: 40px;
+    }
+
+    .welcome-section {
+        margin-bottom: 30px;
+    }
 
     .welcome-section h1 {
-        font-size: 24px;
+        font-size: 38px;
+
+        letter-spacing: -1.5px;
     }
 
-
-    .welcome-section p {
-        font-size: 14px;
+    .dashboard-card {
+        padding: 20px;
     }
 
-
-    .nav-links {
-        gap: 9px 12px;
-    }
-
-
-    .nav-links a {
-        font-size: 12px;
-    }
-
-
-    .nav-links button {
-        font-size: 12px;
-
-        padding: 7px 12px;
+    .dashboard-card h2 {
+        font-size: 20px;
     }
 
 }
 
 
 /* =========================================
-   VERY SMALL SCREEN
+   VERY SMALL MOBILE
 ========================================= */
 
 @media (max-width: 380px) {
 
     .navbar {
-        padding: 15px 12px;
+        padding: 15px 4%;
     }
-
 
     .logo {
-        font-size: 22px;
+        font-size: 20px;
     }
-
 
     .nav-links {
-        gap: 8px;
+        gap: 7px;
     }
 
-
-    .nav-links a {
+    .nav-links a,
+    .nav-links button {
         font-size: 11px;
     }
 
+    .dashboard-container {
+        width: 92%;
 
-    .nav-links button {
-        padding: 6px 10px;
+        padding-top: 30px;
     }
 
-
-    .dashboard-container {
-        padding: 25px 13px 40px;
+    .welcome-section h1 {
+        font-size: 32px;
     }
 
 }

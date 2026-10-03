@@ -13,171 +13,590 @@
     <link rel="stylesheet"
         href="css/dashboard.css">
 
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
     <style>
 
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
+
         .page-header {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+        }
+
+        .page-label {
+            color: #8b5cf6;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
         }
 
         .page-header h1 {
-            font-size: 30px;
-            color: #111827;
-            margin-bottom: 8px;
+            color: #ffffff;
+            font-size: clamp(34px, 5vw, 48px);
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
         }
 
         .page-header p {
-            color: #64748b;
-            font-size: 14px;
+            color: #a1a1aa;
+            font-size: 15px;
+            line-height: 1.6;
         }
 
-        .applications-container {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow:
-                0 5px 15px
-                rgba(17, 24, 39, 0.04);
-            overflow-x: auto;
-        }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
-        }
-
-        th {
-            text-align: left;
-            padding: 15px;
-            background: #f8fafc;
-            color: #475569;
-            font-size: 13px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        td {
-            padding: 16px 15px;
-            color: #334155;
-            font-size: 14px;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        .student-name {
-            font-weight: 700;
-            color: #111827;
-        }
-
-        .student-email {
-            color: #64748b;
-            font-size: 12px;
-            margin-top: 4px;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 6px 11px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .status-applied {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .status-shortlisted {
-            background: #dbeafe;
-            color: #1d4ed8;
-        }
-
-        .status-selected {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .status-rejected {
-            background: #fee2e2;
-            color: #b91c1c;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .action-buttons button {
-            width: auto;
-            padding: 8px 12px;
-            border-radius: 7px;
-            font-size: 12px;
-        }
-
-        .shortlist-btn {
-            background: #2563eb;
-        }
-
-        .shortlist-btn:hover {
-            background: #1d4ed8;
-        }
-
-        .select-btn {
-            background: #16a34a;
-        }
-
-        .select-btn:hover {
-            background: #15803d;
-        }
-
-        .reject-btn {
-            background: #dc2626;
-        }
-
-        .reject-btn:hover {
-            background: #b91c1c;
-        }
-
-        .empty-box {
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .empty-box .icon {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
-
-        .empty-box h3 {
-            color: #334155;
-            margin-bottom: 8px;
-        }
-
-        .empty-box p {
-            color: #64748b;
-            font-size: 14px;
-        }
+        /* =========================================
+           MESSAGE
+        ========================================= */
 
         .message {
+            min-height: 22px;
+
             text-align: center;
+
             margin-bottom: 18px;
+
             font-size: 14px;
+
             font-weight: 600;
         }
 
-        @media (max-width: 600px) {
+        .message.success {
+            color: #4ade80;
+        }
+
+        .message.error {
+            color: #f87171;
+        }
+
+
+        /* =========================================
+           APPLICATIONS CONTAINER
+        ========================================= */
+
+        .applications-container {
+
+            width: 100%;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #0b0b0b
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-radius: 20px;
+
+            padding: 10px;
+
+            box-shadow:
+                0 18px 50px
+                rgba(0, 0, 0, 0.25);
+
+            overflow-x: auto;
+
+        }
+
+
+        /* =========================================
+           TABLE
+        ========================================= */
+
+        table {
+
+            width: 100%;
+
+            min-width: 900px;
+
+            border-collapse: collapse;
+
+        }
+
+
+        th {
+
+            text-align: left;
+
+            padding: 17px 15px;
+
+            color: #71717a;
+
+            background: #0d0d0d;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+        }
+
+
+        td {
+
+            padding: 18px 15px;
+
+            color: #d4d4d8;
+
+            font-size: 13px;
+
+            vertical-align: middle;
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.06);
+
+        }
+
+
+        tbody tr {
+
+            transition: 0.2s ease;
+
+        }
+
+
+        tbody tr:hover {
+
+            background:
+                rgba(124, 58, 237, 0.045);
+
+        }
+
+
+        tbody tr:last-child td {
+
+            border-bottom: none;
+
+        }
+
+
+        /* =========================================
+           STUDENT
+        ========================================= */
+
+        .student-name {
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .student-email {
+
+            color: #71717a;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================================
+           INTERNSHIP
+        ========================================= */
+
+        .internship-title {
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 6px 11px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+        }
+
+
+        .status-applied {
+
+            background:
+                rgba(245, 158, 11, 0.12);
+
+            color: #fbbf24;
+
+            border:
+                1px solid
+                rgba(245, 158, 11, 0.18);
+
+        }
+
+
+        .status-shortlisted {
+
+            background:
+                rgba(59, 130, 246, 0.12);
+
+            color: #60a5fa;
+
+            border:
+                1px solid
+                rgba(59, 130, 246, 0.18);
+
+        }
+
+
+        .status-selected {
+
+            background:
+                rgba(34, 197, 94, 0.12);
+
+            color: #4ade80;
+
+            border:
+                1px solid
+                rgba(34, 197, 94, 0.18);
+
+        }
+
+
+        .status-rejected {
+
+            background:
+                rgba(239, 68, 68, 0.12);
+
+            color: #f87171;
+
+            border:
+                1px solid
+                rgba(239, 68, 68, 0.18);
+
+        }
+
+
+        /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
+        .action-buttons {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .action-buttons button {
+
+            width: auto;
+
+            min-height: 34px;
+
+            padding: 7px 11px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            color: #ffffff;
+
+            font-family: inherit;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .action-buttons button:hover {
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .shortlist-btn {
+
+            background: #2563eb;
+
+        }
+
+
+        .shortlist-btn:hover {
+
+            background: #1d4ed8;
+
+        }
+
+
+        .select-btn {
+
+            background: #16a34a;
+
+        }
+
+
+        .select-btn:hover {
+
+            background: #15803d;
+
+        }
+
+
+        .reject-btn {
+
+            background: #dc2626;
+
+        }
+
+
+        .reject-btn:hover {
+
+            background: #b91c1c;
+
+        }
+
+
+        /* =========================================
+           DISABLE BUTTON WHEN STATUS FINAL
+        ========================================= */
+
+        .action-buttons button:disabled {
+
+            opacity: 0.35;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
+        /* =========================================
+           EMPTY / ERROR STATE
+        ========================================= */
+
+        .empty-box {
+
+            text-align: center;
+
+            padding:
+                70px 25px;
+
+        }
+
+
+        .empty-box .icon {
+
+            width: 60px;
+
+            height: 60px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin:
+                0 auto 18px;
+
+            background:
+                rgba(124, 58, 237, 0.12);
+
+            color: #8b5cf6;
+
+            border:
+                1px solid
+                rgba(124, 58, 237, 0.18);
+
+            border-radius: 15px;
+
+            font-size: 25px;
+
+        }
+
+
+        .empty-box h3 {
+
+            color: #ffffff;
+
+            font-size: 18px;
+
+            margin-bottom: 9px;
+
+        }
+
+
+        .empty-box p {
+
+            max-width: 500px;
+
+            margin: 0 auto;
+
+            color: #71717a;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =========================================
+           LOADING
+        ========================================= */
+
+        .loading-state {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 300px;
+
+            color: #71717a;
+
+        }
+
+
+        .loading-spinner {
+
+            width: 34px;
+
+            height: 34px;
+
+            margin-bottom: 15px;
+
+            border:
+                3px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-top-color:
+                #8b5cf6;
+
+            border-radius: 50%;
+
+            animation:
+                spin 0.8s linear infinite;
+
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 800px) {
 
             .applications-container {
-                padding: 15px;
+
+                padding: 7px;
+
             }
 
             .page-header h1 {
-                font-size: 25px;
+
+                font-size: 38px;
+
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .page-header {
+
+                margin-bottom: 28px;
+
+            }
+
+            .page-header h1 {
+
+                font-size: 32px;
+
+                letter-spacing: -1px;
+
+            }
+
+            .page-header p {
+
+                font-size: 14px;
+
+            }
+
+            .applications-container {
+
+                border-radius: 16px;
+
+            }
+
+            .empty-box {
+
+                padding:
+                    55px 18px;
+
             }
 
         }
@@ -190,9 +609,9 @@
 <body>
 
 
-    <!-- =============================== -->
-    <!-- NAVBAR -->
-    <!-- =============================== -->
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
 
     <nav class="navbar">
 
@@ -218,8 +637,9 @@
             </a>
 
 
-            <a href="company-applications.html"
-               class="active">
+            <a
+                href="company-applications.html"
+                class="active">
 
                 Applications
 
@@ -231,8 +651,11 @@
             </a>
 
 
-            <button onclick="logout()">
+            <button
+                onclick="logout()">
+
                 Logout
+
             </button>
 
         </div>
@@ -240,14 +663,21 @@
     </nav>
 
 
-    <!-- =============================== -->
-    <!-- MAIN CONTENT -->
-    <!-- =============================== -->
+    <!-- =========================================
+         MAIN
+    ========================================= -->
 
     <main class="dashboard-container">
 
 
-        <div class="page-header">
+        <!-- PAGE HEADER -->
+
+        <section class="page-header">
+
+            <div class="page-label">
+                COMPANY PORTAL
+            </div>
+
 
             <h1>
                 Applications
@@ -255,46 +685,57 @@
 
 
             <p>
-                Review students who have applied for your internships.
+                Review students who have applied
+                for your internships.
             </p>
 
+        </section>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="message"
+            class="message">
         </div>
 
 
-        <div id="message"
-             class="message">
-        </div>
-
+        <!-- APPLICATIONS -->
 
         <div class="applications-container">
 
             <div id="applicationsContent">
 
-                <p style="text-align:center; color:#64748b;">
-                    Loading applications...
-                </p>
+                <div class="loading-state">
+
+                    <div class="loading-spinner"></div>
+
+                    <p>
+                        Loading applications...
+                    </p>
+
+                </div>
 
             </div>
 
         </div>
 
+
     </main>
+
+
+    <!-- =========================================
+         API HELPER
+    ========================================= -->
+
+    <script src="js/api.js"></script>
 
 
     <script>
 
-
-        // ===============================
-        // BACKEND API URL
-        // ===============================
-
-        const API_URL =
-            "https://internzo-backend.onrender.com";
-
-
-        // ===============================
+        // =========================================
         // LOGIN CHECK
-        // ===============================
+        // =========================================
 
         const token =
             localStorage.getItem("token");
@@ -304,7 +745,7 @@
             localStorage.getItem("user");
 
 
-        let user;
+        let user = null;
 
 
         try {
@@ -316,7 +757,13 @@
 
         } catch (error) {
 
+            console.error(
+                "USER DATA ERROR:",
+                error
+            );
+
             localStorage.removeItem("token");
+
             localStorage.removeItem("user");
 
             window.location.href =
@@ -324,6 +771,10 @@
 
         }
 
+
+        // =========================================
+        // AUTH CHECK
+        // =========================================
 
         if (!token || !user) {
 
@@ -333,20 +784,95 @@
         }
 
 
+        // =========================================
+        // ROLE CHECK
+        // =========================================
+
         if (
             user &&
             user.role !== "company"
         ) {
 
-            window.location.href =
-                "login.html";
+            if (
+                user.role === "student"
+            ) {
+
+                window.location.href =
+                    "student-dashboard.html";
+
+            }
+
+            else if (
+                user.role === "admin"
+            ) {
+
+                window.location.href =
+                    "admin-dashboard.html";
+
+            }
+
+            else {
+
+                localStorage.removeItem(
+                    "token"
+                );
+
+                localStorage.removeItem(
+                    "user"
+                );
+
+                window.location.href =
+                    "login.html";
+
+            }
 
         }
 
 
-        // ===============================
+        // =========================================
+        // HTML ESCAPE
+        // =========================================
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        // =========================================
+        // STATUS CLASS
+        // =========================================
+
+        function getStatusClass(status) {
+
+            switch (status) {
+
+                case "Shortlisted":
+                    return "status-shortlisted";
+
+                case "Selected":
+                    return "status-selected";
+
+                case "Rejected":
+                    return "status-rejected";
+
+                default:
+                    return "status-applied";
+
+            }
+
+        }
+
+
+        // =========================================
         // LOAD APPLICATIONS
-        // ===============================
+        // =========================================
 
         async function loadApplications() {
 
@@ -356,84 +882,32 @@
                 );
 
 
+            content.innerHTML = `
+
+                <div class="loading-state">
+
+                    <div class="loading-spinner"></div>
+
+                    <p>
+                        Loading applications...
+                    </p>
+
+                </div>
+
+            `;
+
+
             try {
 
-                const response =
-                    await fetch(
-                        `${API_URL}/api/applications/company-applications`,
-                        {
-                            method: "GET",
-
-                            headers: {
-                                "Authorization":
-                                    "Bearer " + token
-                            }
-                        }
+                const data =
+                    await apiFetch(
+                        "/api/applications/company-applications"
                     );
 
 
-                const data =
-                    await response.json();
-
-
-                // ===============================
-                // RESPONSE CHECK
-                // ===============================
-
-                if (!response.ok) {
-
-
-                    if (
-                        response.status === 401
-                    ) {
-
-                        localStorage.removeItem(
-                            "token"
-                        );
-
-                        localStorage.removeItem(
-                            "user"
-                        );
-
-                        window.location.href =
-                            "login.html";
-
-                        return;
-
-                    }
-
-
-                    content.innerHTML = `
-
-                        <div class="empty-box">
-
-                            <div class="icon">
-                                !
-                            </div>
-
-                            <h3>
-                                Unable to load applications
-                            </h3>
-
-                            <p>
-                                ${
-                                    data.message ||
-                                    "Something went wrong."
-                                }
-                            </p>
-
-                        </div>
-
-                    `;
-
-                    return;
-
-                }
-
-
-                // ===============================
+                // =================================
                 // NO APPLICATIONS
-                // ===============================
+                // =================================
 
                 if (
                     !data ||
@@ -445,16 +919,23 @@
                         <div class="empty-box">
 
                             <div class="icon">
-                                📄
+
+                                <i class="fa-regular fa-file-lines"></i>
+
                             </div>
+
 
                             <h3>
                                 No Applications Yet
                             </h3>
 
+
                             <p>
-                                Students who apply for your internships
+
+                                Students who apply
+                                for your internships
                                 will appear here.
+
                             </p>
 
                         </div>
@@ -466,9 +947,9 @@
                 }
 
 
-                // ===============================
-                // TABLE
-                // ===============================
+                // =================================
+                // BUILD TABLE
+                // =================================
 
                 let html = `
 
@@ -539,93 +1020,109 @@
                             "Applied";
 
 
-                        let statusClass =
-                            "status-applied";
+                        const safeId =
+                            escapeHTML(
+                                application._id
+                            );
 
 
-                        if (
-                            status ===
-                            "Shortlisted"
-                        ) {
+                        const studentName =
+                            escapeHTML(
+                                student.name ||
+                                "Unknown Student"
+                            );
 
-                            statusClass =
-                                "status-shortlisted";
 
-                        }
+                        const studentEmail =
+                            escapeHTML(
+                                student.email ||
+                                ""
+                            );
 
-                        else if (
-                            status ===
-                            "Selected"
-                        ) {
 
-                            statusClass =
-                                "status-selected";
+                        const internshipTitle =
+                            escapeHTML(
+                                internship.title ||
+                                "Internship"
+                            );
 
-                        }
 
-                        else if (
-                            status ===
-                            "Rejected"
-                        ) {
+                        const location =
+                            escapeHTML(
+                                internship.location ||
+                                ""
+                            );
 
-                            statusClass =
-                                "status-rejected";
 
-                        }
+                        const safeStatus =
+                            escapeHTML(
+                                status
+                            );
+
+
+                        const statusClass =
+                            getStatusClass(
+                                status
+                            );
 
 
                         html += `
 
                             <tr>
 
+                                <!-- STUDENT -->
 
                                 <td>
 
                                     <div class="student-name">
 
-                                        ${
-                                            student.name ||
-                                            "Unknown Student"
-                                        }
+                                        ${studentName}
 
                                     </div>
 
 
-                                    <div class="student-email">
+                                    ${
+                                        studentEmail
+                                            ? `
+                                                <div class="student-email">
 
-                                        ${
-                                            student.email ||
-                                            ""
-                                        }
+                                                    ${studentEmail}
 
-                                    </div>
+                                                </div>
+                                            `
+                                            : ""
+                                    }
 
                                 </td>
 
+
+                                <!-- INTERNSHIP -->
 
                                 <td>
 
-                                    <strong>
+                                    <div class="internship-title">
 
-                                        ${
-                                            internship.title ||
-                                            "Internship"
-                                        }
-
-                                    </strong>
-
-
-                                    <div class="student-email">
-
-                                        ${
-                                            internship.location ||
-                                            ""
-                                        }
+                                        ${internshipTitle}
 
                                     </div>
 
+
+                                    ${
+                                        location
+                                            ? `
+                                                <div class="student-email">
+
+                                                    ${location}
+
+                                                </div>
+                                            `
+                                            : ""
+                                    }
+
                                 </td>
 
+
+                                <!-- DATE -->
 
                                 <td>
 
@@ -634,27 +1131,32 @@
                                 </td>
 
 
+                                <!-- STATUS -->
+
                                 <td>
 
                                     <span
                                         class="status ${statusClass}">
 
-                                        ${status}
+                                        ${safeStatus}
 
                                     </span>
 
                                 </td>
 
 
+                                <!-- ACTIONS -->
+
                                 <td>
 
-                                    <div class="action-buttons">
+                                    <div
+                                        class="action-buttons">
 
 
                                         <button
                                             class="shortlist-btn"
                                             onclick="updateStatus(
-                                                '${application._id}',
+                                                '${safeId}',
                                                 'Shortlisted'
                                             )">
 
@@ -666,7 +1168,7 @@
                                         <button
                                             class="select-btn"
                                             onclick="updateStatus(
-                                                '${application._id}',
+                                                '${safeId}',
                                                 'Selected'
                                             )">
 
@@ -678,7 +1180,7 @@
                                         <button
                                             class="reject-btn"
                                             onclick="updateStatus(
-                                                '${application._id}',
+                                                '${safeId}',
                                                 'Rejected'
                                             )">
 
@@ -690,7 +1192,6 @@
                                     </div>
 
                                 </td>
-
 
                             </tr>
 
@@ -726,17 +1227,26 @@
                     <div class="empty-box">
 
                         <div class="icon">
-                            !
+
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+
                         </div>
 
 
                         <h3>
-                            Server Connection Error
+                            Unable to Load Applications
                         </h3>
 
 
                         <p>
-                            Unable to connect to the backend server.
+
+                            ${
+                                escapeHTML(
+                                    error.message ||
+                                    "Something went wrong."
+                                )
+                            }
+
                         </p>
 
 
@@ -749,9 +1259,9 @@
         }
 
 
-        // ===============================
+        // =========================================
         // UPDATE APPLICATION STATUS
-        // ===============================
+        // =========================================
 
         async function updateStatus(
             applicationId,
@@ -764,94 +1274,55 @@
                 );
 
 
+            message.className =
+                "message";
+
+            message.textContent =
+                "Updating application...";
+
+
             try {
 
-                const response =
-                    await fetch(
-                        `${API_URL}/api/applications/status/${applicationId}`,
+                const data =
+                    await apiFetch(
+                        `/api/applications/status/${applicationId}`,
                         {
                             method: "PUT",
 
-                            headers: {
-
-                                "Content-Type":
-                                    "application/json",
-
-                                "Authorization":
-                                    "Bearer " + token
-
-                            },
-
                             body:
                                 JSON.stringify({
-                                    status:
-                                        status
+                                    status
                                 })
-
                         }
                     );
 
 
-                const data =
-                    await response.json();
-
-
-                // ===============================
-                // TOKEN EXPIRED
-                // ===============================
-
-                if (
-                    response.status === 401
-                ) {
-
-                    localStorage.removeItem(
-                        "token"
-                    );
-
-                    localStorage.removeItem(
-                        "user"
-                    );
-
-                    window.location.href =
-                        "login.html";
-
-                    return;
-
-                }
-
-
-                // ===============================
+                // =================================
                 // SUCCESS
-                // ===============================
+                // =================================
 
-                if (response.ok) {
+                message.className =
+                    "message success";
 
-                    message.style.color =
-                        "#16a34a";
-
-                    message.textContent =
-                        data.message ||
-                        "Application status updated successfully.";
-
-                    await loadApplications();
-
-                }
+                message.textContent =
+                    data.message ||
+                    "Application status updated successfully.";
 
 
-                // ===============================
-                // ERROR
-                // ===============================
+                await loadApplications();
 
-                else {
 
-                    message.style.color =
-                        "#dc2626";
+                // Clear message after a moment
 
-                    message.textContent =
-                        data.message ||
-                        "Unable to update application.";
+                setTimeout(
+                    () => {
 
-                }
+                        message.textContent =
+                            "";
+
+                    },
+                    3000
+                );
 
 
             } catch (error) {
@@ -862,20 +1333,21 @@
                 );
 
 
-                message.style.color =
-                    "#dc2626";
+                message.className =
+                    "message error";
 
                 message.textContent =
-                    "Unable to connect to the server.";
+                    error.message ||
+                    "Unable to update application.";
 
             }
 
         }
 
 
-        // ===============================
+        // =========================================
         // LOGOUT
-        // ===============================
+        // =========================================
 
         function logout() {
 
@@ -894,12 +1366,11 @@
         }
 
 
-        // ===============================
+        // =========================================
         // START
-        // ===============================
+        // =========================================
 
         loadApplications();
-
 
     </script>
 
