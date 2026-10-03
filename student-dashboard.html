@@ -11,15 +11,266 @@
 
     <title>INTERNZO - Student Dashboard</title>
 
-    <!-- Dashboard CSS -->
     <link
         rel="stylesheet"
         href="css/dashboard.css">
 
-    <!-- Font Awesome -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        /* =========================================
+           RESPONSIVE NAVBAR
+        ========================================= */
+
+        .menu-toggle {
+
+            display: none;
+
+            width: 44px;
+            height: 44px;
+
+            padding: 0;
+
+            background: transparent;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.10);
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+        }
+
+
+        .menu-toggle span {
+
+            display: block;
+
+            width: 20px;
+            height: 2px;
+
+            background: #ffffff;
+
+            border-radius: 5px;
+
+            transition:
+                transform 0.25s ease,
+                opacity 0.25s ease;
+
+        }
+
+
+        /* =========================================
+           MOBILE NAVBAR
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+
+                position: sticky;
+
+                top: 0;
+
+                padding:
+                    14px 5%;
+
+                min-height: 70px;
+
+                box-sizing: border-box;
+
+            }
+
+
+            .menu-toggle {
+
+                display: flex;
+
+            }
+
+
+            .nav-links {
+
+                position: absolute;
+
+                top:
+                    calc(100% + 1px);
+
+                left: 5%;
+                right: 5%;
+
+                width: auto;
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 5px;
+
+                padding: 12px;
+
+                background:
+                    rgba(10, 10, 10, 0.98);
+
+                border:
+                    1px solid
+                    rgba(255, 255, 255, 0.08);
+
+                border-radius: 14px;
+
+                box-shadow:
+                    0 20px 50px
+                    rgba(0, 0, 0, 0.45);
+
+                opacity: 0;
+
+                visibility: hidden;
+
+                transform:
+                    translateY(-10px);
+
+                transition:
+                    opacity 0.25s ease,
+                    visibility 0.25s ease,
+                    transform 0.25s ease;
+
+                z-index: 1000;
+
+            }
+
+
+            .nav-links.active {
+
+                opacity: 1;
+
+                visibility: visible;
+
+                transform:
+                    translateY(0);
+
+            }
+
+
+            .nav-links a,
+            .nav-links button {
+
+                width: 100%;
+
+                box-sizing: border-box;
+
+                padding:
+                    13px 14px;
+
+                text-align: left;
+
+                border-radius: 9px;
+
+                font-size: 14px;
+
+            }
+
+
+            .nav-links a:hover,
+            .nav-links a.active {
+
+                background:
+                    rgba(124, 58, 237, 0.12);
+
+            }
+
+
+            .nav-links button {
+
+                margin-top: 4px;
+
+            }
+
+
+            /* =====================================
+               HAMBURGER → X
+            ===================================== */
+
+            .menu-toggle.active
+            span:nth-child(1) {
+
+                transform:
+                    translateY(7px)
+                    rotate(45deg);
+
+            }
+
+
+            .menu-toggle.active
+            span:nth-child(2) {
+
+                opacity: 0;
+
+            }
+
+
+            .menu-toggle.active
+            span:nth-child(3) {
+
+                transform:
+                    translateY(-7px)
+                    rotate(-45deg);
+
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .navbar {
+
+                padding:
+                    13px 4%;
+
+            }
+
+
+            .nav-links {
+
+                left: 4%;
+                right: 4%;
+
+            }
+
+        }
+
+
+        /* =========================================
+           RECENT APPLICATIONS MOBILE
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            #recentApplications > div {
+
+                flex-direction: column;
+
+                align-items: flex-start !important;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -38,23 +289,39 @@
         </div>
 
 
-        <div class="nav-links">
+        <div
+            class="nav-links"
+            id="navLinks">
 
-            <a href="student-dashboard.html">
+            <a
+                href="student-dashboard.html"
+                class="active">
+
                 Dashboard
+
             </a>
+
 
             <a href="internships.html">
+
                 Internships
+
             </a>
+
 
             <a href="my-applications.html">
+
                 My Applications
+
             </a>
 
+
             <a href="student-profile.html">
+
                 My Profile
+
             </a>
+
 
             <button
                 type="button"
@@ -65,6 +332,22 @@
             </button>
 
         </div>
+
+
+        <!-- MOBILE MENU BUTTON -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Toggle navigation"
+            aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
 
     </nav>
 
@@ -92,8 +375,10 @@
             </h1>
 
             <p>
+
                 Manage your internship journey,
                 explore opportunities and track your applications.
+
             </p>
 
         </section>
@@ -112,7 +397,9 @@
             <div class="dashboard-card">
 
                 <div class="card-icon">
+
                     <i class="fa-solid fa-magnifying-glass"></i>
+
                 </div>
 
                 <h2>
@@ -120,8 +407,10 @@
                 </h2>
 
                 <p>
+
                     Explore internship opportunities
                     from different companies and locations.
+
                 </p>
 
                 <button
@@ -141,7 +430,9 @@
             <div class="dashboard-card">
 
                 <div class="card-icon">
+
                     <i class="fa-solid fa-file-lines"></i>
+
                 </div>
 
                 <h2>
@@ -149,8 +440,10 @@
                 </h2>
 
                 <p>
+
                     View and track all your internship
                     applications and their current status.
+
                 </p>
 
                 <button
@@ -170,7 +463,9 @@
             <div class="dashboard-card">
 
                 <div class="card-icon">
+
                     <i class="fa-solid fa-bookmark"></i>
+
                 </div>
 
                 <h2>
@@ -178,8 +473,10 @@
                 </h2>
 
                 <p>
+
                     Keep your favourite internship
                     opportunities saved for later.
+
                 </p>
 
                 <button
@@ -199,7 +496,9 @@
             <div class="dashboard-card">
 
                 <div class="card-icon">
+
                     <i class="fa-solid fa-user"></i>
+
                 </div>
 
                 <h2>
@@ -207,8 +506,10 @@
                 </h2>
 
                 <p>
+
                     Manage your personal information,
                     education, skills and resume.
+
                 </p>
 
                 <button
@@ -241,7 +542,9 @@
                 class="empty-box">
 
                 <p>
+
                     <i class="fa-solid fa-folder-open"></i>
+
                 </p>
 
                 <h3>
@@ -249,7 +552,9 @@
                 </h3>
 
                 <p>
+
                     Please wait while we load your applications.
+
                 </p>
 
             </div>
@@ -272,6 +577,161 @@
 
 
         // =========================================
+        // RESPONSIVE NAVBAR
+        // =========================================
+
+        const menuToggle =
+            document.getElementById(
+                "menuToggle"
+            );
+
+
+        const navLinks =
+            document.getElementById(
+                "navLinks"
+            );
+
+
+        if (
+            menuToggle &&
+            navLinks
+        ) {
+
+            // OPEN / CLOSE MENU
+
+            menuToggle.addEventListener(
+                "click",
+                function() {
+
+                    menuToggle.classList.toggle(
+                        "active"
+                    );
+
+                    navLinks.classList.toggle(
+                        "active"
+                    );
+
+
+                    const isOpen =
+                        navLinks.classList.contains(
+                            "active"
+                        );
+
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        isOpen
+                    );
+
+                }
+            );
+
+
+            // CLOSE AFTER CLICKING LINK
+
+            document
+                .querySelectorAll(
+                    ".nav-links a"
+                )
+                .forEach(
+                    function(link) {
+
+                        link.addEventListener(
+                            "click",
+                            function() {
+
+                                menuToggle.classList.remove(
+                                    "active"
+                                );
+
+                                navLinks.classList.remove(
+                                    "active"
+                                );
+
+                                menuToggle.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+            // CLOSE WHEN CLICKING OUTSIDE
+
+            document.addEventListener(
+                "click",
+                function(event) {
+
+                    if (
+
+                        !navLinks.contains(
+                            event.target
+                        )
+
+                        &&
+
+                        !menuToggle.contains(
+                            event.target
+                        )
+
+                    ) {
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            // CLOSE WITH ESCAPE
+
+            document.addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (
+                        event.key === "Escape"
+                    ) {
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        // =========================================
         // CHECK LOGIN
         // =========================================
 
@@ -283,13 +743,17 @@
             localStorage.getItem("user");
 
 
-        if (!token || !storedUser) {
+        if (
+            !token ||
+            !storedUser
+        ) {
 
             window.location.replace(
                 "login.html"
             );
 
         }
+
 
 
         // =========================================
@@ -302,7 +766,9 @@
         try {
 
             user =
-                JSON.parse(storedUser);
+                JSON.parse(
+                    storedUser
+                );
 
         }
 
@@ -357,6 +823,22 @@
 
                 window.location.replace(
                     "admin-dashboard.html"
+                );
+
+            }
+
+            else {
+
+                localStorage.removeItem(
+                    "token"
+                );
+
+                localStorage.removeItem(
+                    "user"
+                );
+
+                window.location.replace(
+                    "login.html"
                 );
 
             }
@@ -532,9 +1014,6 @@
 
             try {
 
-                // Use the common API helper.
-                // No direct fetch here.
-
                 const data =
                     await apiFetch(
                         "/api/applications/my-applications"
@@ -553,7 +1032,9 @@
                     container.innerHTML = `
 
                         <p>
+
                             <i class="fa-solid fa-folder-open"></i>
+
                         </p>
 
                         <h3>
@@ -561,8 +1042,10 @@
                         </h3>
 
                         <p>
+
                             Start exploring internships
                             and apply for your first opportunity.
+
                         </p>
 
                     `;
@@ -588,9 +1071,7 @@
                     function(application) {
 
 
-                        // =================================
                         // DATE
-                        // =================================
 
                         let date =
                             "Date unavailable";
@@ -608,19 +1089,20 @@
 
                             if (
                                 !isNaN(
-                                    applicationDate
+                                    applicationDate.getTime()
                                 )
                             ) {
 
                                 date =
-                                    applicationDate.toLocaleDateString(
-                                        "en-IN",
-                                        {
-                                            day: "2-digit",
-                                            month: "short",
-                                            year: "numeric"
-                                        }
-                                    );
+                                    applicationDate
+                                        .toLocaleDateString(
+                                            "en-IN",
+                                            {
+                                                day: "2-digit",
+                                                month: "short",
+                                                year: "numeric"
+                                            }
+                                        );
 
                             }
 
@@ -628,9 +1110,7 @@
 
 
 
-                        // =================================
                         // INTERNSHIP TITLE
-                        // =================================
 
                         const internshipTitle =
                             application
@@ -645,9 +1125,7 @@
 
 
 
-                        // =================================
                         // COMPANY NAME
-                        // =================================
 
                         const companyName =
                             application
@@ -662,9 +1140,7 @@
 
 
 
-                        // =================================
                         // STATUS
-                        // =================================
 
                         const status =
                             application.status ||
@@ -694,9 +1170,11 @@
                                             margin-bottom:5px;
                                         "
                                     >
+
                                         ${escapeHTML(
                                             internshipTitle
                                         )}
+
                                     </h3>
 
 
@@ -707,9 +1185,11 @@
                                             margin-bottom:3px;
                                         "
                                     >
+
                                         ${escapeHTML(
                                             companyName
                                         )}
+
                                     </p>
 
 
@@ -719,10 +1199,12 @@
                                             font-size:12px;
                                         "
                                     >
+
                                         Applied on
                                         ${escapeHTML(
                                             date
                                         )}
+
                                     </p>
 
                                 </div>
@@ -739,9 +1221,11 @@
                                         white-space:nowrap;
                                     "
                                 >
+
                                     ${escapeHTML(
                                         status
                                     )}
+
                                 </span>
 
                             </div>
@@ -753,9 +1237,7 @@
 
 
 
-                // =================================
                 // VIEW ALL BUTTON
-                // =================================
 
                 html += `
 
@@ -798,9 +1280,7 @@
                 );
 
 
-                // =================================
-                // TOKEN EXPIRED / UNAUTHORIZED
-                // =================================
+                // TOKEN EXPIRED
 
                 if (
                     error.message &&
@@ -839,14 +1319,14 @@
 
 
 
-                // =================================
                 // ERROR UI
-                // =================================
 
                 container.innerHTML = `
 
                     <p>
+
                         <i class="fa-solid fa-server"></i>
+
                     </p>
 
                     <h3>

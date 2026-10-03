@@ -229,6 +229,8 @@
             font-size: 14px;
 
             transition: 0.2s ease;
+
+            box-sizing: border-box;
         }
 
         .form-group input::placeholder,
@@ -508,6 +510,51 @@
 
 
         /* =========================================
+           RESPONSIVE NAVBAR
+        ========================================= */
+
+        .menu-toggle {
+            display: none;
+
+            width: 44px;
+            height: 44px;
+
+            padding: 0;
+
+            background: transparent;
+
+            border: 1px solid
+                rgba(255, 255, 255, 0.10);
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            display: block;
+
+            width: 20px;
+            height: 2px;
+
+            background: #ffffff;
+
+            border-radius: 5px;
+
+            transition:
+                transform 0.25s ease,
+                opacity 0.25s ease;
+        }
+
+
+        /* =========================================
            RESPONSIVE
         ========================================= */
 
@@ -522,6 +569,122 @@
 
         @media (max-width: 800px) {
 
+            .navbar {
+                position: sticky;
+
+                top: 0;
+
+                padding: 14px 5%;
+
+                min-height: 70px;
+
+                box-sizing: border-box;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+
+                top: calc(100% + 1px);
+
+                left: 5%;
+                right: 5%;
+
+                width: auto;
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 5px;
+
+                padding: 12px;
+
+                background:
+                    rgba(10, 10, 10, 0.98);
+
+                border:
+                    1px solid
+                    rgba(255, 255, 255, 0.08);
+
+                border-radius: 14px;
+
+                box-shadow:
+                    0 20px 50px
+                    rgba(0, 0, 0, 0.45);
+
+                opacity: 0;
+
+                visibility: hidden;
+
+                transform:
+                    translateY(-10px);
+
+                transition:
+                    opacity 0.25s ease,
+                    visibility 0.25s ease,
+                    transform 0.25s ease;
+            }
+
+            .nav-links.active {
+                opacity: 1;
+
+                visibility: visible;
+
+                transform:
+                    translateY(0);
+            }
+
+            .nav-links a,
+            .nav-links button {
+                width: 100%;
+
+                box-sizing: border-box;
+
+                padding: 13px 14px;
+
+                text-align: left;
+
+                border-radius: 9px;
+
+                font-size: 14px;
+            }
+
+            .nav-links a:hover,
+            .nav-links a.active {
+                background:
+                    rgba(124, 58, 237, 0.12);
+            }
+
+            .nav-links button {
+                margin-top: 4px;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform:
+                    translateY(7px)
+                    rotate(45deg);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform:
+                    translateY(-7px)
+                    rotate(-45deg);
+            }
+
             .two-column {
                 grid-template-columns: 1fr;
             }
@@ -534,6 +697,15 @@
 
 
         @media (max-width: 550px) {
+
+            .navbar {
+                padding: 13px 4%;
+            }
+
+            .nav-links {
+                left: 4%;
+                right: 4%;
+            }
 
             .profile-top {
                 flex-direction: column;
@@ -555,8 +727,36 @@
                 font-size: 36px;
             }
 
+            .page-header p {
+                font-size: 14px;
+            }
+
+            .company-icon {
+                width: 60px;
+                height: 60px;
+
+                font-size: 24px;
+            }
+
         }
 
+
+        @media (max-width: 380px) {
+
+            .profile-card {
+                padding: 16px;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 13px;
+            }
+
+        }
 
     </style>
 
@@ -577,27 +777,25 @@
         </div>
 
 
-        <div class="nav-links">
+        <div
+            class="nav-links"
+            id="navLinks">
 
             <a href="company-dashboard.html">
                 Dashboard
             </a>
 
-
             <a href="post-internship.html">
                 Post Internship
             </a>
-
 
             <a href="manage-internships.html">
                 My Internships
             </a>
 
-
             <a href="company-applications.html">
                 Applications
             </a>
-
 
             <a
                 href="company-profile.html"
@@ -606,7 +804,6 @@
                 Profile
 
             </a>
-
 
             <button
                 class="logout-btn"
@@ -617,6 +814,21 @@
             </button>
 
         </div>
+
+
+        <!-- MOBILE MENU BUTTON -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Toggle navigation"
+            aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
 
     </nav>
 
@@ -638,14 +850,12 @@
                 COMPANY PORTAL
             </div>
 
-
             <h1>
 
                 Company
                 <span>Profile</span>
 
             </h1>
-
 
             <p>
                 Manage your company information
@@ -661,7 +871,6 @@
 
         <section class="profile-top">
 
-
             <div class="company-icon">
 
                 <i class="fa-solid fa-building"></i>
@@ -675,13 +884,11 @@
                     Company Name
                 </h2>
 
-
                 <p id="companyEmailDisplay">
                     company@example.com
                 </p>
 
             </div>
-
 
         </section>
 
@@ -715,7 +922,6 @@
                             Company Name
                         </label>
 
-
                         <input
                             type="text"
                             id="companyName"
@@ -733,7 +939,6 @@
                         <label for="email">
                             Email Address
                         </label>
-
 
                         <input
                             type="email"
@@ -755,7 +960,6 @@
                                 Phone Number
                             </label>
 
-
                             <input
                                 type="text"
                                 id="phone"
@@ -771,7 +975,6 @@
                                 Website
                             </label>
 
-
                             <input
                                 type="text"
                                 id="website"
@@ -779,7 +982,6 @@
                                 autocomplete="url">
 
                         </div>
-
 
                     </div>
 
@@ -795,7 +997,6 @@
                                 Industry
                             </label>
 
-
                             <input
                                 type="text"
                                 id="industry"
@@ -810,7 +1011,6 @@
                                 Location
                             </label>
 
-
                             <input
                                 type="text"
                                 id="location"
@@ -818,7 +1018,6 @@
                                 autocomplete="address-level2">
 
                         </div>
-
 
                     </div>
 
@@ -830,7 +1029,6 @@
                         <label for="description">
                             About Company
                         </label>
-
 
                         <textarea
                             id="description"
@@ -894,7 +1092,6 @@
                                 Company
                             </div>
 
-
                             <div
                                 class="detail-value"
                                 id="sideCompanyName">
@@ -924,7 +1121,6 @@
                             <div class="detail-label">
                                 Email
                             </div>
-
 
                             <div
                                 class="detail-value"
@@ -956,7 +1152,6 @@
                                 Phone
                             </div>
 
-
                             <div
                                 class="detail-value"
                                 id="sidePhone">
@@ -986,7 +1181,6 @@
                             <div class="detail-label">
                                 Industry
                             </div>
-
 
                             <div
                                 class="detail-value"
@@ -1018,7 +1212,6 @@
                                 Location
                             </div>
 
-
                             <div
                                 class="detail-value"
                                 id="sideLocation">
@@ -1048,11 +1241,9 @@
 
                         <i class="fa-solid fa-circle-info"></i>
 
-
                         <h3>
                             Keep your profile updated
                         </h3>
-
 
                         <p>
                             Students can view your company
@@ -1078,6 +1269,10 @@
 
     <script src="js/api.js"></script>
 
+
+    <!-- =========================================
+         PROFILE JAVASCRIPT
+    ========================================= -->
 
     <script>
 
@@ -1468,42 +1663,41 @@
                     // SAVE
                     // =================================
 
-                    const data =
-                        await apiFetch(
-                            "/api/company-profile",
-                            {
-                                method: "POST",
+                    await apiFetch(
+                        "/api/company-profile",
+                        {
+                            method: "POST",
 
-                                body:
-                                    JSON.stringify({
+                            body:
+                                JSON.stringify({
 
-                                        companyName:
-                                            companyName,
+                                    companyName:
+                                        companyName,
 
-                                        phone:
-                                            phone,
+                                    phone:
+                                        phone,
 
-                                        website:
-                                            website,
+                                    website:
+                                        website,
 
-                                        industry:
-                                            industry,
+                                    industry:
+                                        industry,
 
-                                        location:
-                                            location,
+                                    location:
+                                        location,
 
-                                        description:
-                                            description,
+                                    description:
+                                        description,
 
-                                        founded:
-                                            "",
+                                    founded:
+                                        "",
 
-                                        employees:
-                                            ""
+                                    employees:
+                                        ""
 
-                                    })
-                            }
-                        );
+                                })
+                        }
+                    );
 
 
                     // =================================
@@ -1619,6 +1813,166 @@
         // =========================================
 
         loadProfile();
+
+    </script>
+
+
+    <!-- =========================================
+         RESPONSIVE NAVBAR JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+        const menuToggle =
+            document.getElementById(
+                "menuToggle"
+            );
+
+        const navLinks =
+            document.getElementById(
+                "navLinks"
+            );
+
+
+        // =========================================
+        // OPEN / CLOSE MENU
+        // =========================================
+
+        if (
+            menuToggle &&
+            navLinks
+        ) {
+
+            menuToggle.addEventListener(
+                "click",
+                function () {
+
+                    menuToggle.classList.toggle(
+                        "active"
+                    );
+
+                    navLinks.classList.toggle(
+                        "active"
+                    );
+
+
+                    const isOpen =
+                        navLinks.classList.contains(
+                            "active"
+                        );
+
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        isOpen
+                    );
+
+                }
+            );
+
+
+            // =====================================
+            // CLOSE AFTER CLICKING LINK
+            // =====================================
+
+            document
+                .querySelectorAll(
+                    ".nav-links a"
+                )
+                .forEach(
+                    function (link) {
+
+                        link.addEventListener(
+                            "click",
+                            function () {
+
+                                menuToggle.classList.remove(
+                                    "active"
+                                );
+
+                                navLinks.classList.remove(
+                                    "active"
+                                );
+
+                                menuToggle.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+            // =====================================
+            // CLOSE WHEN CLICKING OUTSIDE
+            // =====================================
+
+            document.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        !navLinks.contains(
+                            event.target
+                        ) &&
+                        !menuToggle.contains(
+                            event.target
+                        )
+                    ) {
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            // =====================================
+            // CLOSE WITH ESCAPE KEY
+            // =====================================
+
+            document.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (
+                        event.key === "Escape"
+                    ) {
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
 
     </script>
 

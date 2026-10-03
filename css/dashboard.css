@@ -1,6 +1,6 @@
 /* =========================================
    INTERNZO - DASHBOARD CSS
-   MATCHED WITH INTERNSHIPS PAGE
+   RESPONSIVE VERSION
 ========================================= */
 
 * {
@@ -57,7 +57,9 @@ body {
 }
 
 
-/* LOGO */
+/* =========================================
+   LOGO
+========================================= */
 
 .logo {
     color: #ffffff;
@@ -72,7 +74,9 @@ body {
 }
 
 
-/* NAVIGATION */
+/* =========================================
+   NAVIGATION
+========================================= */
 
 .nav-links {
     display: flex;
@@ -91,7 +95,9 @@ body {
 
     font-weight: 500;
 
-    transition: 0.2s ease;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .nav-links a:hover,
@@ -99,8 +105,14 @@ body {
     color: #ffffff;
 }
 
+.nav-links a:hover {
+    transform: translateY(-1px);
+}
 
-/* LOGOUT */
+
+/* =========================================
+   LOGOUT
+========================================= */
 
 .nav-links button {
     border: none;
@@ -109,17 +121,68 @@ body {
 
     color: #a1a1aa;
 
+    font-family: inherit;
+
     font-size: 14px;
 
     font-weight: 500;
 
     cursor: pointer;
 
-    transition: 0.2s ease;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .nav-links button:hover {
     color: #ff5c5c;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   MOBILE MENU BUTTON
+========================================= */
+
+.menu-toggle {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 8px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    z-index: 1100;
+}
+
+.menu-toggle span {
+    display: block;
+
+    width: 24px;
+    height: 2px;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
 }
 
 
@@ -268,7 +331,8 @@ body {
     align-items: center;
     justify-content: center;
 
-    background: rgba(124, 58, 237, 0.12);
+    background:
+        rgba(124, 58, 237, 0.12);
 
     color: #8b5cf6;
 
@@ -432,7 +496,6 @@ a {
 
 /* =========================================
    APPLICATION LIST
-   For recent applications section
 ========================================= */
 
 #recentApplications {
@@ -518,24 +581,168 @@ a {
    TABLET
 ========================================= */
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
 
     .navbar {
-        padding: 16px 5%;
+        padding: 17px 5%;
     }
 
     .nav-links {
-        gap: 14px;
+        gap: 17px;
     }
 
     .nav-links a,
     .nav-links button {
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .logo {
-        font-size: 20px;
+        font-size: 22px;
     }
+
+}
+
+
+/* =========================================
+   MOBILE NAVBAR
+========================================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        min-height: 65px;
+
+        padding: 12px 5%;
+    }
+
+
+    /* Show hamburger */
+
+    .menu-toggle {
+        display: flex;
+    }
+
+
+    /* Mobile navigation */
+
+    .nav-links {
+
+        position: absolute;
+
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+
+        padding: 15px 5% 22px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        background:
+            rgba(5, 5, 5, 0.97);
+
+        backdrop-filter: blur(18px);
+
+        -webkit-backdrop-filter: blur(18px);
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.08);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transform:
+            translateY(-10px);
+
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease,
+            transform 0.3s ease;
+    }
+
+
+    /* Open menu */
+
+    .nav-links.active {
+
+        opacity: 1;
+
+        visibility: visible;
+
+        transform:
+            translateY(0);
+    }
+
+
+    /* Mobile links */
+
+    .nav-links a {
+
+        width: 100%;
+
+        padding: 15px 5px;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.06);
+
+        font-size: 15px;
+
+        transform: none;
+    }
+
+    .nav-links a:hover {
+        transform: none;
+    }
+
+
+    /* Logout */
+
+    .nav-links button {
+
+        width: 100%;
+
+        margin-top: 14px;
+
+        padding: 12px 5px;
+
+        text-align: left;
+
+        font-size: 15px;
+    }
+
+
+    /* Hamburger animation */
+
+    .menu-toggle.active span:nth-child(1) {
+
+        transform:
+            translateY(7px)
+            rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+
+        transform:
+            translateY(-7px)
+            rotate(-45deg);
+    }
+
+
+    /* Dashboard */
 
     .dashboard-container {
         width: 90%;
@@ -551,26 +758,23 @@ a {
 
 
 /* =========================================
-   MOBILE
+   MOBILE CONTENT
 ========================================= */
 
 @media (max-width: 550px) {
 
     .navbar {
-        align-items: flex-start;
+        padding:
+            12px 20px;
+    }
 
-        flex-direction: column;
-
-        gap: 15px;
+    .logo {
+        font-size: 21px;
     }
 
     .nav-links {
-        width: 100%;
-
-        justify-content:
-            space-between;
-
-        gap: 8px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .dashboard-container {
@@ -605,20 +809,12 @@ a {
 @media (max-width: 380px) {
 
     .navbar {
-        padding: 15px 4%;
+        padding:
+            11px 16px;
     }
 
     .logo {
         font-size: 20px;
-    }
-
-    .nav-links {
-        gap: 7px;
-    }
-
-    .nav-links a,
-    .nav-links button {
-        font-size: 11px;
     }
 
     .dashboard-container {

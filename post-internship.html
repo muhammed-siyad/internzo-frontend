@@ -5,16 +5,22 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Post Internship - INTERNZO</title>
 
-    <link rel="stylesheet"
-        href="css/dashboard.css">
+    <link
+        rel="stylesheet"
+        href="css/dashboard.css"
+    >
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
 
     <style>
@@ -54,6 +60,10 @@
             margin-bottom: 12px;
         }
 
+        .page-header h1 span {
+            color: #8b5cf6;
+        }
+
         .page-header p {
             color: #a1a1aa;
             font-size: 15px;
@@ -66,6 +76,7 @@
         ========================================= */
 
         .form-box {
+
             background:
                 linear-gradient(
                     145deg,
@@ -87,6 +98,7 @@
 
             animation:
                 formAppear 0.35s ease both;
+
         }
 
 
@@ -118,8 +130,11 @@
         }
 
         .form-section h2 {
+
             display: flex;
+
             align-items: center;
+
             gap: 10px;
 
             color: #ffffff;
@@ -133,6 +148,7 @@
             border-bottom:
                 1px solid
                 rgba(255, 255, 255, 0.07);
+
         }
 
         .form-section h2 i {
@@ -146,12 +162,14 @@
         ========================================= */
 
         .form-row {
+
             display: grid;
 
             grid-template-columns:
                 repeat(2, minmax(0, 1fr));
 
             gap: 18px;
+
         }
 
 
@@ -164,6 +182,7 @@
         }
 
         .form-group label {
+
             display: block;
 
             color: #d4d4d8;
@@ -173,6 +192,7 @@
             font-weight: 600;
 
             margin-bottom: 8px;
+
         }
 
 
@@ -185,6 +205,8 @@
         .form-group textarea {
 
             width: 100%;
+
+            box-sizing: border-box;
 
             padding: 13px 14px;
 
@@ -318,8 +340,7 @@
 
             min-height: 46px;
 
-            padding:
-                0 24px;
+            padding: 0 24px;
 
         }
 
@@ -360,8 +381,7 @@
 
             background: #6d28d9;
 
-            transform:
-                translateY(-2px);
+            transform: translateY(-2px);
 
         }
 
@@ -419,8 +439,7 @@
             border-color:
                 rgba(255, 255, 255, 0.15);
 
-            transform:
-                translateY(-2px);
+            transform: translateY(-2px);
 
         }
 
@@ -446,7 +465,216 @@
 
 
         /* =========================================
-           RESPONSIVE
+           RESPONSIVE NAVBAR
+        ========================================= */
+
+        .menu-toggle {
+
+            display: none;
+
+            width: 44px;
+
+            height: 44px;
+
+            padding: 0;
+
+            background: transparent;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.10);
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+        }
+
+
+        .menu-toggle span {
+
+            display: block;
+
+            width: 20px;
+
+            height: 2px;
+
+            background: #ffffff;
+
+            border-radius: 5px;
+
+            transition:
+                transform 0.25s ease,
+                opacity 0.25s ease;
+
+        }
+
+
+        /* =========================================
+           MOBILE NAVBAR
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+
+                position: sticky;
+
+                top: 0;
+
+                padding: 14px 5%;
+
+                min-height: 70px;
+
+                box-sizing: border-box;
+
+                z-index: 1000;
+
+            }
+
+
+            .menu-toggle {
+                display: flex;
+            }
+
+
+            .nav-links {
+
+                position: absolute;
+
+                top: calc(100% + 1px);
+
+                left: 5%;
+
+                right: 5%;
+
+                width: auto;
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 5px;
+
+                padding: 12px;
+
+                background:
+                    rgba(10, 10, 10, 0.98);
+
+                border:
+                    1px solid
+                    rgba(255, 255, 255, 0.08);
+
+                border-radius: 14px;
+
+                box-shadow:
+                    0 20px 50px
+                    rgba(0, 0, 0, 0.45);
+
+                opacity: 0;
+
+                visibility: hidden;
+
+                transform:
+                    translateY(-10px);
+
+                transition:
+                    opacity 0.25s ease,
+                    visibility 0.25s ease,
+                    transform 0.25s ease;
+
+                z-index: 1000;
+
+            }
+
+
+            .nav-links.active {
+
+                opacity: 1;
+
+                visibility: visible;
+
+                transform:
+                    translateY(0);
+
+            }
+
+
+            .nav-links a,
+            .nav-links button {
+
+                width: 100%;
+
+                box-sizing: border-box;
+
+                padding: 13px 14px;
+
+                text-align: left;
+
+                border-radius: 9px;
+
+                font-size: 14px;
+
+            }
+
+
+            .nav-links a:hover,
+            .nav-links a.active {
+
+                background:
+                    rgba(124, 58, 237, 0.12);
+
+            }
+
+
+            .nav-links button {
+
+                margin-top: 4px;
+
+            }
+
+
+            /* Hamburger → X */
+
+            .menu-toggle.active span:nth-child(1) {
+
+                transform:
+                    translateY(7px)
+                    rotate(45deg);
+
+            }
+
+
+            .menu-toggle.active span:nth-child(2) {
+
+                opacity: 0;
+
+            }
+
+
+            .menu-toggle.active span:nth-child(3) {
+
+                transform:
+                    translateY(-7px)
+                    rotate(-45deg);
+
+            }
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE FORM
         ========================================= */
 
         @media (max-width: 650px) {
@@ -459,11 +687,13 @@
 
             }
 
+
             .form-box {
 
                 padding: 22px;
 
             }
+
 
             .button-row {
 
@@ -471,15 +701,37 @@
 
             }
 
+
             .button-row button {
 
                 width: 100%;
 
             }
 
+
             .page-header h1 {
 
                 font-size: 36px;
+
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .navbar {
+
+                padding: 13px 4%;
+
+            }
+
+
+            .nav-links {
+
+                left: 4%;
+
+                right: 4%;
 
             }
 
@@ -493,6 +745,7 @@
                 padding: 18px;
 
             }
+
 
             .page-header h1 {
 
@@ -521,43 +774,68 @@
         </div>
 
 
-        <div class="nav-links">
+        <div
+            class="nav-links"
+            id="navLinks"
+        >
 
             <a href="company-dashboard.html">
                 Dashboard
             </a>
 
+
             <a
                 href="post-internship.html"
-                class="active">
-
+                class="active"
+            >
                 Post Internship
-
             </a>
+
 
             <a href="manage-internships.html">
                 My Internships
             </a>
 
+
             <a href="company-applications.html">
                 Applications
             </a>
+
 
             <a href="company-profile.html">
                 Profile
             </a>
 
+
             <button
                 class="logout-btn"
-                onclick="logout()">
-
+                id="logoutBtn"
+                type="button"
+            >
                 Logout
-
             </button>
 
         </div>
 
+
+        <!-- MOBILE MENU BUTTON -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
     </nav>
+
 
 
     <!-- =========================================
@@ -577,15 +855,21 @@
                     COMPANY PORTAL
                 </div>
 
+
                 <h1>
-                    Post <span style="color:#8b5cf6;">Internship</span>
+                    Post
+                    <span>
+                        Internship
+                    </span>
                 </h1>
+
 
                 <p>
                     Create a new internship opportunity for students.
                 </p>
 
             </div>
+
 
 
             <!-- =========================================
@@ -706,6 +990,7 @@
                         </div>
 
                     </div>
+
 
 
                     <!-- =====================================
@@ -850,6 +1135,7 @@
                     </div>
 
 
+
                     <!-- =====================================
                          BUTTONS
                     ===================================== -->
@@ -859,7 +1145,8 @@
                         <button
                             type="submit"
                             class="post-btn"
-                            id="postButton">
+                            id="postButton"
+                        >
 
                             <i class="fa-solid fa-paper-plane"></i>
 
@@ -871,7 +1158,8 @@
                         <button
                             type="button"
                             class="cancel-btn"
-                            onclick="window.location.href='company-dashboard.html'">
+                            onclick="window.location.href='company-dashboard.html'"
+                        >
 
                             <i class="fa-solid fa-xmark"></i>
 
@@ -891,6 +1179,7 @@
     </main>
 
 
+
     <!-- =========================================
          API HELPER
     ========================================= -->
@@ -899,6 +1188,156 @@
 
 
     <script>
+
+
+        // =========================================
+        // MOBILE NAVIGATION
+        // =========================================
+
+        const menuToggle =
+            document.getElementById(
+                "menuToggle"
+            );
+
+        const navLinks =
+            document.getElementById(
+                "navLinks"
+            );
+
+
+        if (
+            menuToggle &&
+            navLinks
+        ) {
+
+            // Toggle menu
+
+            menuToggle.addEventListener(
+                "click",
+                function () {
+
+                    menuToggle.classList.toggle(
+                        "active"
+                    );
+
+                    navLinks.classList.toggle(
+                        "active"
+                    );
+
+
+                    const isOpen =
+                        navLinks.classList.contains(
+                            "active"
+                        );
+
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        isOpen
+                    );
+
+                }
+            );
+
+
+            // Close after clicking a link
+
+            document
+                .querySelectorAll(
+                    ".nav-links a"
+                )
+                .forEach(
+                    function (link) {
+
+                        link.addEventListener(
+                            "click",
+                            function () {
+
+                                menuToggle.classList.remove(
+                                    "active"
+                                );
+
+                                navLinks.classList.remove(
+                                    "active"
+                                );
+
+                                menuToggle.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+            // Close when clicking outside
+
+            document.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        !navLinks.contains(
+                            event.target
+                        ) &&
+                        !menuToggle.contains(
+                            event.target
+                        )
+                    ) {
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            // Close with Escape
+
+            document.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (
+                        event.key === "Escape"
+                    ) {
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
 
         // =========================================
         // CHECK LOGIN
@@ -911,12 +1350,16 @@
             localStorage.getItem("user");
 
 
-        if (!token || !userData) {
+        if (
+            !token ||
+            !userData
+        ) {
 
             window.location.href =
                 "login.html";
 
         }
+
 
 
         // =========================================
@@ -938,6 +1381,7 @@
                 error
             );
 
+
             localStorage.removeItem(
                 "token"
             );
@@ -946,10 +1390,12 @@
                 "user"
             );
 
+
             window.location.href =
                 "login.html";
 
         }
+
 
 
         // =========================================
@@ -961,7 +1407,9 @@
             user.role !== "company"
         ) {
 
-            if (user.role === "student") {
+            if (
+                user.role === "student"
+            ) {
 
                 window.location.href =
                     "student-dashboard.html";
@@ -983,6 +1431,7 @@
         }
 
 
+
         // =========================================
         // AUTO FILL COMPANY NAME
         // =========================================
@@ -997,12 +1446,15 @@
         }
 
 
+
         // =========================================
         // FORM SUBMIT
         // =========================================
 
         document
-            .getElementById("internshipForm")
+            .getElementById(
+                "internshipForm"
+            )
             .addEventListener(
                 "submit",
                 async function(event) {
@@ -1086,6 +1538,7 @@
                         ).value.trim();
 
 
+
                     // =================================
                     // VALIDATION
                     // =================================
@@ -1111,6 +1564,7 @@
                     }
 
 
+
                     try {
 
                         // =============================
@@ -1120,13 +1574,16 @@
                         postButton.disabled =
                             true;
 
+
                         postButton.innerHTML = `
                             <i class="fa-solid fa-spinner fa-spin"></i>
                             Posting...
                         `;
 
+
                         message.textContent =
                             "";
+
 
 
                         // =============================
@@ -1136,6 +1593,7 @@
                         await apiFetch(
                             "/api/internships",
                             {
+
                                 method: "POST",
 
                                 body:
@@ -1173,8 +1631,10 @@
                                             requirements
 
                                     })
+
                             }
                         );
+
 
 
                         // =============================
@@ -1184,8 +1644,10 @@
                         message.style.color =
                             "#4ade80";
 
+
                         message.textContent =
                             "Internship posted successfully!";
+
 
 
                         // Reset form
@@ -1197,7 +1659,8 @@
                             .reset();
 
 
-                        // Put company name back
+
+                        // Restore company name
 
                         document.getElementById(
                             "companyName"
@@ -1205,16 +1668,19 @@
                             user.name || "";
 
 
+
                         // Clear internship cache
 
                         if (
-                            typeof clearInternshipCache ===
+                            typeof
+                            clearInternshipCache ===
                             "function"
                         ) {
 
                             clearInternshipCache();
 
                         }
+
 
 
                     } catch (error) {
@@ -1228,6 +1694,7 @@
                         message.style.color =
                             "#f87171";
 
+
                         message.textContent =
                             error.message ||
                             "Unable to post internship.";
@@ -1236,6 +1703,7 @@
 
                         postButton.disabled =
                             false;
+
 
                         postButton.innerHTML = `
                             <i class="fa-solid fa-paper-plane"></i>
@@ -1246,6 +1714,7 @@
 
                 }
             );
+
 
 
         // =========================================
@@ -1264,6 +1733,27 @@
 
             window.location.href =
                 "login.html";
+
+        }
+
+
+
+        // =========================================
+        // LOGOUT BUTTON
+        // =========================================
+
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+
+        if (logoutBtn) {
+
+            logoutBtn.addEventListener(
+                "click",
+                logout
+            );
 
         }
 

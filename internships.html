@@ -2,17 +2,21 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>INTERNZO - Internships</title>
 
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet"
+        href="css/dashboard.css">
 
     <link
         rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 
     <style>
 
@@ -91,6 +95,7 @@
             font-size: 14px;
 
             transition: 0.2s ease;
+            box-sizing: border-box;
         }
 
         #searchInput::placeholder {
@@ -145,7 +150,8 @@
 
         #internshipList {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
             gap: 20px;
         }
 
@@ -159,18 +165,27 @@
                     #0b0b0b
                 );
 
-            border: 1px solid rgba(255,255,255,0.08);
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
             border-radius: 20px;
 
             transition: 0.25s ease;
 
-            animation: cardAppear 0.35s ease both;
+            animation:
+                cardAppear 0.35s ease both;
         }
 
         .internship-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(124,58,237,0.45);
-            box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+
+            border-color:
+                rgba(124,58,237,0.45);
+
+            box-shadow:
+                0 18px 50px
+                rgba(0,0,0,0.35);
         }
 
         @keyframes cardAppear {
@@ -210,10 +225,15 @@
 
             flex-shrink: 0;
 
-            background: rgba(124,58,237,0.12);
+            background:
+                rgba(124,58,237,0.12);
+
             color: #8b5cf6;
 
-            border: 1px solid rgba(124,58,237,0.18);
+            border:
+                1px solid
+                rgba(124,58,237,0.18);
+
             border-radius: 12px;
 
             font-size: 20px;
@@ -262,7 +282,9 @@
 
         .internship-details {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0,1fr));
+            grid-template-columns:
+                repeat(2, minmax(0,1fr));
+
             gap: 10px;
 
             margin-bottom: 20px;
@@ -271,9 +293,13 @@
         .detail-item {
             padding: 11px 12px;
 
-            background: rgba(255,255,255,0.025);
+            background:
+                rgba(255,255,255,0.025);
 
-            border: 1px solid rgba(255,255,255,0.05);
+            border:
+                1px solid
+                rgba(255,255,255,0.05);
+
             border-radius: 10px;
         }
 
@@ -365,9 +391,15 @@
         }
 
         .apply-btn.applied {
-            background: rgba(74,222,128,0.12);
+            background:
+                rgba(74,222,128,0.12);
+
             color: #4ade80;
-            border: 1px solid rgba(74,222,128,0.2);
+
+            border:
+                1px solid
+                rgba(74,222,128,0.2);
+
             cursor: default;
         }
 
@@ -384,7 +416,10 @@
             padding: 70px 20px;
             text-align: center;
 
-            border: 1px solid rgba(255,255,255,0.07);
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
             border-radius: 20px;
 
             background: #0d0d0d;
@@ -417,7 +452,10 @@
 
             text-align: center;
 
-            border: 1px solid rgba(255,255,255,0.07);
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
             border-radius: 20px;
 
             background: #0d0d0d;
@@ -466,10 +504,15 @@
             background: #151515;
             color: #ffffff;
 
-            border: 1px solid rgba(255,255,255,0.08);
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
             border-radius: 12px;
 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.4);
 
             font-size: 13px;
             line-height: 1.5;
@@ -477,7 +520,10 @@
             z-index: 9999;
 
             opacity: 0;
-            transform: translateY(15px);
+
+            transform:
+                translateY(15px);
+
             pointer-events: none;
 
             transition: 0.25s ease;
@@ -489,19 +535,230 @@
         }
 
         #toast.success {
-            border-color: rgba(74,222,128,0.3);
+            border-color:
+                rgba(74,222,128,0.3);
         }
 
         #toast.error {
-            border-color: rgba(248,113,113,0.3);
+            border-color:
+                rgba(248,113,113,0.3);
         }
 
 
         /* ==========================================
-           RESPONSIVE
+           MOBILE MENU BUTTON
         ========================================== */
 
-        @media (max-width: 850px) {
+        .menu-toggle {
+
+            display: none;
+
+            width: 44px;
+            height: 44px;
+
+            padding: 0;
+
+            background: transparent;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+        }
+
+
+        .menu-toggle span {
+
+            display: block;
+
+            width: 20px;
+            height: 2px;
+
+            background: #ffffff;
+
+            border-radius: 5px;
+
+            transition:
+                transform 0.25s ease,
+                opacity 0.25s ease;
+
+        }
+
+
+        /* ==========================================
+           RESPONSIVE NAVBAR
+        ========================================== */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+
+                position: sticky;
+
+                top: 0;
+
+                z-index: 1000;
+
+                padding:
+                    14px 5%;
+
+                min-height: 70px;
+
+                box-sizing: border-box;
+
+            }
+
+
+            .menu-toggle {
+
+                display: flex;
+
+            }
+
+
+            .nav-links {
+
+                position: absolute;
+
+                top:
+                    calc(100% + 1px);
+
+                left: 5%;
+                right: 5%;
+
+                width: auto;
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 5px;
+
+                padding: 12px;
+
+                background:
+                    rgba(10,10,10,0.98);
+
+                border:
+                    1px solid
+                    rgba(255,255,255,0.08);
+
+                border-radius: 14px;
+
+                box-shadow:
+                    0 20px 50px
+                    rgba(0,0,0,0.45);
+
+                opacity: 0;
+
+                visibility: hidden;
+
+                transform:
+                    translateY(-10px);
+
+                transition:
+                    opacity 0.25s ease,
+                    visibility 0.25s ease,
+                    transform 0.25s ease;
+
+            }
+
+
+            .nav-links.active {
+
+                opacity: 1;
+
+                visibility: visible;
+
+                transform:
+                    translateY(0);
+
+            }
+
+
+            .nav-links a,
+            .nav-links button {
+
+                width: 100%;
+
+                box-sizing: border-box;
+
+                padding:
+                    13px 14px;
+
+                text-align: left;
+
+                border-radius: 9px;
+
+                font-size: 14px;
+
+            }
+
+
+            .nav-links a:hover,
+            .nav-links a.active {
+
+                background:
+                    rgba(124,58,237,0.12);
+
+            }
+
+
+            .nav-links button {
+
+                margin-top: 4px;
+
+            }
+
+
+            /* HAMBURGER -> X */
+
+            .menu-toggle.active
+            span:nth-child(1) {
+
+                transform:
+                    translateY(7px)
+                    rotate(45deg);
+
+            }
+
+
+            .menu-toggle.active
+            span:nth-child(2) {
+
+                opacity: 0;
+
+            }
+
+
+            .menu-toggle.active
+            span:nth-child(3) {
+
+                transform:
+                    translateY(-7px)
+                    rotate(-45deg);
+
+            }
+
+
+            /* INTERNSHIP */
+
+            .internship-page {
+                padding-top: 45px;
+            }
 
             #internshipList {
                 grid-template-columns: 1fr;
@@ -509,39 +766,85 @@
 
         }
 
+
+        /* ==========================================
+           SMALL MOBILE
+        ========================================== */
+
         @media (max-width: 600px) {
 
-            .internship-page {
-                width: 90%;
-                padding-top: 45px;
+            .navbar {
+
+                padding:
+                    13px 4%;
+
             }
+
+
+            .nav-links {
+
+                left: 4%;
+                right: 4%;
+
+            }
+
+
+            .internship-page {
+
+                width: 90%;
+
+                padding-top: 45px;
+
+            }
+
 
             .internship-toolbar {
+
                 flex-direction: column;
+
                 align-items: stretch;
+
             }
+
 
             #refreshBtn {
+
                 width: 100%;
+
             }
+
 
             .internship-details {
+
                 grid-template-columns: 1fr;
+
             }
+
 
             .internship-card {
+
                 padding: 20px;
+
             }
+
 
             .page-header h1 {
+
                 font-size: 38px;
+
             }
 
+
             #toast {
+
                 left: 20px;
+
                 right: 20px;
+
                 bottom: 20px;
+
                 max-width: none;
+
             }
 
         }
@@ -564,29 +867,60 @@
             INTERNZO
         </div>
 
-        <div class="nav-links">
+
+        <div
+            class="nav-links"
+            id="navLinks">
 
             <a href="student-dashboard.html">
                 Dashboard
             </a>
 
-            <a href="internships.html" class="active">
+
+            <a
+                href="internships.html"
+                class="active">
+
                 Internships
+
             </a>
+
 
             <a href="my-applications.html">
                 My Applications
             </a>
 
+
             <a href="student-profile.html">
                 Profile
             </a>
 
-            <button type="button" id="logoutBtn">
+
+            <button
+                type="button"
+                id="logoutBtn">
+
                 Logout
+
             </button>
 
         </div>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Toggle navigation"
+            aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
 
     </nav>
 
@@ -598,15 +932,12 @@
     <main class="internship-page">
 
 
-        <!-- ======================================
-             HEADER
-        ======================================= -->
-
         <section class="page-header">
 
             <h1>
                 Find Your <span>Internship</span>
             </h1>
+
 
             <p>
                 Explore internship opportunities posted by companies
@@ -626,6 +957,7 @@
 
                 <i class="fa-solid fa-magnifying-glass"></i>
 
+
                 <input
                     type="search"
                     id="searchInput"
@@ -638,8 +970,7 @@
 
             <button
                 type="button"
-                id="refreshBtn"
-            >
+                id="refreshBtn">
 
                 <i class="fa-solid fa-rotate"></i>
 
@@ -656,14 +987,15 @@
 
         <div
             id="loadingState"
-            class="loading-container"
-        >
+            class="loading-container">
 
             <i class="fa-solid fa-spinner fa-spin"></i>
+
 
             <h3>
                 Loading internships...
             </h3>
+
 
             <p>
                 Connecting to INTERNZO server.
@@ -679,8 +1011,7 @@
         <div
             id="errorState"
             class="state-container"
-            style="display: none;"
-        >
+            style="display: none;">
 
             <div class="state-icon">
 
@@ -688,19 +1019,23 @@
 
             </div>
 
+
             <h3>
                 Unable to load internships
             </h3>
+
 
             <p id="errorMessage">
                 Something went wrong while loading internships.
             </p>
 
+
             <button
                 type="button"
-                id="retryBtn"
-            >
+                id="retryBtn">
+
                 Try Again
+
             </button>
 
         </div>
@@ -713,8 +1048,7 @@
         <div
             id="emptyState"
             class="state-container"
-            style="display: none;"
-        >
+            style="display: none;">
 
             <div class="state-icon">
 
@@ -722,9 +1056,11 @@
 
             </div>
 
+
             <h3>
                 No internships found
             </h3>
+
 
             <p>
                 There are currently no internship opportunities available.
@@ -739,8 +1075,7 @@
 
         <section
             id="internshipSection"
-            style="display: none;"
-        >
+            style="display: none;">
 
             <div id="internshipList"></div>
 
@@ -771,24 +1106,168 @@
     <script>
 
         // ==========================================
+        // MOBILE NAVBAR
+        // ==========================================
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        if (menuToggle && navLinks) {
+
+            menuToggle.addEventListener(
+                "click",
+                function () {
+
+                    menuToggle.classList.toggle(
+                        "active"
+                    );
+
+                    navLinks.classList.toggle(
+                        "active"
+                    );
+
+
+                    const isOpen =
+                        navLinks.classList.contains(
+                            "active"
+                        );
+
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        isOpen
+                    );
+
+                }
+            );
+
+
+            // Close after clicking a link
+
+            document
+                .querySelectorAll(
+                    ".nav-links a"
+                )
+                .forEach(
+                    function (link) {
+
+                        link.addEventListener(
+                            "click",
+                            function () {
+
+                                menuToggle.classList.remove(
+                                    "active"
+                                );
+
+                                navLinks.classList.remove(
+                                    "active"
+                                );
+
+                                menuToggle.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+            // Close when clicking outside
+
+            document.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        !navLinks.contains(
+                            event.target
+                        ) &&
+                        !menuToggle.contains(
+                            event.target
+                        )
+                    ) {
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            // Close with Escape
+
+            document.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (
+                        event.key === "Escape"
+                    ) {
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // ==========================================
         // AUTH CHECK
         // ==========================================
 
-        const token = localStorage.getItem("token");
-        const storedUser = localStorage.getItem("user");
+        const token =
+            localStorage.getItem("token");
+
+        const storedUser =
+            localStorage.getItem("user");
 
         let currentUser = null;
 
 
         if (!token || !storedUser) {
 
-            window.location.href = "login.html";
+            window.location.href =
+                "login.html";
 
         } else {
 
             try {
 
-                currentUser = JSON.parse(storedUser);
+                currentUser =
+                    JSON.parse(storedUser);
 
             } catch (error) {
 
@@ -800,7 +1279,8 @@
                 localStorage.removeItem("token");
                 localStorage.removeItem("user");
 
-                window.location.href = "login.html";
+                window.location.href =
+                    "login.html";
 
             }
 
@@ -813,14 +1293,20 @@
 
         if (currentUser) {
 
-            if (currentUser.role !== "student") {
+            if (
+                currentUser.role !== "student"
+            ) {
 
-                if (currentUser.role === "company") {
+                if (
+                    currentUser.role === "company"
+                ) {
 
                     window.location.href =
                         "company-dashboard.html";
 
-                } else if (currentUser.role === "admin") {
+                } else if (
+                    currentUser.role === "admin"
+                ) {
 
                     window.location.href =
                         "admin-dashboard.html";
@@ -845,37 +1331,59 @@
         // ==========================================
 
         const loadingState =
-            document.getElementById("loadingState");
+            document.getElementById(
+                "loadingState"
+            );
 
         const errorState =
-            document.getElementById("errorState");
+            document.getElementById(
+                "errorState"
+            );
 
         const errorMessage =
-            document.getElementById("errorMessage");
+            document.getElementById(
+                "errorMessage"
+            );
 
         const emptyState =
-            document.getElementById("emptyState");
+            document.getElementById(
+                "emptyState"
+            );
 
         const internshipSection =
-            document.getElementById("internshipSection");
+            document.getElementById(
+                "internshipSection"
+            );
 
         const internshipList =
-            document.getElementById("internshipList");
+            document.getElementById(
+                "internshipList"
+            );
 
         const searchInput =
-            document.getElementById("searchInput");
+            document.getElementById(
+                "searchInput"
+            );
 
         const refreshBtn =
-            document.getElementById("refreshBtn");
+            document.getElementById(
+                "refreshBtn"
+            );
 
         const retryBtn =
-            document.getElementById("retryBtn");
+            document.getElementById(
+                "retryBtn"
+            );
 
         const logoutBtn =
-            document.getElementById("logoutBtn");
+            document.getElementById(
+                "logoutBtn"
+            );
 
         const toast =
-            document.getElementById("toast");
+            document.getElementById(
+                "toast"
+            );
 
 
         // ==========================================
@@ -884,14 +1392,18 @@
 
         let allInternships = [];
 
-        let appliedInternshipIds = new Set();
+        let appliedInternshipIds =
+            new Set();
 
 
         // ==========================================
         // TOAST
         // ==========================================
 
-        function showToast(text, type = "success") {
+        function showToast(
+            text,
+            type = "success"
+        ) {
 
             toast.textContent = text;
 
@@ -900,14 +1412,24 @@
             toast.classList.add("show");
 
             if (type) {
-                toast.classList.add(type);
+
+                toast.classList.add(
+                    type
+                );
+
             }
 
-            setTimeout(function () {
 
-                toast.classList.remove("show");
+            setTimeout(
+                function () {
 
-            }, 3500);
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                3500
+            );
 
         }
 
@@ -922,15 +1444,33 @@
                 value === null ||
                 value === undefined
             ) {
+
                 return "";
+
             }
 
+
             return String(value)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
 
         }
 
@@ -942,18 +1482,26 @@
         function formatDate(date) {
 
             if (!date) {
+
                 return "Not specified";
+
             }
 
-            const parsedDate = new Date(date);
+
+            const parsedDate =
+                new Date(date);
+
 
             if (
                 Number.isNaN(
                     parsedDate.getTime()
                 )
             ) {
+
                 return "Not specified";
+
             }
+
 
             return parsedDate.toLocaleDateString(
                 "en-IN",
@@ -971,7 +1519,9 @@
         // GET INTERNSHIP ID
         // ==========================================
 
-        function getInternshipId(internship) {
+        function getInternshipId(
+            internship
+        ) {
 
             return (
                 internship._id ||
@@ -987,32 +1537,54 @@
         // GET DATA ARRAY
         // ==========================================
 
-        function extractInternships(data) {
+        function extractInternships(
+            data
+        ) {
 
-            if (Array.isArray(data)) {
+            if (
+                Array.isArray(data)
+            ) {
+
                 return data;
+
             }
+
 
             if (
                 data &&
-                Array.isArray(data.internships)
+                Array.isArray(
+                    data.internships
+                )
             ) {
+
                 return data.internships;
+
             }
+
 
             if (
                 data &&
-                Array.isArray(data.data)
+                Array.isArray(
+                    data.data
+                )
             ) {
+
                 return data.data;
+
             }
+
 
             if (
                 data &&
-                Array.isArray(data.results)
+                Array.isArray(
+                    data.results
+                )
             ) {
+
                 return data.results;
+
             }
+
 
             return [];
 
@@ -1025,13 +1597,17 @@
 
         function hideStates() {
 
-            loadingState.style.display = "none";
+            loadingState.style.display =
+                "none";
 
-            errorState.style.display = "none";
+            errorState.style.display =
+                "none";
 
-            emptyState.style.display = "none";
+            emptyState.style.display =
+                "none";
 
-            internshipSection.style.display = "none";
+            internshipSection.style.display =
+                "none";
 
         }
 
@@ -1044,72 +1620,90 @@
 
             try {
 
-                const data = await apiFetch(
-                    "/api/applications/my-applications"
-                );
+                const data =
+                    await apiFetch(
+                        "/api/applications/my-applications"
+                    );
+
 
                 let applications = [];
 
-                if (Array.isArray(data)) {
+
+                if (
+                    Array.isArray(data)
+                ) {
 
                     applications = data;
 
                 } else if (
                     data &&
-                    Array.isArray(data.applications)
+                    Array.isArray(
+                        data.applications
+                    )
                 ) {
 
-                    applications = data.applications;
+                    applications =
+                        data.applications;
 
                 } else if (
                     data &&
-                    Array.isArray(data.data)
+                    Array.isArray(
+                        data.data
+                    )
                 ) {
 
-                    applications = data.data;
+                    applications =
+                        data.data;
 
                 }
 
 
-                appliedInternshipIds = new Set();
+                appliedInternshipIds =
+                    new Set();
 
 
-                applications.forEach(function (application) {
+                applications.forEach(
+                    function (application) {
 
-                    const internship =
-                        application.internship ||
-                        application.internshipId;
-
-
-                    let id = "";
+                        const internship =
+                            application.internship ||
+                            application.internshipId;
 
 
-                    if (
-                        internship &&
-                        typeof internship === "object"
-                    ) {
+                        let id = "";
 
-                        id =
-                            internship._id ||
-                            internship.id ||
-                            "";
 
-                    } else {
+                        if (
+                            internship &&
+                            typeof internship ===
+                            "object"
+                        ) {
 
-                        id = internship || "";
+                            id =
+                                internship._id ||
+                                internship.id ||
+                                "";
+
+                        } else {
+
+                            id =
+                                internship ||
+                                "";
+
+                        }
+
+
+                        if (id) {
+
+                            appliedInternshipIds.add(
+                                String(id)
+                            );
+
+                        }
 
                     }
+                );
 
-
-                    if (id) {
-
-                        appliedInternshipIds.add(
-                            String(id)
-                        );
-
-                    }
-
-                });
 
             } catch (error) {
 
@@ -1133,18 +1727,17 @@
 
             hideStates();
 
-            loadingState.style.display = "block";
+            loadingState.style.display =
+                "block";
 
-            refreshBtn.disabled = true;
+            refreshBtn.disabled =
+                true;
+
 
             try {
 
                 let data;
 
-
-                // ==================================
-                // USE CACHE HELPER
-                // ==================================
 
                 if (
                     typeof getInternships ===
@@ -1167,12 +1760,10 @@
 
 
                 allInternships =
-                    extractInternships(data);
+                    extractInternships(
+                        data
+                    );
 
-
-                // ==================================
-                // APPLICATIONS
-                // ==================================
 
                 await loadAppliedApplications();
 
@@ -1180,14 +1771,9 @@
                 loadingState.style.display =
                     "none";
 
-
                 refreshBtn.disabled =
                     false;
 
-
-                // ==================================
-                // EMPTY
-                // ==================================
 
                 if (
                     allInternships.length === 0
@@ -1241,7 +1827,8 @@
             internships
         ) {
 
-            internshipList.innerHTML = "";
+            internshipList.innerHTML =
+                "";
 
 
             if (
@@ -1268,7 +1855,10 @@
 
 
             internships.forEach(
-                function (internship, index) {
+                function (
+                    internship,
+                    index
+                ) {
 
                     const id =
                         getInternshipId(
@@ -1368,6 +1958,7 @@
                                 <i class="fa-solid fa-briefcase"></i>
 
                             </div>
+
 
                             <h2>
                                 ${title}
@@ -1563,7 +2154,8 @@
 
             if (
                 !currentUser ||
-                currentUser.role !== "student"
+                currentUser.role !==
+                "student"
             ) {
 
                 showToast(
@@ -1577,6 +2169,7 @@
 
 
             button.disabled = true;
+
 
             button.innerHTML = `
 
@@ -1594,10 +2187,11 @@
                     {
                         method: "POST",
 
-                        body: JSON.stringify({
-                            internshipId:
-                                internshipId
-                        })
+                        body:
+                            JSON.stringify({
+                                internshipId:
+                                    internshipId
+                            })
                     }
                 );
 
@@ -1610,6 +2204,7 @@
                 button.classList.add(
                     "applied"
                 );
+
 
                 button.innerHTML = `
 
@@ -1634,7 +2229,8 @@
                 );
 
 
-                button.disabled = false;
+                button.disabled =
+                    false;
 
 
                 button.innerHTML = `
@@ -1672,7 +2268,9 @@
 
 
                 if (!button) {
+
                     return;
+
                 }
 
 
@@ -1716,7 +2314,9 @@
 
                 const filtered =
                     allInternships.filter(
-                        function (internship) {
+                        function (
+                            internship
+                        ) {
 
                             const searchableText = [
 

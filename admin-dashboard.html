@@ -2,14 +2,20 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>INTERNZO - Admin Dashboard</title>
 
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet"
+        href="css/dashboard.css">
+
 
     <style>
+
         /* ==========================================
            ADMIN DASHBOARD
         ========================================== */
@@ -35,40 +41,63 @@
             line-height: 1.6;
         }
 
+
         /* ==========================================
            STATS
         ========================================== */
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 18px;
+
             margin-bottom: 45px;
         }
 
         .stat-card {
             padding: 24px;
-            background: linear-gradient(145deg, #111111, #0b0b0b);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #0b0b0b
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
             border-radius: 18px;
+
             transition: 0.25s ease;
         }
 
         .stat-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(124, 58, 237, 0.4);
+            transform:
+                translateY(-4px);
+
+            border-color:
+                rgba(124, 58, 237, 0.4);
         }
 
         .stat-card p {
             color: #71717a;
+
             font-size: 13px;
+
             margin-bottom: 10px;
         }
 
         .stat-card h2 {
             color: #ffffff;
+
             font-size: 32px;
         }
+
 
         /* ==========================================
            SECTION
@@ -80,32 +109,52 @@
 
         .admin-section-header {
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             gap: 20px;
+
             margin-bottom: 20px;
         }
 
         .admin-section-header h2 {
             color: #ffffff;
+
             font-size: 24px;
         }
 
         .refresh-btn {
             width: auto;
+
             min-height: 40px;
+
             padding: 9px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.1);
+
             background: #111111;
+
             color: #d4d4d8;
+
             border-radius: 10px;
+
             font-size: 13px;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
         }
 
         .refresh-btn:hover {
             background: #181818;
+
             color: #ffffff;
         }
+
 
         /* ==========================================
            INTERNSHIP GRID
@@ -113,95 +162,149 @@
 
         .internship-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
             gap: 20px;
         }
 
         .internship-card {
             padding: 24px;
-            background: linear-gradient(145deg, #111111, #0b0b0b);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #0b0b0b
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
             border-radius: 20px;
+
             transition: 0.25s ease;
         }
 
         .internship-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(124, 58, 237, 0.35);
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+            transform:
+                translateY(-4px);
+
+            border-color:
+                rgba(124, 58, 237, 0.35);
+
+            box-shadow:
+                0 18px 50px
+                rgba(0, 0, 0, 0.3);
         }
 
         .internship-top {
             display: flex;
+
             align-items: flex-start;
+
             justify-content: space-between;
+
             gap: 15px;
+
             margin-bottom: 18px;
         }
 
         .internship-top h3 {
             color: #ffffff;
+
             font-size: 19px;
+
             line-height: 1.35;
         }
 
         .status-badge {
             flex-shrink: 0;
+
             padding: 6px 10px;
+
             border-radius: 8px;
+
             font-size: 11px;
+
             font-weight: 700;
         }
 
         .status-pending {
-            background: rgba(234, 179, 8, 0.12);
+            background:
+                rgba(234, 179, 8, 0.12);
+
             color: #facc15;
         }
 
         .status-approved {
-            background: rgba(34, 197, 94, 0.12);
+            background:
+                rgba(34, 197, 94, 0.12);
+
             color: #4ade80;
         }
 
         .status-rejected {
-            background: rgba(239, 68, 68, 0.12);
+            background:
+                rgba(239, 68, 68, 0.12);
+
             color: #f87171;
         }
 
         .internship-company {
             color: #a78bfa;
+
             font-size: 14px;
+
             font-weight: 600;
+
             margin-bottom: 16px;
         }
 
         .internship-details {
             display: grid;
+
             gap: 9px;
+
             margin-bottom: 20px;
         }
 
         .detail-row {
             display: flex;
+
             gap: 8px;
+
             color: #a1a1aa;
+
             font-size: 13px;
+
             line-height: 1.5;
         }
 
         .detail-row strong {
             color: #d4d4d8;
+
             font-weight: 600;
         }
 
         .internship-description {
             padding-top: 18px;
-            border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+            border-top:
+                1px solid
+                rgba(255, 255, 255, 0.07);
+
             color: #71717a;
+
             font-size: 13px;
+
             line-height: 1.65;
+
             margin-bottom: 20px;
         }
+
 
         /* ==========================================
            ACTIONS
@@ -209,15 +312,22 @@
 
         .admin-actions {
             display: flex;
+
             gap: 10px;
         }
 
         .admin-actions button {
             flex: 1;
+
             min-height: 42px;
+
             margin: 0;
+
             border-radius: 10px;
+
             font-size: 13px;
+
+            cursor: pointer;
         }
 
         .approve-btn {
@@ -238,13 +348,18 @@
 
         .remove-btn {
             background: #27272a;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.1);
         }
 
         .remove-btn:hover {
             background: #dc2626;
+
             border-color: #dc2626;
         }
+
 
         /* ==========================================
            EMPTY / LOADING
@@ -252,23 +367,82 @@
 
         .admin-message {
             grid-column: 1 / -1;
+
             padding: 60px 20px;
+
             text-align: center;
+
             background: #0d0d0d;
-            border: 1px solid rgba(255, 255, 255, 0.07);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.07);
+
             border-radius: 20px;
+
             color: #71717a;
         }
 
         .admin-message h3 {
             color: #ffffff;
+
             margin-bottom: 8px;
         }
 
         .admin-message p {
             color: #71717a;
+
             font-size: 14px;
         }
+
+
+        /* ==========================================
+           MOBILE MENU BUTTON
+        ========================================== */
+
+        .menu-toggle {
+            display: none;
+
+            width: 44px;
+            height: 44px;
+
+            padding: 0;
+
+            background: transparent;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.10);
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            display: block;
+
+            width: 20px;
+
+            height: 2px;
+
+            background: #ffffff;
+
+            border-radius: 5px;
+
+            transition:
+                transform 0.25s ease,
+                opacity 0.25s ease;
+        }
+
 
         /* ==========================================
            RESPONSIVE
@@ -283,31 +457,222 @@
             .internship-grid {
                 grid-template-columns: 1fr;
             }
+
         }
+
+
+        /* ==========================================
+           MOBILE NAVBAR
+        ========================================== */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                position: sticky;
+
+                top: 0;
+
+                padding: 14px 5%;
+
+                min-height: 70px;
+
+                box-sizing: border-box;
+            }
+
+
+            .logo {
+                font-size: 20px;
+            }
+
+
+            .menu-toggle {
+                display: flex;
+            }
+
+
+            .nav-links {
+                position: absolute;
+
+                top: calc(100% + 1px);
+
+                left: 5%;
+
+                right: 5%;
+
+                width: auto;
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 5px;
+
+                padding: 12px;
+
+                background:
+                    rgba(10, 10, 10, 0.98);
+
+                border:
+                    1px solid
+                    rgba(255, 255, 255, 0.08);
+
+                border-radius: 14px;
+
+                box-shadow:
+                    0 20px 50px
+                    rgba(0, 0, 0, 0.45);
+
+                opacity: 0;
+
+                visibility: hidden;
+
+                transform:
+                    translateY(-10px);
+
+                transition:
+                    opacity 0.25s ease,
+                    visibility 0.25s ease,
+                    transform 0.25s ease;
+            }
+
+
+            .nav-links.active {
+                opacity: 1;
+
+                visibility: visible;
+
+                transform:
+                    translateY(0);
+            }
+
+
+            .nav-links a,
+            .nav-links button {
+                width: 100%;
+
+                box-sizing: border-box;
+
+                padding: 13px 14px;
+
+                text-align: left;
+
+                border-radius: 9px;
+
+                font-size: 14px;
+            }
+
+
+            .nav-links a:hover,
+            .nav-links a.active {
+                background:
+                    rgba(124, 58, 237, 0.12);
+            }
+
+
+            .nav-links button {
+                margin-top: 4px;
+            }
+
+
+            /* HAMBURGER -> X */
+
+            .menu-toggle.active span:nth-child(1) {
+                transform:
+                    translateY(7px)
+                    rotate(45deg);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform:
+                    translateY(-7px)
+                    rotate(-45deg);
+            }
+
+        }
+
+
+        /* ==========================================
+           SMALL MOBILE
+        ========================================== */
 
         @media (max-width: 550px) {
 
+            .navbar {
+                padding: 13px 4%;
+            }
+
+
+            .nav-links {
+                left: 4%;
+
+                right: 4%;
+            }
+
+
             .admin-section-header {
                 align-items: flex-start;
+
                 flex-direction: column;
             }
+
 
             .refresh-btn {
                 width: 100%;
             }
 
+
             .internship-top {
                 flex-direction: column;
             }
 
+
             .admin-actions {
                 flex-direction: column;
             }
+
+
+            .internship-card {
+                padding: 20px;
+            }
+
+
+            .admin-header {
+                margin-bottom: 30px;
+            }
+
+
+            .admin-header h1 {
+                letter-spacing: -1.5px;
+            }
+
         }
+
+
+        @media (max-width: 380px) {
+
+            .internship-card {
+                padding: 16px;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+        }
+
     </style>
+
 </head>
 
+
 <body>
+
 
     <!-- ==========================================
          NAVBAR
@@ -319,17 +684,43 @@
             INTERNZO
         </div>
 
-        <div class="nav-links">
 
-            <a href="admin-dashboard.html" class="active">
+        <div
+            class="nav-links"
+            id="navLinks">
+
+            <a
+                href="admin-dashboard.html"
+                class="active">
+
                 Dashboard
+
             </a>
 
-            <button onclick="logout()">
+
+            <button
+                onclick="logout()">
+
                 Logout
+
             </button>
 
         </div>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Toggle navigation"
+            aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
 
     </nav>
 
@@ -340,14 +731,21 @@
 
     <main class="dashboard-container">
 
+
+        <!-- ==========================================
+             HEADER
+        ========================================== -->
+
         <section class="admin-header">
 
             <h1>
-                Admin <span>Dashboard</span>
+                Admin
+                <span>Dashboard</span>
             </h1>
 
             <p>
-                Manage internships submitted to the INTERNZO platform.
+                Manage internships submitted to the
+                INTERNZO platform.
             </p>
 
         </section>
@@ -359,9 +757,12 @@
 
         <section class="stats-grid">
 
+
             <div class="stat-card">
 
-                <p>Total Internships</p>
+                <p>
+                    Total Internships
+                </p>
 
                 <h2 id="totalCount">
                     0
@@ -372,7 +773,9 @@
 
             <div class="stat-card">
 
-                <p>Pending Approval</p>
+                <p>
+                    Pending Approval
+                </p>
 
                 <h2 id="pendingCount">
                     0
@@ -383,13 +786,16 @@
 
             <div class="stat-card">
 
-                <p>Approved</p>
+                <p>
+                    Approved
+                </p>
 
                 <h2 id="approvedCount">
                     0
                 </h2>
 
             </div>
+
 
         </section>
 
@@ -400,17 +806,20 @@
 
         <section class="admin-section">
 
+
             <div class="admin-section-header">
 
                 <h2>
                     All Internships
                 </h2>
 
+
                 <button
                     class="refresh-btn"
-                    onclick="loadInternships()"
-                >
+                    onclick="loadInternships()">
+
                     Refresh
+
                 </button>
 
             </div>
@@ -418,8 +827,7 @@
 
             <div
                 id="internshipGrid"
-                class="internship-grid"
-            >
+                class="internship-grid">
 
                 <div class="admin-message">
 
@@ -435,16 +843,23 @@
 
             </div>
 
+
         </section>
+
 
     </main>
 
 
     <!-- ==========================================
-         JAVASCRIPT
+         API
     ========================================== -->
 
     <script src="js/api.js"></script>
+
+
+    <!-- ==========================================
+         ADMIN JAVASCRIPT
+    ========================================== -->
 
     <script>
 
@@ -468,6 +883,7 @@
 
 
         let user;
+
 
         try {
 
@@ -505,8 +921,13 @@
 
         function logout() {
 
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "user"
+            );
 
             window.location.href =
                 "login.html";
@@ -525,12 +946,23 @@
                     "internshipGrid"
                 );
 
+
             grid.innerHTML = `
+
                 <div class="admin-message">
-                    <h3>Loading internships...</h3>
-                    <p>Please wait.</p>
+
+                    <h3>
+                        Loading internships...
+                    </h3>
+
+                    <p>
+                        Please wait.
+                    </p>
+
                 </div>
+
             `;
+
 
             try {
 
@@ -540,7 +972,10 @@
                     );
 
 
-                updateStats(internships);
+                updateStats(
+                    internships
+                );
+
 
                 renderInternships(
                     internships
@@ -554,7 +989,9 @@
                     error
                 );
 
+
                 grid.innerHTML = `
+
                     <div class="admin-message">
 
                         <h3>
@@ -562,13 +999,16 @@
                         </h3>
 
                         <p>
+
                             ${escapeHtml(
                                 error.message ||
                                 "Something went wrong"
                             )}
+
                         </p>
 
                     </div>
+
                 `;
 
             }
@@ -587,12 +1027,14 @@
             const total =
                 internships.length;
 
+
             const pending =
                 internships.filter(
                     internship =>
                         internship.status ===
                         "Pending"
                 ).length;
+
 
             const approved =
                 internships.filter(
@@ -604,17 +1046,20 @@
 
             document.getElementById(
                 "totalCount"
-            ).textContent = total;
+            ).textContent =
+                total;
 
 
             document.getElementById(
                 "pendingCount"
-            ).textContent = pending;
+            ).textContent =
+                pending;
 
 
             document.getElementById(
                 "approvedCount"
-            ).textContent = approved;
+            ).textContent =
+                approved;
 
         }
 
@@ -639,6 +1084,7 @@
             ) {
 
                 grid.innerHTML = `
+
                     <div class="admin-message">
 
                         <h3>
@@ -646,10 +1092,12 @@
                         </h3>
 
                         <p>
-                            There are currently no internships.
+                            There are currently
+                            no internships.
                         </p>
 
                     </div>
+
                 `;
 
                 return;
@@ -669,10 +1117,14 @@
                         const statusClass =
                             status.toLowerCase() ===
                             "approved"
+
                                 ? "status-approved"
+
                                 : status.toLowerCase() ===
                                   "rejected"
+
                                     ? "status-rejected"
+
                                     : "status-pending";
 
 
@@ -704,12 +1156,15 @@
                                         )}
                                     </h3>
 
+
                                     <span
                                         class="status-badge ${statusClass}"
                                     >
+
                                         ${escapeHtml(
                                             status
                                         )}
+
                                     </span>
 
                                 </div>
@@ -718,9 +1173,11 @@
                                 <div
                                     class="internship-company"
                                 >
+
                                     ${escapeHtml(
                                         companyName
                                     )}
+
                                 </div>
 
 
@@ -728,83 +1185,105 @@
                                     class="internship-details"
                                 >
 
+
                                     <div
                                         class="detail-row"
                                     >
+
                                         <strong>
                                             Location:
                                         </strong>
 
                                         <span>
+
                                             ${escapeHtml(
                                                 internship.location ||
                                                 "Not specified"
                                             )}
+
                                         </span>
+
                                     </div>
 
 
                                     <div
                                         class="detail-row"
                                     >
+
                                         <strong>
                                             Type:
                                         </strong>
 
                                         <span>
+
                                             ${escapeHtml(
                                                 internship.type ||
                                                 "Not specified"
                                             )}
+
                                         </span>
+
                                     </div>
 
 
                                     <div
                                         class="detail-row"
                                     >
+
                                         <strong>
                                             Duration:
                                         </strong>
 
                                         <span>
+
                                             ${escapeHtml(
                                                 internship.duration ||
                                                 "Not specified"
                                             )}
+
                                         </span>
+
                                     </div>
 
 
                                     <div
                                         class="detail-row"
                                     >
+
                                         <strong>
                                             Stipend:
                                         </strong>
 
                                         <span>
+
                                             ${escapeHtml(
                                                 internship.stipend ||
                                                 "Unpaid"
                                             )}
+
                                         </span>
+
                                     </div>
 
 
                                     <div
                                         class="detail-row"
                                     >
+
                                         <strong>
                                             Deadline:
                                         </strong>
 
                                         <span>
+
                                             ${formatDate(
                                                 internship.deadline
                                             )}
+
                                         </span>
+
                                     </div>
+
 
                                 </div>
 
@@ -812,9 +1291,11 @@
                                 <div
                                     class="internship-description"
                                 >
+
                                     ${escapeHtml(
                                         description
                                     )}
+
                                 </div>
 
 
@@ -822,9 +1303,11 @@
                                     class="admin-actions"
                                 >
 
+
                                     ${
                                         status ===
                                         "Pending"
+
                                             ? `
 
                                                 <button
@@ -834,8 +1317,11 @@
                                                         'Approved'
                                                     )"
                                                 >
+
                                                     Approve
+
                                                 </button>
+
 
                                                 <button
                                                     class="reject-btn"
@@ -844,10 +1330,13 @@
                                                         'Rejected'
                                                     )"
                                                 >
+
                                                     Reject
+
                                                 </button>
 
                                             `
+
                                             : ""
                                     }
 
@@ -858,10 +1347,14 @@
                                             '${internship._id}'
                                         )"
                                     >
+
                                         Remove
+
                                     </button>
 
+
                                 </div>
+
 
                             </article>
 
@@ -922,6 +1415,7 @@
                     "UPDATE STATUS ERROR:",
                     error
                 );
+
 
                 alert(
                     error.message ||
@@ -1050,7 +1544,9 @@
                 "en-IN",
                 {
                     day: "2-digit",
+
                     month: "short",
+
                     year: "numeric"
                 }
             );
@@ -1067,11 +1563,181 @@
         ) {
 
             return String(value)
-                .replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replaceAll('"', "&quot;")
-                .replaceAll("'", "&#039;");
+
+                .replaceAll(
+                    "&",
+                    "&amp;"
+                )
+
+                .replaceAll(
+                    "<",
+                    "&lt;"
+                )
+
+                .replaceAll(
+                    ">",
+                    "&gt;"
+                )
+
+                .replaceAll(
+                    '"',
+                    "&quot;"
+                )
+
+                .replaceAll(
+                    "'",
+                    "&#039;"
+                );
+
+        }
+
+
+        // ==========================================
+        // RESPONSIVE NAVBAR
+        // ==========================================
+
+        const menuToggle =
+            document.getElementById(
+                "menuToggle"
+            );
+
+
+        const navLinks =
+            document.getElementById(
+                "navLinks"
+            );
+
+
+        if (
+            menuToggle &&
+            navLinks
+        ) {
+
+
+            // OPEN / CLOSE MENU
+
+            menuToggle.addEventListener(
+                "click",
+                function () {
+
+                    menuToggle.classList.toggle(
+                        "active"
+                    );
+
+                    navLinks.classList.toggle(
+                        "active"
+                    );
+
+
+                    const isOpen =
+                        navLinks.classList.contains(
+                            "active"
+                        );
+
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        isOpen
+                    );
+
+                }
+            );
+
+
+            // CLOSE WHEN CLICKING LINK
+
+            document
+                .querySelectorAll(
+                    ".nav-links a"
+                )
+                .forEach(
+                    function (link) {
+
+                        link.addEventListener(
+                            "click",
+                            function () {
+
+                                menuToggle.classList.remove(
+                                    "active"
+                                );
+
+                                navLinks.classList.remove(
+                                    "active"
+                                );
+
+                                menuToggle.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+            // CLOSE WHEN CLICKING OUTSIDE
+
+            document.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        !navLinks.contains(
+                            event.target
+                        ) &&
+                        !menuToggle.contains(
+                            event.target
+                        )
+                    ) {
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            // CLOSE WITH ESCAPE
+
+            document.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (
+                        event.key === "Escape"
+                    ) {
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
 
         }
 
@@ -1083,6 +1749,7 @@
         loadInternships();
 
     </script>
+
 
 </body>
 
