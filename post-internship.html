@@ -22,7 +22,6 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
-
     <style>
 
         /* =========================================
@@ -76,7 +75,6 @@
         ========================================= */
 
         .form-box {
-
             background:
                 linear-gradient(
                     145deg,
@@ -98,7 +96,6 @@
 
             animation:
                 formAppear 0.35s ease both;
-
         }
 
 
@@ -130,11 +127,8 @@
         }
 
         .form-section h2 {
-
             display: flex;
-
             align-items: center;
-
             gap: 10px;
 
             color: #ffffff;
@@ -148,7 +142,6 @@
             border-bottom:
                 1px solid
                 rgba(255, 255, 255, 0.07);
-
         }
 
         .form-section h2 i {
@@ -162,14 +155,12 @@
         ========================================= */
 
         .form-row {
-
             display: grid;
 
             grid-template-columns:
                 repeat(2, minmax(0, 1fr));
 
             gap: 18px;
-
         }
 
 
@@ -182,7 +173,6 @@
         }
 
         .form-group label {
-
             display: block;
 
             color: #d4d4d8;
@@ -192,7 +182,6 @@
             font-weight: 600;
 
             margin-bottom: 8px;
-
         }
 
 
@@ -203,7 +192,6 @@
         .form-group input,
         .form-group select,
         .form-group textarea {
-
             width: 100%;
 
             box-sizing: border-box;
@@ -227,7 +215,6 @@
             font-size: 14px;
 
             transition: 0.2s ease;
-
         }
 
 
@@ -262,13 +249,11 @@
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
-
             border-color: #7c3aed;
 
             box-shadow:
                 0 0 0 3px
                 rgba(124, 58, 237, 0.12);
-
         }
 
 
@@ -277,13 +262,11 @@
         ========================================= */
 
         .form-group textarea {
-
             min-height: 120px;
 
             resize: vertical;
 
             line-height: 1.6;
-
         }
 
 
@@ -301,7 +284,6 @@
         ========================================= */
 
         #message {
-
             min-height: 20px;
 
             margin-bottom: 20px;
@@ -315,7 +297,6 @@
             font-weight: 600;
 
             line-height: 1.5;
-
         }
 
 
@@ -324,24 +305,19 @@
         ========================================= */
 
         .button-row {
-
             display: flex;
 
             gap: 12px;
 
             margin-top: 25px;
-
         }
 
-
         .button-row button {
-
             width: auto;
 
             min-height: 46px;
 
             padding: 0 24px;
-
         }
 
 
@@ -350,7 +326,6 @@
         ========================================= */
 
         .post-btn {
-
             display: inline-flex;
 
             align-items: center;
@@ -374,25 +349,20 @@
             cursor: pointer;
 
             transition: 0.2s ease;
-
         }
 
         .post-btn:hover {
-
             background: #6d28d9;
 
             transform: translateY(-2px);
-
         }
 
         .post-btn:disabled {
-
             opacity: 0.65;
 
             cursor: not-allowed;
 
             transform: none;
-
         }
 
 
@@ -401,7 +371,6 @@
         ========================================= */
 
         .cancel-btn {
-
             display: inline-flex;
 
             align-items: center;
@@ -427,11 +396,9 @@
             cursor: pointer;
 
             transition: 0.2s ease;
-
         }
 
         .cancel-btn:hover {
-
             background: #1c1c1c;
 
             color: #ffffff;
@@ -440,7 +407,6 @@
                 rgba(255, 255, 255, 0.15);
 
             transform: translateY(-2px);
-
         }
 
 
@@ -451,7 +417,6 @@
         .form-group input:-webkit-autofill,
         .form-group input:-webkit-autofill:hover,
         .form-group input:-webkit-autofill:focus {
-
             -webkit-text-fill-color: #ffffff;
 
             -webkit-box-shadow:
@@ -460,7 +425,6 @@
             transition:
                 background-color
                 5000s ease-in-out 0s;
-
         }
 
 
@@ -469,7 +433,6 @@
         ========================================= */
 
         .menu-toggle {
-
             display: none;
 
             width: 44px;
@@ -495,12 +458,10 @@
             flex-direction: column;
 
             gap: 5px;
-
         }
 
 
         .menu-toggle span {
-
             display: block;
 
             width: 20px;
@@ -514,7 +475,6 @@
             transition:
                 transform 0.25s ease,
                 opacity 0.25s ease;
-
         }
 
 
@@ -525,7 +485,6 @@
         @media (max-width: 800px) {
 
             .navbar {
-
                 position: sticky;
 
                 top: 0;
@@ -537,7 +496,6 @@
                 box-sizing: border-box;
 
                 z-index: 1000;
-
             }
 
 
@@ -547,7 +505,6 @@
 
 
             .nav-links {
-
                 position: absolute;
 
                 top: calc(100% + 1px);
@@ -594,25 +551,21 @@
                     transform 0.25s ease;
 
                 z-index: 1000;
-
             }
 
 
             .nav-links.active {
-
                 opacity: 1;
 
                 visibility: visible;
 
                 transform:
                     translateY(0);
-
             }
 
 
             .nav-links a,
             .nav-links button {
-
                 width: 100%;
 
                 box-sizing: border-box;
@@ -624,50 +577,39 @@
                 border-radius: 9px;
 
                 font-size: 14px;
-
             }
 
 
             .nav-links a:hover,
             .nav-links a.active {
-
                 background:
                     rgba(124, 58, 237, 0.12);
-
             }
 
 
             .nav-links button {
-
                 margin-top: 4px;
-
             }
 
 
             /* Hamburger → X */
 
             .menu-toggle.active span:nth-child(1) {
-
                 transform:
                     translateY(7px)
                     rotate(45deg);
-
             }
 
 
             .menu-toggle.active span:nth-child(2) {
-
                 opacity: 0;
-
             }
 
 
             .menu-toggle.active span:nth-child(3) {
-
                 transform:
                     translateY(-7px)
                     rotate(-45deg);
-
             }
 
         }
@@ -680,39 +622,29 @@
         @media (max-width: 650px) {
 
             .form-row {
-
                 grid-template-columns: 1fr;
 
                 gap: 0;
-
             }
 
 
             .form-box {
-
                 padding: 22px;
-
             }
 
 
             .button-row {
-
                 flex-direction: column;
-
             }
 
 
             .button-row button {
-
                 width: 100%;
-
             }
 
 
             .page-header h1 {
-
                 font-size: 36px;
-
             }
 
         }
@@ -721,18 +653,14 @@
         @media (max-width: 550px) {
 
             .navbar {
-
                 padding: 13px 4%;
-
             }
 
 
             .nav-links {
-
                 left: 4%;
 
                 right: 4%;
-
             }
 
         }
@@ -741,16 +669,12 @@
         @media (max-width: 380px) {
 
             .form-box {
-
                 padding: 18px;
-
             }
 
 
             .page-header h1 {
-
                 font-size: 32px;
-
             }
 
         }
@@ -939,7 +863,6 @@
 
                         <div class="form-row">
 
-
                             <div class="form-group">
 
                                 <label for="location">
@@ -1011,7 +934,6 @@
                         <!-- DURATION + STIPEND -->
 
                         <div class="form-row">
-
 
                             <div class="form-group">
 
@@ -1189,46 +1111,30 @@
 
     <script>
 
-
         // =========================================
         // MOBILE NAVIGATION
         // =========================================
 
         const menuToggle =
-            document.getElementById(
-                "menuToggle"
-            );
+            document.getElementById("menuToggle");
 
         const navLinks =
-            document.getElementById(
-                "navLinks"
-            );
+            document.getElementById("navLinks");
 
 
-        if (
-            menuToggle &&
-            navLinks
-        ) {
-
-            // Toggle menu
+        if (menuToggle && navLinks) {
 
             menuToggle.addEventListener(
                 "click",
                 function () {
 
-                    menuToggle.classList.toggle(
-                        "active"
-                    );
+                    menuToggle.classList.toggle("active");
 
-                    navLinks.classList.toggle(
-                        "active"
-                    );
+                    navLinks.classList.toggle("active");
 
 
                     const isOpen =
-                        navLinks.classList.contains(
-                            "active"
-                        );
+                        navLinks.classList.contains("active");
 
 
                     menuToggle.setAttribute(
@@ -1243,34 +1149,30 @@
             // Close after clicking a link
 
             document
-                .querySelectorAll(
-                    ".nav-links a"
-                )
-                .forEach(
-                    function (link) {
+                .querySelectorAll(".nav-links a")
+                .forEach(function (link) {
 
-                        link.addEventListener(
-                            "click",
-                            function () {
+                    link.addEventListener(
+                        "click",
+                        function () {
 
-                                menuToggle.classList.remove(
-                                    "active"
-                                );
+                            menuToggle.classList.remove(
+                                "active"
+                            );
 
-                                navLinks.classList.remove(
-                                    "active"
-                                );
+                            navLinks.classList.remove(
+                                "active"
+                            );
 
-                                menuToggle.setAttribute(
-                                    "aria-expanded",
-                                    "false"
-                                );
+                            menuToggle.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
 
-                            }
-                        );
+                        }
+                    );
 
-                    }
-                );
+                });
 
 
             // Close when clicking outside
@@ -1280,12 +1182,8 @@
                 function (event) {
 
                     if (
-                        !navLinks.contains(
-                            event.target
-                        ) &&
-                        !menuToggle.contains(
-                            event.target
-                        )
+                        !navLinks.contains(event.target) &&
+                        !menuToggle.contains(event.target)
                     ) {
 
                         menuToggle.classList.remove(
@@ -1313,9 +1211,7 @@
                 "keydown",
                 function (event) {
 
-                    if (
-                        event.key === "Escape"
-                    ) {
+                    if (event.key === "Escape") {
 
                         menuToggle.classList.remove(
                             "active"
@@ -1350,13 +1246,9 @@
             localStorage.getItem("user");
 
 
-        if (
-            !token ||
-            !userData
-        ) {
+        if (!token || !userData) {
 
-            window.location.href =
-                "login.html";
+            window.location.href = "login.html";
 
         }
 
@@ -1382,17 +1274,11 @@
             );
 
 
-            localStorage.removeItem(
-                "token"
-            );
+            localStorage.removeItem("token");
 
-            localStorage.removeItem(
-                "user"
-            );
+            localStorage.removeItem("user");
 
-
-            window.location.href =
-                "login.html";
+            window.location.href = "login.html";
 
         }
 
@@ -1407,16 +1293,12 @@
             user.role !== "company"
         ) {
 
-            if (
-                user.role === "student"
-            ) {
+            if (user.role === "student") {
 
                 window.location.href =
                     "student-dashboard.html";
 
-            } else if (
-                user.role === "admin"
-            ) {
+            } else if (user.role === "admin") {
 
                 window.location.href =
                     "admin-dashboard.html";
@@ -1427,6 +1309,26 @@
                     "login.html";
 
             }
+
+        }
+
+
+
+        // =========================================
+        // CHECK COMPANY ID
+        // =========================================
+
+        const companyId =
+            user &&
+            (user._id || user.id);
+
+
+        if (!companyId) {
+
+            console.error(
+                "Company ID is missing from logged-in user:",
+                user
+            );
 
         }
 
@@ -1452,12 +1354,10 @@
         // =========================================
 
         document
-            .getElementById(
-                "internshipForm"
-            )
+            .getElementById("internshipForm")
             .addEventListener(
                 "submit",
-                async function(event) {
+                async function (event) {
 
                     event.preventDefault();
 
@@ -1564,6 +1464,28 @@
                     }
 
 
+                    // =================================
+                    // COMPANY ID VALIDATION
+                    // =================================
+
+                    if (!companyId) {
+
+                        message.style.color =
+                            "#f87171";
+
+                        message.textContent =
+                            "Company ID is missing. Please logout and login again.";
+
+                        console.error(
+                            "Missing company ID:",
+                            user
+                        );
+
+                        return;
+
+                    }
+
+
 
                     try {
 
@@ -1581,14 +1503,57 @@
                         `;
 
 
-                        message.textContent =
-                            "";
+                        message.textContent = "";
 
 
 
                         // =============================
                         // API REQUEST
                         // =============================
+
+                        const internshipData = {
+
+                            company:
+                                companyId,
+
+                            title:
+                                title,
+
+                            companyName:
+                                companyName,
+
+                            location:
+                                location,
+
+                            type:
+                                type,
+
+                            duration:
+                                duration,
+
+                            stipend:
+                                stipend || "Unpaid",
+
+                            deadline:
+                                deadline,
+
+                            skills:
+                                skills,
+
+                            description:
+                                description,
+
+                            requirements:
+                                requirements
+
+                        };
+
+
+                        console.log(
+                            "Posting internship:",
+                            internshipData
+                        );
+
 
                         await apiFetch(
                             "/api/internships",
@@ -1597,40 +1562,9 @@
                                 method: "POST",
 
                                 body:
-                                    JSON.stringify({
-
-                                        title:
-                                            title,
-
-                                        companyName:
-                                            companyName,
-
-                                        location:
-                                            location,
-
-                                        type:
-                                            type,
-
-                                        duration:
-                                            duration,
-
-                                        stipend:
-                                            stipend ||
-                                            "Unpaid",
-
-                                        deadline:
-                                            deadline,
-
-                                        skills:
-                                            skills,
-
-                                        description:
-                                            description,
-
-                                        requirements:
-                                            requirements
-
-                                    })
+                                    JSON.stringify(
+                                        internshipData
+                                    )
 
                             }
                         );
@@ -1672,8 +1606,7 @@
                         // Clear internship cache
 
                         if (
-                            typeof
-                            clearInternshipCache ===
+                            typeof clearInternshipCache ===
                             "function"
                         ) {
 
@@ -1723,13 +1656,9 @@
 
         function logout() {
 
-            localStorage.removeItem(
-                "token"
-            );
+            localStorage.removeItem("token");
 
-            localStorage.removeItem(
-                "user"
-            );
+            localStorage.removeItem("user");
 
             window.location.href =
                 "login.html";
@@ -1743,9 +1672,7 @@
         // =========================================
 
         const logoutBtn =
-            document.getElementById(
-                "logoutBtn"
-            );
+            document.getElementById("logoutBtn");
 
 
         if (logoutBtn) {
