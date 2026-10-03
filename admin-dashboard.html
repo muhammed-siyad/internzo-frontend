@@ -2,806 +2,316 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <title>INTERNZO - Admin Dashboard</title>
 
-    <title>Admin Dashboard - INTERNZO</title>
-
-    <link rel="stylesheet"
-        href="css/dashboard.css">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    <link rel="stylesheet" href="css/dashboard.css">
 
     <style>
+        /* ==========================================
+           ADMIN DASHBOARD
+        ========================================== */
 
-        /* =========================================
-           PAGE HEADER
-        ========================================= */
-
-        .page-header {
+        .admin-header {
             margin-bottom: 40px;
         }
 
-        .page-label {
+        .admin-header h1 {
+            font-size: clamp(36px, 5vw, 54px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 12px;
+        }
+
+        .admin-header h1 span {
             color: #8b5cf6;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
         }
 
-        .page-header h1 {
-            color: #ffffff;
-            font-size: clamp(36px, 5vw, 50px);
-            line-height: 1.1;
-            letter-spacing: -1.5px;
-            margin-bottom: 12px;
-        }
-
-        .page-header p {
+        .admin-header p {
             color: #a1a1aa;
             font-size: 15px;
             line-height: 1.6;
         }
 
+        /* ==========================================
+           STATS
+        ========================================== */
 
-        /* =========================================
-           STATISTICS
-        ========================================= */
-
-        .admin-grid {
-
+        .stats-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(3, minmax(0, 1fr));
-
-            gap: 20px;
-
-            margin-bottom: 50px;
-
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 45px;
         }
 
-
-        .admin-card {
-
-            position: relative;
-
-            padding: 25px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #111111,
-                    #0b0b0b
-                );
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.08);
-
-            border-radius: 20px;
-
-            box-shadow:
-                0 18px 50px
-                rgba(0, 0, 0, 0.20);
-
+        .stat-card {
+            padding: 24px;
+            background: linear-gradient(145deg, #111111, #0b0b0b);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
             transition: 0.25s ease;
-
-            overflow: hidden;
-
         }
 
-
-        .admin-card::after {
-
-            content: "";
-
-            position: absolute;
-
-            width: 100px;
-
-            height: 100px;
-
-            right: -45px;
-
-            top: -45px;
-
-            background:
-                rgba(124, 58, 237, 0.08);
-
-            border-radius: 50%;
-
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(124, 58, 237, 0.4);
         }
 
-
-        .admin-card:hover {
-
-            transform:
-                translateY(-5px);
-
-            border-color:
-                rgba(124, 58, 237, 0.35);
-
-            box-shadow:
-                0 20px 55px
-                rgba(0, 0, 0, 0.35);
-
-        }
-
-
-        .stat-icon {
-
-            width: 45px;
-
-            height: 45px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            margin-bottom: 18px;
-
-            background:
-                rgba(124, 58, 237, 0.12);
-
-            color: #8b5cf6;
-
-            border:
-                1px solid
-                rgba(124, 58, 237, 0.18);
-
-            border-radius: 11px;
-
-            font-size: 18px;
-
-        }
-
-
-        .admin-card h3 {
-
+        .stat-card p {
             color: #71717a;
-
-            font-size: 12px;
-
-            font-weight: 700;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.7px;
-
-            margin-bottom: 9px;
-
-        }
-
-
-        .admin-card .number {
-
-            color: #ffffff;
-
-            font-size: 34px;
-
-            line-height: 1;
-
-            font-weight: 800;
-
-        }
-
-
-        /* =========================================
-           SECTION
-        ========================================= */
-
-        .section {
-
-            margin-top: 10px;
-
-        }
-
-
-        .section-header {
-
-            display: flex;
-
-            align-items: flex-end;
-
-            justify-content: space-between;
-
-            margin-bottom: 22px;
-
-        }
-
-
-        .section-title {
-
-            color: #ffffff;
-
-            font-size: 24px;
-
-            margin: 0;
-
-        }
-
-
-        .section-subtitle {
-
-            color: #71717a;
-
             font-size: 13px;
-
-            margin-top: 6px;
-
+            margin-bottom: 10px;
         }
 
+        .stat-card h2 {
+            color: #ffffff;
+            font-size: 32px;
+        }
 
-        /* =========================================
-           INTERNSHIP LIST
-        ========================================= */
+        /* ==========================================
+           SECTION
+        ========================================== */
 
-        .internship-list {
+        .admin-section {
+            margin-top: 20px;
+        }
 
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-
+        .admin-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 20px;
-
+            margin-bottom: 20px;
         }
 
+        .admin-section-header h2 {
+            color: #ffffff;
+            font-size: 24px;
+        }
 
-        /* =========================================
-           INTERNSHIP CARD
-        ========================================= */
+        .refresh-btn {
+            width: auto;
+            min-height: 40px;
+            padding: 9px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #111111;
+            color: #d4d4d8;
+            border-radius: 10px;
+            font-size: 13px;
+        }
+
+        .refresh-btn:hover {
+            background: #181818;
+            color: #ffffff;
+        }
+
+        /* ==========================================
+           INTERNSHIP GRID
+        ========================================== */
+
+        .internship-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
 
         .internship-card {
-
             padding: 24px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #111111,
-                    #0b0b0b
-                );
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.08);
-
+            background: linear-gradient(145deg, #111111, #0b0b0b);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
-
-            box-shadow:
-                0 18px 50px
-                rgba(0, 0, 0, 0.20);
-
             transition: 0.25s ease;
-
-            animation:
-                cardAppear 0.35s ease both;
-
         }
-
 
         .internship-card:hover {
-
-            transform:
-                translateY(-5px);
-
-            border-color:
-                rgba(124, 58, 237, 0.35);
-
-            box-shadow:
-                0 20px 55px
-                rgba(0, 0, 0, 0.35);
-
+            transform: translateY(-4px);
+            border-color: rgba(124, 58, 237, 0.35);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
         }
 
-
-        .internship-card h2 {
-
-            color: #ffffff;
-
-            font-size: 19px;
-
-            line-height: 1.35;
-
-            margin-bottom: 7px;
-
-        }
-
-
-        .company {
-
-            color: #8b5cf6;
-
-            font-size: 13px;
-
-            font-weight: 700;
-
-            margin-bottom: 16px;
-
-        }
-
-
-        /* =========================================
-           STATUS
-        ========================================= */
-
-        .status {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            padding: 6px 11px;
-
-            margin-bottom: 18px;
-
-            border-radius: 20px;
-
-            font-size: 11px;
-
-            font-weight: 700;
-
-        }
-
-
-        .pending {
-
-            background:
-                rgba(245, 158, 11, 0.12);
-
-            color: #fbbf24;
-
-            border:
-                1px solid
-                rgba(245, 158, 11, 0.18);
-
-        }
-
-
-        .approved {
-
-            background:
-                rgba(34, 197, 94, 0.12);
-
-            color: #4ade80;
-
-            border:
-                1px solid
-                rgba(34, 197, 94, 0.18);
-
-        }
-
-
-        .rejected {
-
-            background:
-                rgba(239, 68, 68, 0.12);
-
-            color: #f87171;
-
-            border:
-                1px solid
-                rgba(239, 68, 68, 0.18);
-
-        }
-
-
-        /* =========================================
-           INFO GRID
-        ========================================= */
-
-        .info {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-
-            gap: 10px;
-
-            margin-bottom: 18px;
-
-        }
-
-
-        .info-box {
-
-            padding: 12px;
-
-            background: #0d0d0d;
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.06);
-
-            border-radius: 11px;
-
-        }
-
-
-        .info-box small {
-
-            display: block;
-
-            color: #52525b;
-
-            font-size: 10px;
-
-            font-weight: 700;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.5px;
-
-            margin-bottom: 5px;
-
-        }
-
-
-        .info-box strong {
-
-            display: block;
-
-            color: #d4d4d8;
-
-            font-size: 12px;
-
-            line-height: 1.4;
-
-            word-break: break-word;
-
-        }
-
-
-        /* =========================================
-           DESCRIPTION
-        ========================================= */
-
-        .description {
-
-            color: #a1a1aa;
-
-            font-size: 13px;
-
-            line-height: 1.7;
-
-            margin-bottom: 20px;
-
-        }
-
-
-        /* =========================================
-           ACTION BUTTONS
-        ========================================= */
-
-        .action-buttons {
-
+        .internship-top {
             display: flex;
-
-            gap: 9px;
-
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 18px;
         }
 
-
-        .action-buttons button {
-
-            width: auto;
-
-            flex: 1;
-
-            min-height: 40px;
-
-            padding: 9px 12px;
-
-            border: none;
-
-            border-radius: 9px;
-
+        .internship-top h3 {
             color: #ffffff;
+            font-size: 19px;
+            line-height: 1.35;
+        }
 
-            font-family: inherit;
-
-            font-size: 12px;
-
+        .status-badge {
+            flex-shrink: 0;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 11px;
             font-weight: 700;
-
-            cursor: pointer;
-
-            transition: 0.2s ease;
-
         }
 
-
-        .action-buttons button:hover {
-
-            transform:
-                translateY(-2px);
-
+        .status-pending {
+            background: rgba(234, 179, 8, 0.12);
+            color: #facc15;
         }
 
+        .status-approved {
+            background: rgba(34, 197, 94, 0.12);
+            color: #4ade80;
+        }
+
+        .status-rejected {
+            background: rgba(239, 68, 68, 0.12);
+            color: #f87171;
+        }
+
+        .internship-company {
+            color: #a78bfa;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .internship-details {
+            display: grid;
+            gap: 9px;
+            margin-bottom: 20px;
+        }
+
+        .detail-row {
+            display: flex;
+            gap: 8px;
+            color: #a1a1aa;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .detail-row strong {
+            color: #d4d4d8;
+            font-weight: 600;
+        }
+
+        .internship-description {
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            color: #71717a;
+            font-size: 13px;
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+
+        /* ==========================================
+           ACTIONS
+        ========================================== */
+
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .admin-actions button {
+            flex: 1;
+            min-height: 42px;
+            margin: 0;
+            border-radius: 10px;
+            font-size: 13px;
+        }
 
         .approve-btn {
-
-            background: #16a34a;
-
+            background: #166534;
         }
-
 
         .approve-btn:hover {
-
             background: #15803d;
-
         }
-
 
         .reject-btn {
-
-            background: #dc2626;
-
+            background: #991b1b;
         }
-
 
         .reject-btn:hover {
-
             background: #b91c1c;
-
         }
 
+        .remove-btn {
+            background: #27272a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-        /* =========================================
-           LOADING / EMPTY / ERROR
-        ========================================= */
+        .remove-btn:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+        }
 
-        .loading,
-        .empty-state,
-        .error-state {
+        /* ==========================================
+           EMPTY / LOADING
+        ========================================== */
 
-            width: 100%;
-
-            min-height: 260px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: center;
-
-            justify-content: center;
-
+        .admin-message {
             grid-column: 1 / -1;
-
-            padding: 50px 25px;
-
+            padding: 60px 20px;
             text-align: center;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #111111,
-                    #0b0b0b
-                );
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.08);
-
+            background: #0d0d0d;
+            border: 1px solid rgba(255, 255, 255, 0.07);
             border-radius: 20px;
-
             color: #71717a;
-
         }
 
-
-        .state-icon {
-
-            width: 58px;
-
-            height: 58px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            margin-bottom: 17px;
-
-            background:
-                rgba(124, 58, 237, 0.12);
-
-            color: #8b5cf6;
-
-            border:
-                1px solid
-                rgba(124, 58, 237, 0.18);
-
-            border-radius: 14px;
-
-            font-size: 23px;
-
-        }
-
-
-        .loading-spinner {
-
-            width: 34px;
-
-            height: 34px;
-
-            margin-bottom: 15px;
-
-            border:
-                3px solid
-                rgba(255, 255, 255, 0.08);
-
-            border-top-color:
-                #8b5cf6;
-
-            border-radius: 50%;
-
-            animation:
-                spin 0.8s linear infinite;
-
-        }
-
-
-        .empty-state h2,
-        .error-state h2 {
-
+        .admin-message h3 {
             color: #ffffff;
-
-            font-size: 18px;
-
             margin-bottom: 8px;
-
         }
 
-
-        .empty-state p,
-        .error-state p {
-
+        .admin-message p {
             color: #71717a;
-
             font-size: 14px;
-
-            line-height: 1.6;
-
         }
 
-
-        /* =========================================
-           ANIMATIONS
-        ========================================= */
-
-        @keyframes spin {
-
-            to {
-                transform: rotate(360deg);
-            }
-
-        }
-
-
-        @keyframes cardAppear {
-
-            from {
-
-                opacity: 0;
-
-                transform:
-                    translateY(12px);
-
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform:
-                    translateY(0);
-
-            }
-
-        }
-
-
-        /* =========================================
+        /* ==========================================
            RESPONSIVE
-        ========================================= */
+        ========================================== */
 
-        @media (max-width: 950px) {
+        @media (max-width: 850px) {
 
-            .admin-grid {
-
-                grid-template-columns:
-                    repeat(3, 1fr);
-
-            }
-
-            .internship-list {
-
+            .stats-grid {
                 grid-template-columns: 1fr;
-
             }
 
+            .internship-grid {
+                grid-template-columns: 1fr;
+            }
         }
-
-
-        @media (max-width: 750px) {
-
-            .admin-grid {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-            .section-header {
-
-                align-items: flex-start;
-
-            }
-
-        }
-
 
         @media (max-width: 550px) {
 
-            .page-header h1 {
-
-                font-size: 36px;
-
-            }
-
-            .info {
-
-                grid-template-columns: 1fr;
-
-            }
-
-            .action-buttons {
-
+            .admin-section-header {
+                align-items: flex-start;
                 flex-direction: column;
-
             }
 
-            .action-buttons button {
-
-                flex: none;
-
+            .refresh-btn {
                 width: 100%;
-
             }
 
-            .internship-card {
-
-                padding: 20px;
-
+            .internship-top {
+                flex-direction: column;
             }
 
+            .admin-actions {
+                flex-direction: column;
+            }
         }
-
     </style>
-
 </head>
-
 
 <body>
 
-
-    <!-- =========================================
+    <!-- ==========================================
          NAVBAR
-    ========================================= -->
+    ========================================== -->
 
     <nav class="navbar">
 
@@ -809,23 +319,14 @@
             INTERNZO
         </div>
 
-
         <div class="nav-links">
 
-            <a
-                href="admin-dashboard.html"
-                class="active">
-
+            <a href="admin-dashboard.html" class="active">
                 Dashboard
-
             </a>
 
-
-            <button
-                onclick="logout()">
-
+            <button onclick="logout()">
                 Logout
-
             </button>
 
         </div>
@@ -833,369 +334,215 @@
     </nav>
 
 
-    <!-- =========================================
+    <!-- ==========================================
          MAIN
-    ========================================= -->
+    ========================================== -->
 
     <main class="dashboard-container">
 
-
-        <!-- PAGE HEADER -->
-
-        <section class="page-header">
-
-            <div class="page-label">
-                ADMIN PORTAL
-            </div>
-
+        <section class="admin-header">
 
             <h1>
-                Admin Dashboard
+                Admin <span>Dashboard</span>
             </h1>
 
-
             <p>
-                Review and manage internship
-                opportunities submitted by companies.
+                Manage internships submitted to the INTERNZO platform.
             </p>
 
         </section>
 
 
-        <!-- =========================================
-             STATISTICS
-        ========================================= -->
+        <!-- ==========================================
+             STATS
+        ========================================== -->
 
-        <section class="admin-grid">
+        <section class="stats-grid">
 
+            <div class="stat-card">
 
-            <!-- TOTAL -->
+                <p>Total Internships</p>
 
-            <div class="admin-card">
-
-                <div class="stat-icon">
-
-                    <i class="fa-solid fa-briefcase"></i>
-
-                </div>
-
-
-                <h3>
-                    Total Internships
-                </h3>
-
-
-                <div
-                    class="number"
-                    id="totalInternships">
-
+                <h2 id="totalCount">
                     0
-
-                </div>
+                </h2>
 
             </div>
 
 
-            <!-- PENDING -->
+            <div class="stat-card">
 
-            <div class="admin-card">
+                <p>Pending Approval</p>
 
-                <div class="stat-icon">
-
-                    <i class="fa-solid fa-clock"></i>
-
-                </div>
-
-
-                <h3>
-                    Pending Approval
-                </h3>
-
-
-                <div
-                    class="number"
-                    id="pendingInternships">
-
+                <h2 id="pendingCount">
                     0
-
-                </div>
+                </h2>
 
             </div>
 
 
-            <!-- APPROVED -->
+            <div class="stat-card">
 
-            <div class="admin-card">
+                <p>Approved</p>
 
-                <div class="stat-icon">
-
-                    <i class="fa-solid fa-circle-check"></i>
-
-                </div>
-
-
-                <h3>
-                    Approved Internships
-                </h3>
-
-
-                <div
-                    class="number"
-                    id="approvedInternships">
-
+                <h2 id="approvedCount">
                     0
-
-                </div>
+                </h2>
 
             </div>
-
 
         </section>
 
 
-        <!-- =========================================
-             INTERNSHIP APPROVAL
-        ========================================= -->
+        <!-- ==========================================
+             INTERNSHIPS
+        ========================================== -->
 
-        <section class="section">
+        <section class="admin-section">
 
+            <div class="admin-section-header">
 
-            <div class="section-header">
+                <h2>
+                    All Internships
+                </h2>
 
-                <div>
-
-                    <h2 class="section-title">
-                        Internship Approval
-                    </h2>
-
-
-                    <p class="section-subtitle">
-
-                        Review internship postings
-                        submitted by companies.
-
-                    </p>
-
-                </div>
+                <button
+                    class="refresh-btn"
+                    onclick="loadInternships()"
+                >
+                    Refresh
+                </button>
 
             </div>
 
 
             <div
-                class="internship-list"
-                id="internshipContainer">
+                id="internshipGrid"
+                class="internship-grid"
+            >
 
+                <div class="admin-message">
 
-                <div class="loading">
-
-                    <div class="loading-spinner"></div>
+                    <h3>
+                        Loading internships...
+                    </h3>
 
                     <p>
-                        Loading internships...
+                        Please wait.
                     </p>
 
                 </div>
-
 
             </div>
 
         </section>
 
-
     </main>
 
 
-    <!-- =========================================
-         API HELPER
-    ========================================= -->
+    <!-- ==========================================
+         JAVASCRIPT
+    ========================================== -->
 
     <script src="js/api.js"></script>
 
-
     <script>
 
-        // =========================================
-        // LOGIN CHECK
-        // =========================================
+        // ==========================================
+        // CHECK ADMIN
+        // ==========================================
 
         const token =
             localStorage.getItem("token");
 
-
-        const userData =
+        const userString =
             localStorage.getItem("user");
 
 
-        let user = null;
+        if (!token || !userString) {
 
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        let user;
 
         try {
 
             user =
-                userData
-                    ? JSON.parse(userData)
-                    : null;
+                JSON.parse(userString);
 
         } catch (error) {
 
-            console.error(
-                "USER DATA ERROR:",
-                error
-            );
-
-            localStorage.removeItem(
-                "token"
-            );
-
-            localStorage.removeItem(
-                "user"
-            );
+            localStorage.clear();
 
             window.location.href =
                 "login.html";
 
         }
 
-
-        if (!token || !user) {
-
-            window.location.href =
-                "login.html";
-
-        }
-
-
-        // =========================================
-        // ADMIN ROLE CHECK
-        // =========================================
 
         if (
-            user &&
+            !user ||
             user.role !== "admin"
         ) {
 
-            if (
-                user.role === "student"
-            ) {
+            alert(
+                "Admin access required"
+            );
 
-                window.location.href =
-                    "student-dashboard.html";
-
-            }
-
-            else if (
-                user.role === "company"
-            ) {
-
-                window.location.href =
-                    "company-dashboard.html";
-
-            }
-
-            else {
-
-                localStorage.removeItem(
-                    "token"
-                );
-
-                localStorage.removeItem(
-                    "user"
-                );
-
-                window.location.href =
-                    "login.html";
-
-            }
+            window.location.href =
+                "login.html";
 
         }
 
 
-        // =========================================
-        // HTML ESCAPE
-        // =========================================
+        // ==========================================
+        // LOGOUT
+        // ==========================================
 
-        function escapeHTML(value) {
+        function logout() {
 
-            return String(value ?? "")
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+
+            window.location.href =
+                "login.html";
 
         }
 
 
-        // =========================================
+        // ==========================================
         // LOAD INTERNSHIPS
-        // =========================================
+        // ==========================================
 
         async function loadInternships() {
 
-            const container =
+            const grid =
                 document.getElementById(
-                    "internshipContainer"
+                    "internshipGrid"
                 );
 
-
-            container.innerHTML = `
-
-                <div class="loading">
-
-                    <div class="loading-spinner"></div>
-
-                    <p>
-                        Loading internships...
-                    </p>
-
+            grid.innerHTML = `
+                <div class="admin-message">
+                    <h3>Loading internships...</h3>
+                    <p>Please wait.</p>
                 </div>
-
             `;
-
 
             try {
 
-                const data =
+                const internships =
                     await apiFetch(
                         "/api/internships/admin/all"
                     );
 
 
-                // =================================
-                // STATISTICS
-                // =================================
+                updateStats(internships);
 
-                const internships =
-                    Array.isArray(data)
-                        ? data
-                        : [];
-
-
-                document.getElementById(
-                    "totalInternships"
-                ).textContent =
-                    internships.length;
-
-
-                document.getElementById(
-                    "pendingInternships"
-                ).textContent =
-                    internships.filter(
-                        item =>
-                            item.status === "Pending"
-                    ).length;
-
-
-                document.getElementById(
-                    "approvedInternships"
-                ).textContent =
-                    internships.filter(
-                        item =>
-                            item.status === "Approved"
-                    ).length;
-
-
-                displayInternships(
+                renderInternships(
                     internships
                 );
 
@@ -1207,36 +554,21 @@
                     error
                 );
 
+                grid.innerHTML = `
+                    <div class="admin-message">
 
-                container.innerHTML = `
-
-                    <div class="error-state">
-
-                        <div class="state-icon">
-
-                            <i class="fa-solid fa-triangle-exclamation"></i>
-
-                        </div>
-
-
-                        <h2>
-                            Unable to Load Internships
-                        </h2>
-
+                        <h3>
+                            Failed to load internships
+                        </h3>
 
                         <p>
-
-                            ${
-                                escapeHTML(
-                                    error.message ||
-                                    "Unable to connect to the INTERNZO server."
-                                )
-                            }
-
+                            ${escapeHtml(
+                                error.message ||
+                                "Something went wrong"
+                            )}
                         </p>
 
                     </div>
-
                 `;
 
             }
@@ -1244,17 +576,60 @@
         }
 
 
-        // =========================================
-        // DISPLAY INTERNSHIPS
-        // =========================================
+        // ==========================================
+        // UPDATE STATS
+        // ==========================================
 
-        function displayInternships(
+        function updateStats(
             internships
         ) {
 
-            const container =
+            const total =
+                internships.length;
+
+            const pending =
+                internships.filter(
+                    internship =>
+                        internship.status ===
+                        "Pending"
+                ).length;
+
+            const approved =
+                internships.filter(
+                    internship =>
+                        internship.status ===
+                        "Approved"
+                ).length;
+
+
+            document.getElementById(
+                "totalCount"
+            ).textContent = total;
+
+
+            document.getElementById(
+                "pendingCount"
+            ).textContent = pending;
+
+
+            document.getElementById(
+                "approvedCount"
+            ).textContent = approved;
+
+        }
+
+
+        // ==========================================
+        // RENDER INTERNSHIPS
+        // ==========================================
+
+        function renderInternships(
+            internships
+        ) {
+
+            const grid =
                 document.getElementById(
-                    "internshipContainer"
+                    "internshipGrid"
                 );
 
 
@@ -1263,28 +638,18 @@
                 internships.length === 0
             ) {
 
-                container.innerHTML = `
+                grid.innerHTML = `
+                    <div class="admin-message">
 
-                    <div class="empty-state">
-
-                        <div class="state-icon">
-
-                            <i class="fa-regular fa-folder-open"></i>
-
-                        </div>
-
-
-                        <h2>
-                            No Internships Found
-                        </h2>
-
+                        <h3>
+                            No internships found
+                        </h3>
 
                         <p>
-                            No internship postings are available.
+                            There are currently no internships.
                         </p>
 
                     </div>
-
                 `;
 
                 return;
@@ -1292,7 +657,7 @@
             }
 
 
-            container.innerHTML =
+            grid.innerHTML =
                 internships.map(
                     internship => {
 
@@ -1302,204 +667,201 @@
 
 
                         const statusClass =
-                            status.toLowerCase();
-
-
-                        const title =
-                            escapeHTML(
-                                internship.title ||
-                                "Untitled Internship"
-                            );
+                            status.toLowerCase() ===
+                            "approved"
+                                ? "status-approved"
+                                : status.toLowerCase() ===
+                                  "rejected"
+                                    ? "status-rejected"
+                                    : "status-pending";
 
 
                         const companyName =
-                            escapeHTML(
-                                internship.companyName ||
-                                "Unknown Company"
-                            );
-
-
-                        const location =
-                            escapeHTML(
-                                internship.location ||
-                                "Not specified"
-                            );
-
-
-                        const type =
-                            escapeHTML(
-                                internship.type ||
-                                "Not specified"
-                            );
-
-
-                        const duration =
-                            escapeHTML(
-                                internship.duration ||
-                                "Not specified"
-                            );
-
-
-                        const stipend =
-                            escapeHTML(
-                                internship.stipend ||
-                                "Unpaid"
-                            );
+                            internship.companyName ||
+                            internship.company?.name ||
+                            "Unknown Company";
 
 
                         const description =
-                            escapeHTML(
-                                internship.description ||
-                                "No description available."
-                            );
-
-
-                        const internshipId =
-                            escapeHTML(
-                                internship._id
-                            );
+                            internship.description ||
+                            "No description provided.";
 
 
                         return `
 
                             <article
-                                class="internship-card">
+                                class="internship-card"
+                            >
 
+                                <div
+                                    class="internship-top"
+                                >
 
-                                <h2>
-                                    ${title}
-                                </h2>
+                                    <h3>
+                                        ${escapeHtml(
+                                            internship.title ||
+                                            "Untitled Internship"
+                                        )}
+                                    </h3>
 
-
-                                <div class="company">
-
-                                    <i
-                                        class="fa-solid fa-building">
-                                    </i>
-
-                                    ${companyName}
-
-                                </div>
-
-
-                                <span
-                                    class="status ${statusClass}">
-
-                                    ${escapeHTML(status)}
-
-                                </span>
-
-
-                                <div class="info">
-
-
-                                    <div class="info-box">
-
-                                        <small>
-                                            Location
-                                        </small>
-
-                                        <strong>
-                                            ${location}
-                                        </strong>
-
-                                    </div>
-
-
-                                    <div class="info-box">
-
-                                        <small>
-                                            Type
-                                        </small>
-
-                                        <strong>
-                                            ${type}
-                                        </strong>
-
-                                    </div>
-
-
-                                    <div class="info-box">
-
-                                        <small>
-                                            Duration
-                                        </small>
-
-                                        <strong>
-                                            ${duration}
-                                        </strong>
-
-                                    </div>
-
-
-                                    <div class="info-box">
-
-                                        <small>
-                                            Stipend
-                                        </small>
-
-                                        <strong>
-                                            ${stipend}
-                                        </strong>
-
-                                    </div>
-
+                                    <span
+                                        class="status-badge ${statusClass}"
+                                    >
+                                        ${escapeHtml(
+                                            status
+                                        )}
+                                    </span>
 
                                 </div>
 
 
-                                <div class="description">
+                                <div
+                                    class="internship-company"
+                                >
+                                    ${escapeHtml(
+                                        companyName
+                                    )}
+                                </div>
 
-                                    ${description}
+
+                                <div
+                                    class="internship-details"
+                                >
+
+                                    <div
+                                        class="detail-row"
+                                    >
+                                        <strong>
+                                            Location:
+                                        </strong>
+
+                                        <span>
+                                            ${escapeHtml(
+                                                internship.location ||
+                                                "Not specified"
+                                            )}
+                                        </span>
+                                    </div>
+
+
+                                    <div
+                                        class="detail-row"
+                                    >
+                                        <strong>
+                                            Type:
+                                        </strong>
+
+                                        <span>
+                                            ${escapeHtml(
+                                                internship.type ||
+                                                "Not specified"
+                                            )}
+                                        </span>
+                                    </div>
+
+
+                                    <div
+                                        class="detail-row"
+                                    >
+                                        <strong>
+                                            Duration:
+                                        </strong>
+
+                                        <span>
+                                            ${escapeHtml(
+                                                internship.duration ||
+                                                "Not specified"
+                                            )}
+                                        </span>
+                                    </div>
+
+
+                                    <div
+                                        class="detail-row"
+                                    >
+                                        <strong>
+                                            Stipend:
+                                        </strong>
+
+                                        <span>
+                                            ${escapeHtml(
+                                                internship.stipend ||
+                                                "Unpaid"
+                                            )}
+                                        </span>
+                                    </div>
+
+
+                                    <div
+                                        class="detail-row"
+                                    >
+                                        <strong>
+                                            Deadline:
+                                        </strong>
+
+                                        <span>
+                                            ${formatDate(
+                                                internship.deadline
+                                            )}
+                                        </span>
+                                    </div>
 
                                 </div>
 
 
-                                ${
-                                    status === "Pending"
-                                        ? `
+                                <div
+                                    class="internship-description"
+                                >
+                                    ${escapeHtml(
+                                        description
+                                    )}
+                                </div>
 
-                                            <div
-                                                class="action-buttons">
+
+                                <div
+                                    class="admin-actions"
+                                >
+
+                                    ${
+                                        status ===
+                                        "Pending"
+                                            ? `
 
                                                 <button
                                                     class="approve-btn"
                                                     onclick="updateStatus(
-                                                        '${internshipId}',
+                                                        '${internship._id}',
                                                         'Approved'
-                                                    )">
-
-                                                    <i
-                                                        class="fa-solid fa-check">
-                                                    </i>
-
+                                                    )"
+                                                >
                                                     Approve
-
                                                 </button>
-
 
                                                 <button
                                                     class="reject-btn"
                                                     onclick="updateStatus(
-                                                        '${internshipId}',
+                                                        '${internship._id}',
                                                         'Rejected'
-                                                    )">
-
-                                                    <i
-                                                        class="fa-solid fa-xmark">
-                                                    </i>
-
+                                                    )"
+                                                >
                                                     Reject
-
                                                 </button>
 
-                                            </div>
+                                            `
+                                            : ""
+                                    }
 
-                                        `
-                                        : ""
 
-                                }
+                                    <button
+                                        class="remove-btn"
+                                        onclick="removeInternship(
+                                            '${internship._id}'
+                                        )"
+                                    >
+                                        Remove
+                                    </button>
 
+                                </div>
 
                             </article>
 
@@ -1511,66 +873,47 @@
         }
 
 
-        // =========================================
-        // UPDATE INTERNSHIP STATUS
-        // =========================================
+        // ==========================================
+        // UPDATE STATUS
+        // ==========================================
 
         async function updateStatus(
             internshipId,
             status
         ) {
 
-            const confirmMessage =
+            const action =
                 status === "Approved"
-                    ? "Approve this internship?"
-                    : "Reject this internship?";
+                    ? "approve"
+                    : "reject";
 
 
-            if (
-                !confirm(confirmMessage)
-            ) {
+            const confirmed =
+                confirm(
+                    `Are you sure you want to ${action} this internship?`
+                );
 
+
+            if (!confirmed) {
                 return;
-
             }
 
 
             try {
 
-                const data =
-                    await apiFetch(
-                        `/api/internships/admin/status/${internshipId}`,
-                        {
-                            method: "PUT",
+                await apiFetch(
+                    `/api/internships/admin/status/${internshipId}`,
+                    {
+                        method: "PUT",
 
-                            body:
-                                JSON.stringify({
-                                    status
-                                })
-                        }
-                    );
-
-
-                alert(
-                    data.message ||
-                    "Status updated successfully."
+                        body: JSON.stringify({
+                            status: status
+                        })
+                    }
                 );
 
 
                 await loadInternships();
-
-
-                // Clear internship cache so
-                // students get the latest data.
-
-                if (
-                    typeof clearInternshipCache ===
-                    "function"
-                ) {
-
-                    clearInternshipCache();
-
-                }
 
 
             } catch (error) {
@@ -1580,10 +923,9 @@
                     error
                 );
 
-
                 alert(
                     error.message ||
-                    "Unable to update internship status."
+                    "Failed to update internship"
                 );
 
             }
@@ -1591,30 +933,152 @@
         }
 
 
-        // =========================================
-        // LOGOUT
-        // =========================================
+        // ==========================================
+        // REMOVE INTERNSHIP
+        // ==========================================
 
-        function logout() {
+        async function removeInternship(
+            internshipId
+        ) {
 
-            localStorage.removeItem(
-                "token"
+            if (!internshipId) {
+
+                alert(
+                    "Internship ID is missing."
+                );
+
+                return;
+
+            }
+
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to remove this internship?"
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            console.log(
+                "Removing internship:",
+                internshipId
             );
 
-            localStorage.removeItem(
-                "user"
-            );
+
+            try {
+
+                const result =
+                    await apiFetch(
+                        `/api/internships/admin/${internshipId}`,
+                        {
+                            method: "DELETE"
+                        }
+                    );
 
 
-            window.location.href =
-                "login.html";
+                console.log(
+                    "DELETE RESULT:",
+                    result
+                );
+
+
+                alert(
+                    result.message ||
+                    "Internship removed successfully"
+                );
+
+
+                await loadInternships();
+
+
+            } catch (error) {
+
+                console.error(
+                    "DELETE INTERNSHIP ERROR:",
+                    error
+                );
+
+
+                alert(
+                    "Delete failed: " +
+                    (
+                        error.message ||
+                        "Unknown error"
+                    )
+                );
+
+            }
 
         }
 
 
-        // =========================================
-        // START
-        // =========================================
+        // ==========================================
+        // FORMAT DATE
+        // ==========================================
+
+        function formatDate(
+            date
+        ) {
+
+            if (!date) {
+                return "Not specified";
+            }
+
+
+            const parsedDate =
+                new Date(date);
+
+
+            if (
+                Number.isNaN(
+                    parsedDate.getTime()
+                )
+            ) {
+
+                return escapeHtml(
+                    String(date)
+                );
+
+            }
+
+
+            return parsedDate.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        // ==========================================
+        // ESCAPE HTML
+        // ==========================================
+
+        function escapeHtml(
+            value
+        ) {
+
+            return String(value)
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+
+        }
+
+
+        // ==========================================
+        // LOAD ON PAGE OPEN
+        // ==========================================
 
         loadInternships();
 
